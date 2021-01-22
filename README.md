@@ -1,10 +1,14 @@
 # AgileDevelopment_templateCWRepo
-AC31007/AC51003 Agile Software Engineering - Group Number [x]
+AC31007/AC51003 Agile Software Engineering - Group Number 1
 
 Group Members:
-- Member 1 (Matriculation Number)
 - Joshua Bradley (180004997): SCRUM Master
-- Member X (Matriculation Number)
+- James Shaw (180005665) : Product Owner
+- Jesse Chan : Team Member
+- Luke Dawe : Team Member
+- James Robb : Team Member
+- Harry Finch : Team Member
+- Alan Sunny : Team Member
 
 ## Hints:
 - You may wish to change the issue tags that are in GitHub to map to different activities that you are carrying out:
