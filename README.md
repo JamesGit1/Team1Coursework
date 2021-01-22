@@ -4,7 +4,7 @@ AC31007/AC51003 Agile Software Engineering - Group 1
 Group Members:
 - Joshua Bradley (180004997) : SCRUM Master
 - James Shaw (180005665) : Product Owner
-- Jesse Chan : Team Member
+- Jesse Chan (180010828): Team Member
 - Luke Dawe : Team Member
 - James Robb : Team Member
 - Harry Finch : Team Member
