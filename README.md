@@ -1,5 +1,5 @@
 # Team1Coursework
-AC31007/AC51003 Agile Software Engineering - Group Number 1
+AC31007/AC51003 Agile Software Engineering - Group 1
 
 Group Members:
 - Joshua Bradley (180004997) : SCRUM Master
