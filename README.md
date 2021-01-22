@@ -3,7 +3,7 @@ AC31007/AC51003 Agile Software Engineering - Group Number [x]
 
 Group Members:
 - Member 1 (Matriculation Number)
-- Joshua Bradley (180004997: SCRUM Master
+- Joshua Bradley (180004997): SCRUM Master
 - Member X (Matriculation Number)
 
 ## Hints:
