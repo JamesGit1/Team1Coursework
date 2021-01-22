@@ -7,7 +7,7 @@ Group Members:
 - Jesse Chan (180010828): Team Member
 - Luke Dawe (180006521): Team Member
 - James Robb (190010640): Team Member
-- Harry Finch : Team Member
+- Harry Finch (180004617): Team Member
 - Alan Sunny : Team Member
 
 ## Hints:
