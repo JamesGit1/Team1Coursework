@@ -1,4 +1,4 @@
-# Team1Coursework
+Team1Coursework
 AC31007/AC51003 Agile Software Engineering - Group 1
 
 Group Members:
@@ -10,7 +10,7 @@ Group Members:
 - Harry Finch (180004617): Team Member
 - Alan Sunny : Team Member
 
-## Hints:
+Hints:
 - You may wish to change the issue tags that are in GitHub to map to different activities that you are carrying out:
  - Code Review
  - Documentation
@@ -18,3 +18,9 @@ Group Members:
  - etc.
 - Feel free to add in additional folders/documents that you feel will benefit your repository.
 - Have a look at the gitHub documentation for advice on how to use more advanced features in GitHub to support your work
+
+Links to our Google Docs
+- Meeting 1: includes our user stories and definition of done
+ - https://docs.google.com/document/d/1GIzwbMIxGo_43YNpUKrhUI1D3c20H5vkwmQIdvG9aTc/edit?usp=sharing
+- Ground Rule: contains our ground rules for the rest of the coursework
+ - https://docs.google.com/document/d/1K0xLSf1Xhw6GyveNL03kO8drHvIZrGjOIyDPnGqCnCk/edit?usp=sharing
