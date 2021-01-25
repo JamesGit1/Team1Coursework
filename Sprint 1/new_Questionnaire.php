@@ -1,4 +1,4 @@
-<?php 
+<!-- <?php 
 require_once('conn.php');
 session_start();
 
@@ -29,7 +29,7 @@ VALUES (:title,'1',:description);"
 	}
 }
 
-?>
+?> -->
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
