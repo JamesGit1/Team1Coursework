@@ -1,6 +1,6 @@
 <?php
 
-$host = 'mysql:host=dundata-mysqldbserver.mysql.database.azure.com';
+$host = 'dundata-mysqldbserver.mysql.database.azure.com';
 $db   = 'dundatadatabase';
 $user = 'mysqldbuser@dundata-mysqldbserver';
 $pass = 'dundata123!';
