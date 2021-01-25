@@ -7,7 +7,7 @@ $title = $description = "";
 if($_SERVER["REQUEST_METHOD"] == "POST")
 {
 	$sql = "INSERT INTO questionnaire (`name`,`creator ID`,`description`)
-VALUES (:title,'1',:description);"
+VALUES (:title,'1',:description);";
 	if($stmt = $mysql->prepare($sql))
 	{
 		$stmt->bindParam(":title", $param_title, PDO::PARAM_STR);
