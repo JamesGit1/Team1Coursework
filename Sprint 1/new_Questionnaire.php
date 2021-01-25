@@ -1,3 +1,4 @@
+
 <?php 
 require_once('conn.php');
 session_start();
@@ -49,7 +50,7 @@ VALUES (:title,'1',:description);";
 	    	<form action="blank_Questionnaire.html" method="POST">
 	    		Title: <input type="text" name="title" value="<?php echo $title; ?>">
 	    		Description: <input type="text" name="description" value="<?php echo $description; ?>">
-    			<button value ="Submit" type="submit" class="btn btn-outline-primary">Make a new Questionnaire</button>
+    			<button value ="Submit" type="submit" class="btn btn-primary">Make a new Questionnaire</button>
 			</form>
 	    </div>
 	  </div>
