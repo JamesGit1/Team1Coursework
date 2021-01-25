@@ -2,5 +2,5 @@
 
 require_once('conn.php');
 
-header('Location: Sprint 1/new_Questionnaire.php');
+header('Location: Software_Code/new_Questionnaire.php');
 ?>
