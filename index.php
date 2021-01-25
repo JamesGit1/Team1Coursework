@@ -1,6 +1,6 @@
 <?php
 
 require_once('conn.php');
-echo 'Current PHP version: ' . phpversion();
-echo "SUP NERDS!";
+
+header('Location: Sprint 1/new_Questionnaire.php');
 ?>
