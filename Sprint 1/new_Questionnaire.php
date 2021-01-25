@@ -1,5 +1,34 @@
 <?php 
 require_once('conn.php');
+session_start();
+
+$title = $description = "";
+
+if($_SERVER["REQUEST_METHOD"] == "POST")
+{
+	$sql = "INSERT INTO questionnaire (`name`,`creator ID`,`description`)
+VALUES (:title,'1',:description);"
+	if($stmt = $mysql->prepare($sql))
+	{
+		$stmt->bindParam(":title", $param_title, PDO::PARAM_STR);
+		$stmt->bindParam(":description", $param_description, PDO::PARAM_STR);
+
+		$param_title = $title;
+		$param_description = $description;
+
+		$_SESSION['title'];
+		$_SESSION['description'];
+
+		if($stmt->execute())
+			{
+				//redirect
+			}else
+			{
+				echo "Something went wrong. Try again later.";
+			}
+	}
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -18,12 +47,13 @@ require_once('conn.php');
 	  <div class="row">
 	    <div class="col-md-auto">
 	    	<h1><u>Create a new Questionnaire</u></h1>
-	    	<form action="blank_Questionnaire.html">
-    			<button type="submit" class="btn btn-outline-primary">Make a new Questionnaire</button>
+	    	<form action="blank_Questionnaire.html" method="POST">
+	    		Title: <input type="text" name="title" value="<?php echo $title; ?>">
+	    		Description: <input type="text" name="description" value="<?php echo $description; ?>">
+    			<button value ="Submit" type="submit" class="btn btn-outline-primary">Make a new Questionnaire</button>
 			</form>
 	    </div>
 	  </div>
 	</div>
 </body>
-
 </html>
