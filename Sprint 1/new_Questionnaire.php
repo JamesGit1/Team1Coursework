@@ -21,7 +21,7 @@ VALUES (:title,'1',:description);";
 
 		if($stmt->execute())
 			{
-				header('Location: Software_Code/blank_Questionnaire.html');
+				header('Location: blank_Questionnaire.html');
 			}else
 			{
 				echo "Something went wrong. Try again later.";
