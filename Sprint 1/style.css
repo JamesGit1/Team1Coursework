@@ -16,3 +16,7 @@ html, body{
 	margin-right: auto;
 	padding-top: 4em;
 }
+
+.row h1{
+	padding-bottom: 0.2em;
+}
