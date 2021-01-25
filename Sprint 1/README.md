@@ -17,9 +17,9 @@ Josh, James S, James R, Luke, Harry, Jesse, Alan
 
 
 ### Summary of Conversation:
-We went through SCRUM requirements for the coursework (such as the video recording)
-Then we talked about our plans for the day in a stand-up setting, going around the group and giving time for each person to speak
-We updated the 'To do / In Progress / Completed' project in the GitHub repository
-We then acknowledged any potential blockages 
+We went through SCRUM requirements for the coursework (such as the video recording).
+Then we talked about our plans for the day in a stand-up setting, going around the group and giving time for each person to speak.
+We updated the 'To do / In Progress / Completed' project in the GitHub repository.
+We then acknowledged any potential blockages.
 
 ---
