@@ -1,7 +1,7 @@
-
 <?php 
 require_once('conn.php');
 session_start();
+/*
 
 $title = $description = "";
 
@@ -29,6 +29,7 @@ VALUES (:title,'1',:description);";
 			}
 	}
 }
+*/
 ?>
 
 <!DOCTYPE html>
@@ -48,8 +49,8 @@ VALUES (:title,'1',:description);";
 	    <div class="col-md-auto">
 	    	<h1><u>Create a new Questionnaire</u></h1>
 	    	<form action="blank_Questionnaire.php" method="POST">
-	    		Title: <input type="text" name="title" value="<?php echo $title; ?>" required>
-	    		Description: <input type="text" name="description" value="<?php echo $description; ?>" required>
+	    		Title: <input type="text" name="title" placeholder="e.g. Data Collection" required>
+	    		Description: <input type="text" name="description" placeholder="e.g. This is is what the questionnaire is about or something like that" required>
     			<button value ="Submit" type="submit" class="btn btn-primary">Make a new Questionnaire</button>
 			</form>
 	    </div>
