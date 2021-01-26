@@ -36,7 +36,7 @@ GROUP BY q.id;";
 				{
 				?>
 				<div class="col">
-					<div class="card">
+					<div class="card text-center">
 						<div class="card-body">
 							<h5 class="card-title"><?php echo $row['Title'];?></h5>
         					<p class="card-text">Number of Responses: <?php echo $row['responses'];?></p>				
