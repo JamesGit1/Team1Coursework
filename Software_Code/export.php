@@ -6,25 +6,24 @@
 	$stmt->execute();
 	$result = $stmt->fetchAll();
 
+	$csv_export = '';
+	$field = mysql_num_fields($query);
+
+	for ($i=0; $i < $field; $i++) { 
+		$csv_export.=mysql_field_name($query, $i).',';
+	}
+
+	$csv_export.= '
+	';
+
+	while($row = mysql_fetch_array($query)) {
+	  for($i = 0; $i < $field; $i++) {
+	    $csv_export.= '"'.$row[mysql_field_name($query,$i)].'",';
+	  }	
+	  $csv_export.= '
+	';	
+}
+header("Content-type: text/x-csv");
+header("Content-Disposition: attachment; filename=".$csv_filename."");
+echo($csv_export);
 ?>
-
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Export data</title>
-</head>
-<body>
-	<?php
-		$array1 = array();
-		foreach ($result as $row) 
-		{
-			$array1[] = $row;
-		}
-
-		$fp = fopen('empdata.json', 'w');
-		fwrite($fp, json_encode($array1));
-		fclose($fp);
-	?>
-	<button name="download">Download</button>
-</body>
-</html>
