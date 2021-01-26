@@ -30,19 +30,30 @@ GROUP BY q.id;";
         <div class = "row">
             <h1><u>Available Questionnaires</u></h1>
         </div>
-        <div class = "row">
+        <div class = "row row-cols-4">
 			<?php 
 				foreach ($result as $row) 
 				{
-					echo $row['Title'];
-					echo $row['responses'];
-			?>
-			<form method="POST" action="export.php">
-				<button type="submit" class="btn btn-primary" name="download" value="<?php echo $row['id'] ?>">Download now!</button>
-			</form>
-			<? 		
+				?>
+				<div class="col">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title"><?php echo $row['Title'];?></h5>
+        					<p class="card-text"><?php echo $row['responses'];?></p>				
+							<form method="POST" action="export.php">
+								<button type="submit" class="btn btn-primary" name="download" value="<?php echo $row['id'] ?>">Download now!</button>
+							</form>
+						</div>
+					</div>
+				</div>		
+			<?php 		
 				}
 			?>
 		</div>
+	</div>
+
+
+
+
 </body>
 </html>
