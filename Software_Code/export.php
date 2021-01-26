@@ -37,19 +37,3 @@ WHERE qqm.`Questionnaire ID` = :questionnaireID";
 	header("Content-Disposition: attachment; filename=".$csv_filename."");
 	echo($csv);
 }
-	
-?>
-
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-	<form method="POST">
-		<label>Questionnaire ID</label>
-		<input type="text" name="questionnaireID">
-		<input type="submit" name="submitQuestionnaireID" value="Submit">
-	</form>
-</body>
-</html>
