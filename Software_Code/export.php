@@ -6,17 +6,24 @@
 	$stmt->execute();
 	$result = $stmt->fetchAll();
 
+	$csv_export = '';
+	$field = mysql_num_fields($query);
 
-
-	$array1 = array();
-	foreach ($result as $row) 
-	{
-		$array1[] = $row;
+	for ($i=0; $i < $field; $i++) { 
+		$csv_export.=mysql_field_name($query, $i).',';
 	}
 
+	$csv_export.= '
+	';
 
-	echo json_encode($array1);
-
-	header("Content-type: application/json");
-	header("Content-Disposition: attachment; filename=testjson.json");
+	while($row = mysql_fetch_array($query)) {
+	  for($i = 0; $i < $field; $i++) {
+	    $csv_export.= '"'.$row[mysql_field_name($query,$i)].'",';
+	  }	
+	  $csv_export.= '
+	';	
+}
+header("Content-type: text/x-csv");
+header("Content-Disposition: attachment; filename=".$csv_filename."");
+echo($csv_export);
 ?>
