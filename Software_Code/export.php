@@ -4,6 +4,13 @@
 if(isset($_POST['submitQuestionnaireID']))
 {
 	$questionnaireID = "";
+	if(empty(trim($_POST["questionnaireID"])))
+	{
+		echo "";
+	} else
+	{
+		$questionnaireID = trim($_POST["questionnaireID"]);
+	}
 
 	$sql = "SELECT * FROM answer a
 INNER JOIN `questionnaire question map` qqm ON qqm.`question ID` = a.`question ID`
