@@ -8,13 +8,15 @@
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
-<nav class="navbar navbar-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Home</a>
-  </div>
-</nav>
 
 <body>
+
+  <nav class="navbar navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Home</a>
+    </div>
+  </nav>
+
   <div class="container">
     <div class="row">
       <form>
