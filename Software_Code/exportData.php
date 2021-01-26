@@ -28,7 +28,7 @@ GROUP BY q.id;";
 			echo $row['responses'];
 	?>
 	<form method="POST" action="export.php">
-		<input type="submit" name="download" value="<?php echo row['id'] ?>">
+		<input type="submit" name="download" value="<?php echo $row['id'] ?>">
 	</form>
 	<? 		
 		}
