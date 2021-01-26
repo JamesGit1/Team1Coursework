@@ -13,10 +13,17 @@
 	    <a class="navbar-brand" href="#">Home</a>
 	  </div>
 	</nav>
-	<form method="POST" action="export.php">
-		<label>Questionnaire ID</label>
-		<input type="text" name="questionnaireID">
-		<input type="submit" name="submitQuestionnaireID" value="Submit">
-	</form>
+	<div class="container">
+		<div class = "row">
+			<h1><u>Available Questionnaires</u></h1>
+		</div>
+		<div class = "row">
+			<form method="POST" action="export.php">
+				<label>Questionnaire ID</label>
+				<input type="text" name="questionnaireID">
+				<input type="submit" name="submitQuestionnaireID" value="Submit">
+			</form>
+		</div>
+	</div>
 </body>
 </html>
