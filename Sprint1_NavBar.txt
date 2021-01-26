@@ -3,61 +3,59 @@
 <head>
     <title>NavBar</title>
     <style>
-	ul {
-  margin: 0;
-  padding: 0;
-  border: none;
-  outline: none;
-  font-family: monospace;
-  text-transform: uppercase;
-  font-weight: bold;
-  text-decoration: none;
-  box-sizing: border-box;
-}
- 
-body, html { height: 100%; overflow: hidden;}
-ul, ol { list-style: none; }
- 
-header {
-  width: 10vw;
-  height: 10vh;
-  display: flex;
-  position: relative;
-  align-items: center;
-  flex-direction: column;
-}
- 
-header nav li a {
-  color: #000000;
-  display: block;
-  position: relative;
-  padding: 10px 10px;
-  font-size: 30px;
-   
-}
- 
-header nav li a:before, header nav li a:after {
-  content: "";
-  bottom: 0;
-  width: 0px;
-  height: 2px;
-  display: block;
-  position: absolute;
-  background-color: #000000;
-  -webkit-transition: all 0.3s ease-in-out;
-          transition: all 0.3s ease-in-out;  
-}
- 
-header nav li a:before { right: 50%; }
-header nav li a:after { left: 50%; }
- 
-header nav li a:hover:before , header nav li a:hover:after {
-  width: 50%;
-}
- 
-
-}
-	</style>
+    	ul {
+      margin: 0;
+      padding: 0;
+      border: none;
+      outline: none;
+      font-family: monospace;
+      text-transform: uppercase;
+      font-weight: bold;
+      text-decoration: none;
+      box-sizing: border-box;
+    }
+     
+    body, html { height: 100%; overflow: hidden;}
+    ul, ol { list-style: none; }
+     
+    header {
+      width: 10vw;
+      height: 10vh;
+      display: flex;
+      position: relative;
+      align-items: center;
+      flex-direction: column;
+    }
+     
+    header nav li a {
+      color: #000000;
+      display: block;
+      position: relative;
+      padding: 10px 10px;
+      font-size: 30px;
+       
+    }
+     
+    header nav li a:before, header nav li a:after {
+      content: "";
+      bottom: 0;
+      width: 0px;
+      height: 2px;
+      display: block;
+      position: absolute;
+      background-color: #000000;
+      -webkit-transition: all 0.3s ease-in-out;
+              transition: all 0.3s ease-in-out;  
+    }
+     
+    header nav li a:before { right: 50%; }
+    header nav li a:after { left: 50%; }
+     
+    header nav li a:hover:before , header nav li a:hover:after {
+      width: 50%;
+    }
+     
+  
 </head>
 <body>
 </ul>
