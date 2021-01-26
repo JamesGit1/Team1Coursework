@@ -21,7 +21,7 @@
 			$array1[] = $row;
 		}
 
-		echo json_encode($emparray);
+		echo json_encode($array1);
 	?>
 	<button name="download">Download</button>
 </body>
