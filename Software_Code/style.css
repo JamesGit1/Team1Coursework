@@ -48,3 +48,17 @@ img {
 	line-height: 28px;
 	padding-left: 5%;
 }
+
+@media screen and (max-width: 550px) {
+    .row h1{
+	padding-bottom: 0.2em;
+	font-size: 3em;
+}
+}
+
+@media screen and (max-width: 375px) {
+    .row h1{
+	padding-bottom: 0.2em;
+	font-size: 2em;
+}
+}
