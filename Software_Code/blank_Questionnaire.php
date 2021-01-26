@@ -40,8 +40,8 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <a href="#" id="btnText" class="btn btn-primary">Text Based</a>
-            <a href="#" id="btnRadio" class="btn btn-primary">Radio Button</a>
+            <a href="#" id="btnText" data-bs-dismiss="modal" class="btn btn-primary">Text Based</a>
+            <a href="#" id="btnRadio" data-bs-dismiss="modal" class="btn btn-primary">Radio Button</a>
             <button type="button" class="btn btn-primary">Drop Down</button>
             <a href="#" id="test" class="btn btn-primary">Test Button</a>
           </div>
@@ -70,21 +70,22 @@
       );
     } else if (type == "radio") {
 
-        var myCol = $('<div class="card"><div class="card-body">  <input type = "text" id = "myText" placeholder="Enter question here:" class="card-title question-title"/>    <div id="contentPanel">  </div><a href="#"  onclick="addExtraRadio()" class="btn btn-primary btn-success fas fa-plus"></a><div class="d-grid gap-2 d-md-flex justify-content-md-end">  <a href="#" class="btn btn-primary fas fa-check"></a>  <a href="#" onclick="deleteCard()" class="btn btn-primary btn-danger fas fa-trash"></a>  </div>  <div class="form-check">  <input type="checkbox" class="form-check-input" id="required">    <label class="form-check-label" for="required">Required</label></div></div></div>');
+        var myCol = $('<div class="card id = ' + questionNumber +' "><div class="card-body">  <input type = "text" id = "myText" placeholder="Enter question here:" class="card-title question-title"/>    <div id="contentPanel' + questionNumber +'">  </div><a href="#"  id = ' + questionNumber +' onclick="addExtraRadio(this.id)" class="btn btn-primary btn-success fas fa-plus"></a><div class="d-grid gap-2 d-md-flex justify-content-md-end">  <a href="#" class="btn btn-primary fas fa-check"></a>  <a href="#" onclick="deleteCard()" class="btn btn-primary btn-danger fas fa-trash"></a>  </div>  <div class="form-check">  <input type="checkbox" class="form-check-input" id="required">    <label class="form-check-label" for="required">Required</label></div></div></div>');
     }
     myCol.appendTo('#questionPanel');
     questionNumber++;
   };
 
-  function addExtraRadio() {
-    alert("addRadio");
+  function addExtraRadio(id) {
+
+    alert(id)
   var numberOfOptions = 1;
   var div = $('<div class="cardParent"></div>');
   var myCol = $('<p class="card-text"><input type = "text" id =' + numberOfOptions + ' placeholder="Enter option here..." class="card-title option"/></p>\n');
   var deleteButton = $('<a href="#" class="btn btn-primary btn-secondary fas fa-times btn-delete close" style="margin-left: 20px;"></a>');
   deleteButton.appendTo(myCol);
   myCol.appendTo(div);
-  div.appendTo('#contentPanel');
+  div.appendTo('#contentPanel' +id);
   numberOfOptions++;
 }
   function deleteCard(){
