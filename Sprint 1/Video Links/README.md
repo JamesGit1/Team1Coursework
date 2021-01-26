@@ -1,3 +1,3 @@
 # Video Links
 
-You should update this README.md file to contain links to your groups video files that have been created for this Sprint.
+Scrum Meeting 2 : https://web.microsoftstream.com/video/dc25074d-5d77-4f43-a450-082806cfd53c
