@@ -1,0 +1,3 @@
+SELECT COUNT(DISTINCT(`participant ID`)) AS `responses` FROM answer a INNER JOIN `questionnaire question map` qqm
+ON a.`question ID` = qqm.`Question ID` WHERE qqm.`Questionnaire ID` = 2
+GROUP BY `participant ID`;
