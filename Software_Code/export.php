@@ -21,7 +21,9 @@
 			$array1[] = $row;
 		}
 
-		echo json_encode($array1);
+		$fp = fopen('empdata.json', 'w');
+		fwrite($fp, json_encode($array1));
+		fclose($fp);
 	?>
 	<button name="download">Download</button>
 </body>
