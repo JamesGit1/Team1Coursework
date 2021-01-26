@@ -18,7 +18,7 @@
 		$array1 = array();
 		foreach ($result as $row) 
 		{
-			$array1[] = $row
+			$array1[] = $row;
 		}
 
 		echo json_encode($emparray);
