@@ -18,5 +18,5 @@
 	echo json_encode($array1);
 
 	header("Content-type: application/jsonv");
-	header("Content-Disposition: attachment; filename=testjson");
+	header("Content-Disposition: attachment; filename=testjson.json");
 ?>
