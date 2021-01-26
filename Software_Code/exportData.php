@@ -10,23 +10,39 @@ GROUP BY q.id;";
 	$result = $stmt->fetchall();
 
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Export Data</title>
 </head>
 <body>
-	<?php 
-		foreach ($result as $row) 
-		{
-			echo $row['Title'];
-			echo $row['responses'];
-	?>
-	<form method="POST" action="export.php">
-		<button type="submit" name="download" value="<?php echo $row['id'] ?>">Download now!</button>
-	</form>
-	<? 		
-		}
-	?>
+	<nav class="navbar navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Home</a>
+      </div>
+    </nav>
+    <div class="container">
+        <div class = "row">
+            <h1><u>Available Questionnaires</u></h1>
+        </div>
+        <div class = "row">
+			<?php 
+				foreach ($result as $row) 
+				{
+					echo $row['Title'];
+					echo $row['responses'];
+			?>
+			<form method="POST" action="export.php">
+				<button type="submit" name="download" value="<?php echo $row['id'] ?>">Download now!</button>
+			</form>
+			<? 		
+				}
+			?>
+		</div>
 </body>
 </html>
