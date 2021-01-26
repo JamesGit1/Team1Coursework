@@ -48,7 +48,15 @@ img {
 	line-height: 28px;
 	padding-left: 5%;
 }
+.card{
+	border: 0.4em solid rgb(86 116 228);
+}
 
+.btn-primary {
+    color: #fff;
+    background-color: #5674e4;
+    border-color: #5674e4;
+}
 @media screen and (max-width: 550px) {
     .row h1{
 	padding-bottom: 0.2em;
