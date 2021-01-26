@@ -1,3 +1,26 @@
+<?php 
+require_once('conn.php');
+session_start();
+
+$title = $description = "";
+
+if($_SERVER["REQUEST_METHOD"] == "POST")
+{
+	$sql = "INSERT INTO questionnaire (`name`,`creator ID`,`description`)
+VALUES (:title,'1',:description);";
+	if($stmt = $pdo->prepare($sql))
+	{
+		$stmt->bindParam(":title", $title, PDO::PARAM_STR);
+		$stmt->bindParam(":description", $description, PDO::PARAM_STR);
+
+    $title = $_POST['title'];
+    $description = $_POST['description'];
+
+    $stmt->execute();
+	}
+}
+?>
+
 <link rel="stylesheet" href="questionAppearance.css">
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
