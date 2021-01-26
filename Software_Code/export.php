@@ -2,7 +2,7 @@
 	require('conn.php');
 
 	$sql = "SELECT * FROM answer";
-	$stmt = $mysql->prepare($sql);
+	$stmt = $pdo->prepare($sql);
 	$result = $stmt->fetchAll();
 
 ?>
@@ -14,7 +14,8 @@
 </head>
 <body>
 	<?php 
-		foreach ($result as $row) {
+		foreach ($result as $row) 
+		{
 			echo $row['id'];
 			echo $row['contents'];
 			echo $row['question ID'];
