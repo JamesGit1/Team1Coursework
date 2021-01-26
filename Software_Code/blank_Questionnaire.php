@@ -91,7 +91,7 @@
   function deleteCard(){
         alert("deleteCard");
         var $target = $(this).parents('.card');
-        $target.hide('slow', function(){ $target.remove(); });
+        $target.hide('slow', deleteCard(){ $target.remove(); });
   }
   $("#btnText").click(function() {
 
