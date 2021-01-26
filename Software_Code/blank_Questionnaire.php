@@ -83,7 +83,7 @@
   var deleteButton = $('<a href="#" class="btn btn-primary btn-secondary fas fa-times btn-delete close" style="margin-left: 20px;"></a>');
   deleteButton.appendTo(myCol);
   myCol.appendTo(div);
-  div.appendTo('#contentPanel');
+  div.appendTo('#contentPanel' +id);
   numberOfOptions++;
 }
   function deleteCard(){
