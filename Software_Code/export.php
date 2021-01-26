@@ -18,7 +18,6 @@ WHERE qqm.`Questionnaire ID` = :questionnaireID";
 	}
 	
 	$result = $stmt->fetchAll();
-	unset($stmt);
 	$csv_filename = 'db_export_'.date('Y-m-d').'.csv';
 
 	$csv = '"questionID", "participantID", "answerID", "contents"';
