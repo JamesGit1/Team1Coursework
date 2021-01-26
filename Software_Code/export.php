@@ -50,6 +50,7 @@ WHERE qqm.`Questionnaire ID` = :questionnaireID";
 	<form method="post">
 		<label>Questionnaire ID</label>
 		<input type="text" name="questionnaireID">
+		<input type="submit" name="submit" value="submit">
 	</form>
 </body>
 </html>
