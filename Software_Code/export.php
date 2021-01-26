@@ -1,6 +1,8 @@
 <?php  
 	require('conn.php');
 
+if(isset($_POST['submitQuestionnaireID']))
+{
 	$questionnaireID = "";
 
 	$sql = "SELECT * FROM answer a
@@ -17,27 +19,24 @@ WHERE qqm.`Questionnaire ID` = :questionnaireID";
 	
 	$result = $stmt->fetchAll();
 	unset($stmt);
-	if (!empty($result)) 
-	{
-		$csv_filename = 'db_export_'.date('Y-m-d').'.csv';
+	$csv_filename = 'db_export_'.date('Y-m-d').'.csv';
 
-		$csv = '"questionID", "participantID", "answerID", "contents"';
+	$csv = '"questionID", "participantID", "answerID", "contents"';
+	$csv.= '
+';
+
+	foreach ($result as $row) 
+	{ 
+		$csv.= '"'.$row['question ID'].'", "'.$row['participant ID'].'", "'.$row['id'].'", "'.$row['contents'].'"';
 		$csv.= '
 ';
-
-		foreach ($result as $row) 
-		{ 
-			$csv.= '"'.$row['question ID'].'", "'.$row['participant ID'].'", "'.$row['id'].'", "'.$row['contents'].'"';
-			$csv.= '
-';
-		}
-
-
-		header("Content-type: text/x-csv");
-		header("Content-Disposition: attachment; filename=".$csv_filename."");
-		echo($csv);
 	}
 
+
+	header("Content-type: text/x-csv");
+	header("Content-Disposition: attachment; filename=".$csv_filename."");
+	echo($csv);
+}
 	
 ?>
 
@@ -47,10 +46,10 @@ WHERE qqm.`Questionnaire ID` = :questionnaireID";
 	<title></title>
 </head>
 <body>
-	<form method="post">
+	<form method="POST">
 		<label>Questionnaire ID</label>
 		<input type="text" name="questionnaireID">
-		<input type="submit" name="submit" value="submit">
+		<input type="submit" name="submitQuestionnaireID" value="Submit">
 	</form>
 </body>
 </html>
