@@ -68,7 +68,7 @@
       );
     } else if (type == "radio") {
 
-        var myCol = $('<div class="card"><div class="card-body">  <input type = "text" id = "myText" placeholder="Enter question here:" class="card-title question-title"/>    <div id="contentPanel">  </div><a href="#"  onclick="addExtraRadio()" class="btn btn-primary btn-success fas fa-plus"></a><div class="d-grid gap-2 d-md-flex justify-content-md-end">  <a href="#" class="btn btn-primary fas fa-check"></a>  <a href="#" onclick="deleteRadio()" class="btn btn-primary btn-danger fas fa-trash"></a>  </div>  <div class="form-check">  <input type="checkbox" class="form-check-input" id="required">    <label class="form-check-label" for="required">Required</label></div></div></div>');
+        var myCol = $('<div class="card"><div class="card-body">  <input type = "text" id = "myText" placeholder="Enter question here:" class="card-title question-title"/>    <div id="contentPanel">  </div><a href="#"  onclick="addExtraRadio()" class="btn btn-primary btn-success fas fa-plus"></a><div class="d-grid gap-2 d-md-flex justify-content-md-end">  <a href="#" class="btn btn-primary fas fa-check"></a>  <a href="#" onclick="deleteCard()" class="btn btn-primary btn-danger fas fa-trash"></a>  </div>  <div class="form-check">  <input type="checkbox" class="form-check-input" id="required">    <label class="form-check-label" for="required">Required</label></div></div></div>');
     }
     myCol.appendTo('#questionPanel');
     questionNumber++;
@@ -85,11 +85,10 @@
   div.appendTo('#contentPanel');
   numberOfOptions++;
 }
-  function deleteRadio(){
-        alert("deleteRadio");
-    stopPropagation();
-    var $target = $(this).parents('.cardParent');
-    $target.hide('slow', function(){ $target.remove(); });
+  function deleteCard(){
+        alert("deleteCard");
+        var $target = $(this).parents('.card');
+        $target.hide('slow', function(){ $target.remove(); });
   }
   $("#btnText").click(function() {
 
