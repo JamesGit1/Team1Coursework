@@ -35,10 +35,3 @@ GROUP BY q.id;";
 	?>
 </body>
 </html>
-
-<?php 
-	if(isset($_POST['download']))
-	{
-		$_POST['download'];
-	}
-?>
