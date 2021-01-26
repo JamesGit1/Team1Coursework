@@ -39,7 +39,7 @@ GROUP BY q.id;";
 					<div class="card">
 						<div class="card-body">
 							<h5 class="card-title"><?php echo $row['Title'];?></h5>
-        					<p class="card-text"><?php echo $row['responses'];?></p>				
+        					<p class="card-text">Number of Responses: <?php echo $row['responses'];?></p>				
 							<form method="POST" action="export.php">
 								<button type="submit" class="btn btn-primary" name="download" value="<?php echo $row['id'] ?>">Download</button>
 							</form>
