@@ -60,8 +60,6 @@
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 
 <script>
   var questionNumber = 1;
@@ -73,7 +71,8 @@
       );
 
     } else if (type == "radio") {
-        var myCol = $("#questionPanel").load("radioCard.html");
+      alert("Radio");
+        var myCol = $('<div class="card" id = ' + questionNumber +' "><div class="card-body">  <input type = "text" id = "myText" placeholder="Enter question here:" class="card-title question-title"/>  <div id="contentPanel">  </div> <a href="#" onclick="addExtraRadio()" id = "btnGen" class="btn btn-primary btn-success fas fa-plus" id="addOption"></a>  <div class="d-grid gap-2 d-md-flex justify-content-md-end"><a href="#" class="btn btn-primary fas fa-check"></a><a href="#" class="btn btn-primary btn-danger fas fa-trash"></a>  </div><div class="form-check"><input type="checkbox" class="form-check-input" id="required"><label class="form-check-label" for="required">Required</label></div></div></div>');
     }
     myCol.appendTo('#questionPanel');
     questionNumber++;
@@ -102,7 +101,6 @@
   $("#btnGen").click(function() {
     alert("test3");
   });
-
 
 
 </script>
