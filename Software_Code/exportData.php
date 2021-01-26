@@ -16,11 +16,6 @@ GROUP BY q.id;";
 	<title></title>
 </head>
 <body>
-	<form method="POST" action="export.php">
-		<label>Questionnaire ID</label>
-		<input type="text" name="questionnaireID">
-		<input type="submit" name="submitQuestionnaireID" value="Submit">
-	</form>
 	<?php 
 		foreach ($result as $row) 
 		{
