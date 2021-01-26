@@ -3,6 +3,7 @@
 
 	$sql = "SELECT * FROM answer";
 	$stmt = $pdo->prepare($sql);
+	$stmt->execute();
 	$result = $stmt->fetchAll();
 
 ?>
