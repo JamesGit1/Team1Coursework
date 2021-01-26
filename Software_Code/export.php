@@ -1,15 +1,15 @@
 <?php  
 	require('conn.php');
 
-if(isset($_POST['submitQuestionnaireID']))
+if(isset($_POST['download']))
 {
 	$questionnaireID = "";
-	if(empty(trim($_POST["questionnaireID"])))
+	if(empty(trim($_POST["download"])))
 	{
 		echo "";
 	} else
 	{
-		$questionnaireID = trim($_POST["questionnaireID"]);
+		$questionnaireID = trim($_POST["download"]);
 	}
 
 	$sql = "SELECT * FROM answer a
