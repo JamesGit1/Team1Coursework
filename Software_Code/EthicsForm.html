@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<button onclick="myFunction()">Click Here To Continue</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  var txt;
+  if (confirm("By clicking OK you are agreeing to the Universitys Ethics policy")) {
+    txt = "Thanks for complying";
+  } else {
+    txt = "You pressed Cancel";
+  }
+  document.getElementById("demo").innerHTML = txt;
+}
+</script>
+
+</body>
+</html>
