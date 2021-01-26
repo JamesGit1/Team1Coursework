@@ -22,11 +22,23 @@ GROUP BY q.id;";
 		<input type="submit" name="submitQuestionnaireID" value="Submit">
 	</form>
 	<?php 
-		foreach ($result as $row) {
-			echo $row['id'];
+		foreach ($result as $row) 
+		{
 			echo $row['Title'];
 			echo $row['responses'];
+	?>
+	<form method="POST" action="export.php">
+		<input type="submit" name="download" value="<?php echo row['id'] ?>">
+	</form>
+	<? 		
 		}
 	?>
 </body>
 </html>
+
+<?php 
+	if(isset($_POST['download']))
+	{
+		$_POST['download']
+	}
+?>
