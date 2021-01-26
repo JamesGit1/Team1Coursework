@@ -20,12 +20,16 @@ Hints:
 - Have a look at the gitHub documentation for advice on how to use more advanced features in GitHub to support your work
 
 Links to our Google Docs
-- Meeting notes: includes our user stories, user personas, definition of done, definition of ready, etc.: https://docs.google.com/document/d/1GIzwbMIxGo_43YNpUKrhUI1D3c20H5vkwmQIdvG9aTc/edit?usp=sharing
+- Meeting notes: includes our user stories, user personas, definition of done, definition of ready, etc.: 
+https://docs.google.com/document/d/1GIzwbMIxGo_43YNpUKrhUI1D3c20H5vkwmQIdvG9aTc/edit?usp=sharing
 
-- Ground Rules: contains our ground rules for the rest of the coursework: https://docs.google.com/document/d/1K0xLSf1Xhw6GyveNL03kO8drHvIZrGjOIyDPnGqCnCk/edit?usp=sharing
+- Ground Rules: contains our ground rules for the rest of the coursework: 
+https://docs.google.com/document/d/1K0xLSf1Xhw6GyveNL03kO8drHvIZrGjOIyDPnGqCnCk/edit?usp=sharing
 
-- Product Backlog: https://docs.google.com/document/d/18oEzV3Z4BTLq69IYUClhsndiv7V8GGJl7S79TGC2e7s/edit?usp=sharing
+- Product Backlog: 
+https://docs.google.com/document/d/18oEzV3Z4BTLq69IYUClhsndiv7V8GGJl7S79TGC2e7s/edit?usp=sharing
 
-- Connection / Database information: https://docs.google.com/document/d/12TagZX2myHawdoy81jpF6uNX3-b_WTno-yR8dWh8mHg/edit?usp=sharing
+- Connection / Database information: 
+https://docs.google.com/document/d/12TagZX2myHawdoy81jpF6uNX3-b_WTno-yR8dWh8mHg/edit?usp=sharing
 
 - Our other documents such as sprint backlogs, scrum meeting notes and scrum diary can be found in the 'Sprint 1' and 'Sprint 2' folders 
