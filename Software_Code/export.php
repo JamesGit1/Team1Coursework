@@ -21,10 +21,13 @@
 			$array1[] = $row;
 		}
 
-		$fp = fopen('empdata.json', 'w');
+		$fp = fopen('empdata.txt', 'w');
 		fwrite($fp, json_encode($array1));
 		fclose($fp);
 	?>
 	<button name="download">Download</button>
 </body>
 </html>
+
+
+present json in php and change headers to download automatically
