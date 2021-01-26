@@ -17,11 +17,6 @@ var addCols = function (num){
     });
 };
 
-$(document).ready(function(){
-    addCols('3');
-    return false;
-});
-
 $("#btnGen").click(function() {
     addCols('1');
     return false;

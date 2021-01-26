@@ -71,9 +71,7 @@
       );
 
     } else if (type == "radio") {
-        var myCol = $('');
-      alert("Radio");
-
+        var myCol = $("#questionPanel").load("radioCard.html");
     }
     myCol.appendTo('#questionPanel');
     questionNumber++;
