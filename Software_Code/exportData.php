@@ -39,6 +39,6 @@ GROUP BY q.id;";
 <?php 
 	if(isset($_POST['download']))
 	{
-		$_POST['download']
+		$_POST['download'];
 	}
 ?>
