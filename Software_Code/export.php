@@ -13,7 +13,7 @@
 	';
 
 	foreach ($result as $row) { 
-		$csv.= '"'.$row['question id'].'", "'.$row['participant id'].'", "'.$row['id'].'", "'.$row['contents'].'"';
+		$csv.= '"'.$row['question ID'].'", "'.$row['participant ID'].'", "'.$row['id'].'", "'.$row['contents'].'"';
 		$csv.= '
 		';
 	}

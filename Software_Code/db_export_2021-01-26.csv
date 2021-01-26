@@ -1,0 +1,17 @@
+<br />
+<b>Notice</b>:  Undefined index: question id in <b>C:\home\site\wwwroot\Software_Code\export.php</b> on line <b>16</b><br />
+<br />
+<b>Notice</b>:  Undefined index: participant id in <b>C:\home\site\wwwroot\Software_Code\export.php</b> on line <b>16</b><br />
+<br />
+<b>Notice</b>:  Undefined index: question id in <b>C:\home\site\wwwroot\Software_Code\export.php</b> on line <b>16</b><br />
+<br />
+<b>Notice</b>:  Undefined index: participant id in <b>C:\home\site\wwwroot\Software_Code\export.php</b> on line <b>16</b><br />
+<br />
+<b>Notice</b>:  Undefined index: question id in <b>C:\home\site\wwwroot\Software_Code\export.php</b> on line <b>16</b><br />
+<br />
+<b>Notice</b>:  Undefined index: participant id in <b>C:\home\site\wwwroot\Software_Code\export.php</b> on line <b>16</b><br />
+"questionID", "participantID", "answerID", "contents"
+	"", "", "1", "tuesday"
+		"", "", "2", "overcast"
+		"", "", "3", "wednesday"
+		
