@@ -6,17 +6,20 @@
 	$stmt->execute();
 	$result = $stmt->fetchAll();
 
+	$csv_filename = 'db_export_'.date('Y-m-d').'.csv';
 
+	$csv = '"questionID", "participantID", "answerID", "contents"';
+	$csv.= '
+';
 
-	$array1 = array();
-	foreach ($result as $row) 
-	{
-		$array1[] = $row;
+	foreach ($result as $row) { 
+		$csv.= '"'.$row['question ID'].'", "'.$row['participant ID'].'", "'.$row['id'].'", "'.$row['contents'].'"';
+		$csv.= '
+';
 	}
 
 
-	echo json_encode($array1);
-
-	header("Content-type: application/json");
-	header("Content-Disposition: attachment; filename=testjson.json");
+header("Content-type: text/x-csv");
+header("Content-Disposition: attachment; filename=".$csv_filename."");
+echo($csv);
 ?>
