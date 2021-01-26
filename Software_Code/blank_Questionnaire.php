@@ -39,8 +39,8 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <a href="#" id="btnText" class="btn btn-primary">Text Based</a>
-            <a href="#" id="btnRadio" class="btn btn-primary">Radio Button</a>
+            <a href="#" id="btnText" data-bs-dismiss="modal" class="btn btn-primary">Text Based</a>
+            <a href="#" id="btnRadio" data-bs-dismiss="modal" class="btn btn-primary">Radio Button</a>
             <button type="button" class="btn btn-primary">Drop Down</button>
             <a href="#" id="test" class="btn btn-primary">Test Button</a>
           </div>
