@@ -48,8 +48,8 @@ VALUES (:title,'1',:description);";
 	    <div class="col-md-auto">
 	    	<h1><u>Create a new Questionnaire</u></h1>
 	    	<form action="blank_Questionnaire.php" method="POST">
-	    		Title: <input type="text" name="title" value="<?php echo $title; ?>">
-	    		Description: <input type="text" name="description" value="<?php echo $description; ?>">
+	    		Title: <input type="text" name="title" value="<?php echo $title; ?>" required>
+	    		Description: <input type="text" name="description" value="<?php echo $description; ?>" required>
     			<button value ="Submit" type="submit" class="btn btn-primary">Make a new Questionnaire</button>
 			</form>
 	    </div>
