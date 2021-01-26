@@ -14,14 +14,14 @@
 	<title>Export data</title>
 </head>
 <body>
-	<?php 
+	<?php
+		$array1 = array();
 		foreach ($result as $row) 
 		{
-			echo $row['id'];
-			echo $row['contents'];
-			echo $row['question ID'];
-			echo $row['participant ID'];
+			$array1[] = $row
 		}
+
+		echo json_encode($emparray);
 	?>
 	<button name="download">Download</button>
 </body>
