@@ -67,7 +67,7 @@
         ' placeholder="Enter question here:" class="card-title question-title"/><p class="card-text"><em>Answer here</em></p><div class="d-grid gap-2 d-md-flex justify-content-md-end"><a href="#"  class="btn btn-primary fas fa-check"></a><a href="#" class="btn btn-primary btn-danger fas fa-trash"></a></div><div class="form-check"><input type="checkbox" class="form-check-input" id="required"><label class="form-check-label" for="required">Required</label></div>    </div>   </div>'
       );
     } else if (type == "radio") {
-      alert("Radio");
+
         var myCol = $('<div class="card"><div class="card-body">  <input type = "text" id = "myText" placeholder="Enter question here:" class="card-title question-title"/>    <div id="contentPanel">  </div><a href="#"  onclick="addExtraRadio()" class="btn btn-primary btn-success fas fa-plus"></a><div class="d-grid gap-2 d-md-flex justify-content-md-end">  <a href="#" class="btn btn-primary fas fa-check"></a>  <a href="#" onclick="deleteRadio()" class="btn btn-primary btn-danger fas fa-trash"></a>  </div>  <div class="form-check">  <input type="checkbox" class="form-check-input" id="required">    <label class="form-check-label" for="required">Required</label></div></div></div>');
     }
     myCol.appendTo('#questionPanel');
@@ -75,6 +75,7 @@
   };
 
   function addExtraRadio() {
+    alert("addRadio");
   var numberOfOptions = 1;
   var div = $('<div class="cardParent"></div>');
   var myCol = $('<p class="card-text"><input type = "text" id =' + numberOfOptions + ' placeholder="Enter option here..." class="card-title option"/></p>\n');
@@ -85,17 +86,18 @@
   numberOfOptions++;
 }
   function deleteRadio(){
+        alert("deleteRadio");
     stopPropagation();
     var $target = $(this).parents('.cardParent');
     $target.hide('slow', function(){ $target.remove(); });
   }
   $("#btnText").click(function() {
-    alert("test1");
+
     addCols('1', 'text');
   });
 
   $("#btnRadio").click(function() {
-    alert("test2");
+
     addCols('1', 'radio');
   });
 
