@@ -10,12 +10,12 @@
 
 	$csv = '"questionID", "participantID", "answerID", "contents"';
 	$csv.= '
-	';
+';
 
 	foreach ($result as $row) { 
 		$csv.= '"'.$row['question ID'].'", "'.$row['participant ID'].'", "'.$row['id'].'", "'.$row['contents'].'"';
 		$csv.= '
-		';
+';
 	}
 
 
