@@ -10,7 +10,7 @@ var addCols = function(num, type) {
     var myCol = $('<div class="card" id = question' + questionNumber + '><div class="card-body"><input type = "text" id ' +
         '=' + questionNumber +
       ' placeholder="Enter question here:" class="card-title question-title"/><p class="card-text"><em>Answer here</em> </p>' +
-        '<div class="d-grid gap-2 d-md-flex justify-content-md-end"><a href="#"  class="btn btn-primary fas'  +
+        '<div class="d-grid gap-2 d-md-flex justify-content-md-end"><a href="#"  class="btn btn-primary fas '  +
         'fa-check" onclick="tickButton()"></a><a href="#" id = ' + questionNumber + ' onclick="deleteCard(this.id)" class="btn btn-primary ' +
         'btn-danger fas fa-trash"></a></a></div><div class="form-check">' +
         '<input type="checkbox" class="form-check-input" id="required"><label class="form-check-label" for="required">Required</label></div> </div> </div>'
@@ -75,5 +75,5 @@ $("#btnRadio").click(function() {
 
 function tickButton()
 {
-  alert("Willies");
+  document.getElementById('newQuestion').style.visibility = 'visible';
 };
