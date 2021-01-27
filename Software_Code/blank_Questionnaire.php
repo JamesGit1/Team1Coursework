@@ -55,7 +55,7 @@ VALUES (:title,:dateopened,'1',:description);";
 
             </div>
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="newQuestion">
                 Add New Question
             </button>
             <button type="submit" class="btn btn-primary" name="submitForm" method="post" id="submitForm"> Create Form
