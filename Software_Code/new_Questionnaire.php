@@ -17,7 +17,6 @@
             <a class="navbar-brand" href="index.html">Home</a>
         </div>
     </nav>
-=======
 
     <div class="container">
     	<div class="row">
