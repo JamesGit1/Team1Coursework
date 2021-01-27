@@ -30,12 +30,12 @@ GROUP BY q.id";
         <div class = "row">
             <h1><u>Available Questionnaires</u></h1>
         </div>
-        <div class = "row row-cols-4">
+        <div class = "row">
 			<?php 
 				foreach ($result as $row) 
 				{
 				?>
-				<div class="col">
+				<div class="col-sm-3">
 					<div class="card text-center">
 						<div class="card-body">
 							<h5 class="card-title"><?php echo $row['Title'];?></h5>
