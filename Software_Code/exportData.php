@@ -35,7 +35,7 @@ GROUP BY q.id";
 				foreach ($result as $row) 
 				{
 				?>
-				<div class="col-sm-3">
+				<div class="col-md-3">
 					<div class="card text-center">
 						<div class="card-body">
 							<h5 class="card-title"><?php echo $row['Title'];?></h5>
