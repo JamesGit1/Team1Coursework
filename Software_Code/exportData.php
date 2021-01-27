@@ -41,7 +41,7 @@ GROUP BY q.id";
 							<h5 class="card-title"><?php echo $row['Title'];?></h5>
         					<p class="card-text">Number of Responses: <?php echo $row['responses'];?></p>				
 							<form method="POST" action="export.php">
-								<button type="submit" class="btn btn-primary" name="download" value="<?php echo $row['id'] ?>">Download</button>
+								<button type="submit" class="btn btn-primary" name="download" value="<?php echo $row['id'] ?>">Download Responses</button>
 							</form>
 						</div>
 					</div>
