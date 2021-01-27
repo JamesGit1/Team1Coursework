@@ -63,9 +63,11 @@ function deleteRadio(deleteNumberofOption) {
 //Runs when text button has been pressed
 $("#btnText").click(function() {
   addCols('1', 'text');
+  document.getElementById('newQuestion').style.visibility = 'hidden';
 });
 
 //Runs when Radio button has been pressed
 $("#btnRadio").click(function() {
   addCols('1', 'radio');
+  document.getElementById('newQuestion').style.visibility = 'hidden';
 });
