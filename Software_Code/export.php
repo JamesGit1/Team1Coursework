@@ -12,9 +12,9 @@ if(isset($_POST['download']))
 		$questionnaireID = trim($_POST["download"]);
 	}
 
-	$sql = "SELECT * FROM answer a
-INNER JOIN `questionnaire question map` qqm ON qqm.`question ID` = a.`question ID`
-WHERE qqm.`Questionnaire ID` = :questionnaireID";
+	$sql = "SELECT q.id as `question ID`,a.`participant ID`,a.id,a.contents FROM answer a
+INNER JOIN question q ON q.id = a.`question ID`
+WHERE q.`questionnaire ID` = :questionnaireID";
 	if($stmt = $pdo->prepare($sql))
 	{
 		$stmt->bindparam(":questionnaireID", $param_questionnaireID, PDO::PARAM_STR);
