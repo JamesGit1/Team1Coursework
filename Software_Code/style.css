@@ -68,6 +68,12 @@ img {
 
 }
 
+footer{
+	position: absolute;
+  	bottom: 0;
+  	width: 90%;
+}
+
 @media screen and (max-width: 550px) {
     .row h1{
 	padding-bottom: 0.2em;
