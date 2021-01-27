@@ -37,3 +37,21 @@ We updated the 'Sprint 1 Backlog: To do / In Progress / Completed' project in th
 We then acknowledged any potential blockages. A major one that we found yesterday morning was a limited wireframe software development application. Josh, being the scrum master, was tasked to find a better alternative - soon finding a free 'professional/educational' version of the same application which was not limited and free for students.
 
 ---
+
+## Day 3 - Scrum Meeting summary
+The Scrum Master for this meeting was Joshua Bradley
+
+### Members Present:
+Josh, James S, James R, Luke, Harry, Jesse, Alan
+
+### Members Not Present:
+
+
+### Summary of Conversation:
+We went through what we achieved the previous day which included: setting up an ethics form, setting up local databases with WAMP fo testing purposes, pair programming, and design changes.
+Then we discussed our plans for the day which involved finalising the ethics form, continuing with general PHP development.
+Luke brought up an issue about different relationship types within our ER diagram (and thus database). Harry took the lead in solving this quickly.
+We quickly reviewed agile methods to ensure we stayed on track.
+
+---
+
