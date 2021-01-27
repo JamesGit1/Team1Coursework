@@ -1,4 +1,7 @@
+// numbers the questions
 var questionNumber = 1;
+// keeps track of the number of questions
+var numberOfQuestions = 0;
 
 //Adds the card depending on Condition
 var addCols = function(num, type) {
@@ -23,9 +26,15 @@ var addCols = function(num, type) {
         '</div>  <div class="form-check">  <input type="checkbox" class="form-check-input" id="required">    ' +
         '<label class="form-check-label" for="required">Required</label></div></div></div>');
   }
+  /*
+  var url = window.location.href;
+  url.indexOf('?');
+  */
+
   //Appends to questionPanel
   myCol.appendTo('#questionPanel');
   questionNumber++;
+  numberOfQuestions++;
 };
 var numberOfOptions = 1;
 
@@ -43,6 +52,7 @@ function addExtraRadio(id) {
 // Deletes the card
 function deleteCard(deleteCardId) {
   document.getElementById('question' + deleteCardId).remove();
+  numberOfQuestions--;
 };
 
 // Deletes the radio button
