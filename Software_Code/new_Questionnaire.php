@@ -53,20 +53,24 @@ VALUES (:title,'1',:description);";
     </nav>
 
     <div class="container">
-        <h1><u>Create a new Questionnaire</u></h1>
-        <form action="blank_Questionnaire.php" method="POST">
-            <div class="form-group">
-                <label for="exampleFormControlInput1">Title</label>
-                <input type="text" name="title" class="form-control" id="exampleFormControlInput1" placeholder="e.g. Quiz" required>
-            </div>
-            <div class="form-group">
-                <label for="txtarea">Description</label>
-                <textarea class="form-control" name="description" id="txtarea" rows="3"
-                    placeholder="e.g. This is is what the questionnaire is about or something like that"
-                    required style="margin-bottom: 10px;"></textarea>
-            </div>
-            <button value="Submit" type="submit" class="btn btn-primary">Make a new Questionnaire</button>
-        </form>
+    	<div class="row">
+        	<h1><u>Create a new Questionnaire</u></h1>
+        </div>
+        <div class="row">
+	        <form action="blank_Questionnaire.php" method="POST">
+	            <div class="form-group">
+	                <label for="exampleFormControlInput1">Title</label>
+	                <input type="text" name="title" class="form-control" id="exampleFormControlInput1" placeholder="e.g. Quiz" required>
+	            </div>
+	            <div class="form-group">
+	                <label for="txtarea">Description</label>
+	                <textarea class="form-control" name="description" id="txtarea" rows="3"
+	                    placeholder="e.g. This is is what the questionnaire is about or something like that"
+	                    required style="margin-bottom: 10px;"></textarea>
+	            </div>
+	            <button value="Submit" type="submit" class="btn btn-primary">Make a new Questionnaire</button>
+	        </form>
+        </div>
 	</div>
 	
 	<!--
