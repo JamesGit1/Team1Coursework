@@ -78,7 +78,7 @@ VALUES (:title,:dateopened,'1',:description);";
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row justify-content-end" id="imageRow">
       <img src="logo.png" class="fix">
     </div>
   </div>
