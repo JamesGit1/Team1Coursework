@@ -78,8 +78,10 @@ VALUES (:title,:dateopened,'1',:description);";
             </div>
         </div>
     </div>
-</div>
-<img src="logo.png" class="fix">
+
+    <img src="logo.png" class="fix">
+  </div>
+
 </body>
 
 
