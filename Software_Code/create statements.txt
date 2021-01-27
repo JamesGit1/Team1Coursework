@@ -1,0 +1,39 @@
+CREATE TABLE `questionnaire` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `date opened` datetime DEFAULT NULL,
+  `creator ID` int(10) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FKQuestionna155363` (`creator ID`),
+  CONSTRAINT `FKQuestionna155363` FOREIGN KEY (`creator ID`) REFERENCES `account` (`ID`)
+) /*!50100 TABLESPACE `innodb_system` */ ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `question` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
+  `Contents` varchar(255) DEFAULT NULL,
+  `Type` varchar(50) DEFAULT NULL,
+  `questionnaire ID` int(10) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FKQuestionQuestionnaire_idx` (`questionnaire ID`),
+  CONSTRAINT `FKQuestionQuestionnaire` FOREIGN KEY (`questionnaire ID`) REFERENCES `questionnaire` (`ID`)
+) /*!50100 TABLESPACE `innodb_system` */ ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `answer` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `contents` varchar(255) DEFAULT NULL,
+  `question ID` int(10) NOT NULL,
+  `participant ID` int(10) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKAnswer700172` (`question ID`),
+  CONSTRAINT `FKAnswer700172` FOREIGN KEY (`question ID`) REFERENCES `question` (`ID`)
+) /*!50100 TABLESPACE `innodb_system` */ ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `account` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(100) DEFAULT NULL,
+  `Username` varchar(50) DEFAULT NULL,
+  `Password` varchar(20) DEFAULT NULL,
+  `Role` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) /*!50100 TABLESPACE `innodb_system` */ ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
