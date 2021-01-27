@@ -71,6 +71,9 @@ VALUES (:title,'1',:description);";
 	            <button value="Submit" type="submit" class="btn btn-primary">Make a new Questionnaire</button>
 	        </form>
         </div>
+	      <div class="row justify-content-end" id="imageRow">
+	      	<img src="logo.png" class="fix">
+	    </div>
 	</div>
 	
 	<!--

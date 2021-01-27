@@ -52,6 +52,9 @@ GROUP BY q.id";
 				}
 			?>
 		</div>
+		<div class="row justify-content-end" id="imageRow">
+      		<img src="logo.png" class="fix">
+    	</div>
 	</div>
 
 
