@@ -9,11 +9,11 @@ var addCols = function(num, type) {
     // Text Card
     var myCol = $('<div class="card" id = question' + questionNumber + '><div class="card-body"><input type = "text" id ' +
         '=' + questionNumber +
-      ' placeholder="Enter question here:" class="card-title question-title"/><p class="card-text"><em>Answer here</em>' +
-        '</p><div class="d-grid gap-2 d-md-flex justify-content-md-end"><a href="#"  class="btn btn-primary fas ' +
-        'fa-check"></a><a href="#" id = ' + questionNumber + ' onclick="deleteCard(this.id)" class="btn btn-primary ' +
-        'btn-danger fas fa-trash"></a></a></div><div class="form-check"><input type="checkbox" class="form-check-input" ' +
-        'id="required"><label class="form-check-label" for="required">Required</label></div>    </div>   </div>'
+      ' placeholder="Enter question here:" class="card-title question-title"/><p class="card-text"><em>Answer here</em> </p>' +
+        '<div class="d-grid gap-2 d-md-flex justify-content-md-end"><a href="#"  class="btn btn-primary fas '  +
+        'fa-check" onclick="tickButton()"></a><a href="#" id = ' + questionNumber + ' onclick="deleteCard(this.id)" class="btn btn-primary ' +
+        'btn-danger fas fa-trash"></a></a></div><div class="form-check">' +
+        '<input type="checkbox" class="form-check-input" id="required"><label class="form-check-label" for="required">Required</label></div> </div> </div>'
     );
   } else if (type == "radio") {
     //Radio Card
@@ -21,7 +21,7 @@ var addCols = function(num, type) {
         '<input type = "text" id = "myText" placeholder="Enter question here:" class="card-title question-title"/>    ' +
         '<div id="contentPanel' + questionNumber + '">  </div><a href="#"  id = ' +
         questionNumber + ' onclick="addExtraRadio(this.id)" class="btn btn-primary btn-success fas fa-plus"></a>' +
-        '<div class="d-grid gap-2 d-md-flex justify-content-md-end">  <a href="#" class="btn btn-primary fas fa-check"></a>' +
+        '<div class="d-grid gap-2 d-md-flex justify-content-md-end">  <a href="#" onclick="tickButton()" class="btn btn-primary fas fa-check"></a>' +
         '  <a href="#" id = ' + questionNumber + ' onclick="deleteCard(this.id)" class="btn btn-primary btn-danger fas fa-trash"></a>  ' +
         '</div>  <div class="form-check">  <input type="checkbox" class="form-check-input" id="required">    ' +
         '<label class="form-check-label" for="required">Required</label></div></div></div>');
@@ -62,10 +62,18 @@ function deleteRadio(deleteNumberofOption) {
 
 //Runs when text button has been pressed
 $("#btnText").click(function() {
+  document.getElementById('newQuestion').style.visibility = 'hidden';
   addCols('1', 'text');
+  
 });
 
 //Runs when Radio button has been pressed
 $("#btnRadio").click(function() {
   addCols('1', 'radio');
+  document.getElementById('newQuestion').style.visibility = 'hidden';
 });
+
+function tickButton()
+{
+  document.getElementById('newQuestion').style.visibility = 'visible';
+};
