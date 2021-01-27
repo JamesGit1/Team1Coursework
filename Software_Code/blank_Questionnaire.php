@@ -47,8 +47,8 @@ VALUES (:title,:dateopened,'1',:description);";
     <div class="row">
         <form method="post" class="newForm" action="submitForm.php">
             <!--Input Boxes to change Form name and description -->
-            <input type="text" id="formName" placeholder="New Form" class="card-title question-title" name="formName"/>
-            <input name = "formDesc" type="text" id="formDescription" placeholder="Enter description of project here"
+            <input type="text" id="formName" value="<? echo $_POST['title']?>" class="card-title question-title" name="formName"/>
+            <input name = "formDesc" type="text" id="formDescription"  value="<? echo $_POST['description']?>"
                    class="card-title question-title"/>
             <!--All question/cards will be placed here when append-->
             <div id="questionPanel">
