@@ -20,12 +20,14 @@ GROUP BY q.id";
   <link rel="stylesheet" type="text/css" href="style.css">
   <title>Export Data</title>
 </head>
+
+<nav class="navbar navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Home</a>
+  </div>
+</nav>
+
 <body>
-	<nav class="navbar navbar-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Home</a>
-      </div>
-    </nav>
     <div class="container">
         <div class = "row">
             <h1><u>Available Questionnaires</u></h1>
@@ -50,6 +52,9 @@ GROUP BY q.id";
 				}
 			?>
 		</div>
+		<div class="row justify-content-end" id="imageRow">
+      		<img src="logo.png" class="fix">
+    	</div>
 	</div>
 
 
