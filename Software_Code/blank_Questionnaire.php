@@ -95,3 +95,10 @@
         crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/8741ca18b0.js" crossorigin="anonymous"></script>
 <script src="addQuestions.js"></script>
+
+<?php
+    if(isset($_POST['submit']))
+    {
+        
+    }
+?>
