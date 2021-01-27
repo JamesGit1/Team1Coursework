@@ -27,12 +27,12 @@ img {
     max-height: 100%;
 }
 .fix{
-    position:relative;
     width: 10em;
-    float:right;
-    padding-right: 1em;
+    margin-bottom: 1em;
 }
-
+#imageRow{
+	padding-top: 1em; 
+}
 .navbar{
 	background: #4365E2;
 	opacity: 0.9;
