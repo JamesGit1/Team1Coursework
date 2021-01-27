@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once('conn.php');
 session_start();
 
@@ -32,6 +32,7 @@ VALUES (:title,'1',:description);";
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
+<!--Navigation bar -->
 <nav class="navbar navbar-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Home</a>
@@ -41,9 +42,12 @@ VALUES (:title,'1',:description);";
 <body>
   <div class="container">
     <div class="row">
+
       <form>
-            <input type = "text" id = "formName" placeholder="New Form" class="card-title question-title"/>
+				<!--Input Boxes to change Form name and descritption -->
+				<input type = "text" id = "formName" placeholder="New Form" class="card-title question-title"/>
         <input type = "text" id = "formDescription" placeholder="Enter description of project here" class="card-title question-title"/>
+				<!--All question/cards will be placed here when appened-->
         <div id="questionPanel">
 
         </div>
