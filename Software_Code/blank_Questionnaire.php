@@ -1,18 +1,22 @@
 <?php 
 require_once('conn.php');
 session_start();
+date_default_timezone_set('Europe/London');
 
 $title = $description = "";
 
 if($_SERVER["REQUEST_METHOD"] == "POST")
 {
-	$sql = "INSERT INTO questionnaire (`name`,`creator ID`,`description`)
-VALUES (:title,'1',:description);";
+	$sql = "INSERT INTO questionnaire (`name`,`date opened`,`creator ID`,`description`)
+VALUES (:title,:dateopened,'1',:description);";
 	if($stmt = $pdo->prepare($sql))
 	{
-		$stmt->bindParam(":title", $title, PDO::PARAM_STR);
-		$stmt->bindParam(":description", $description, PDO::PARAM_STR);
-
+    $stmt->bindParam(":title", $title, PDO::PARAM_STR);
+    $stmt->bindParam(":dateopened", $datetime, PDO::PARAM_STR);
+    $stmt->bindParam(":description", $description, PDO::PARAM_STR);
+    
+    $datetime = date('Y/m/d h:i:s', time());
+    
     $title = $_POST['title'];
     $description = $_POST['description'];
 
