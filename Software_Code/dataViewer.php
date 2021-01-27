@@ -41,43 +41,46 @@
 </nav>
 
 <body>
-<div class="dropdown">
-  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Questionnaire ID
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-  <a class="dropdown-item" href="https://dundata.azurewebsites.net/Software_Code/dataViewer.php">ALL</a>
-    <?php 
-    foreach($questionnaires as $row) {
-      echo "<a class='dropdown-item' href='https://dundata.azurewebsites.net/Software_Code/dataViewer.php?qId=".$row['ID']."'>".$row['ID']."</a>";
-    }
-    ?>
-    <!--<a class="dropdown-item" href="https://dundata.azurewebsites.net/Software_Code/dataViewer.php?qId=1">1</a>-->
-  </div>
-  <p style="margin-left:1em;">#<?php echo $currentID?></p>
-</div>
-    <div class="table-responsive">
-        <table id="dtable" class="table";>
-          <thead>
+<div class="container">
+    <div class="dropdown">
+      <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Questionnaire ID
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="https://dundata.azurewebsites.net/Software_Code/dataViewer.php">ALL</a>
+        <?php 
+        foreach($questionnaires as $row) {
+          echo "<a class='dropdown-item' href='https://dundata.azurewebsites.net/Software_Code/dataViewer.php?qId=".$row['ID']."'>".$row['ID']."</a>";
+        }
+        ?>
+        <!--<a class="dropdown-item" href="https://dundata.azurewebsites.net/Software_Code/dataViewer.php?qId=1">1</a>-->
+      </div>
+      <p style="margin-left:1em;">#<?php echo $currentID?></p>
+    </div>
+
+      <div class="table-responsive">
+          <table id="dtable" class="table";>
+            <thead>
+              <tr>
+                <th>Question Number</th>
+                <th>Participant ID</th>
+                <th>Question</th>
+                <th>Response</th>
+              </tr>
+            </thead>
+            <tbody id="dataTable">
             <tr>
-              <th>Question Number</th>
-              <th>Participant ID</th>
-              <th>Question</th>
-              <th>Response</th>
-            </tr>
-          </thead>
-          <tbody id="dataTable">
-          <tr>
-          <?php 
-            foreach($result as $row) {
-                echo "<td>".$row['question number']."</td>";
-                echo "<td>".$row['participant ID']."</td>";
-                echo "<td>".$row['Contents']."</td>";
-                echo "<td>".$row['contents']."</td></tr>";
-              }
-          ?>
-          </tbody>
-        </table>
+            <?php 
+              foreach($result as $row) {
+                  echo "<td>".$row['question number']."</td>";
+                  echo "<td>".$row['participant ID']."</td>";
+                  echo "<td>".$row['Contents']."</td>";
+                  echo "<td>".$row['contents']."</td></tr>";
+                }
+            ?>
+            </tbody>
+          </table>
+        </div>
       </div>
 </body>
 
