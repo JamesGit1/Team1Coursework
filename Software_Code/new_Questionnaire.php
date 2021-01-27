@@ -1,37 +1,3 @@
-<?php 
-require_once('conn.php');
-session_start();
-/*
-
-$title = $description = "";
-
-if($_SERVER["REQUEST_METHOD"] == "POST")
-{
-	$sql = "INSERT INTO questionnaire (`name`,`creator ID`,`description`)
-VALUES (:title,'1',:description);";
-	if($stmt = $mysql->prepare($sql))
-	{
-		$stmt->bindParam(":title", $param_title, PDO::PARAM_STR);
-		$stmt->bindParam(":description", $param_description, PDO::PARAM_STR);
-
-		$param_title = $title;
-		$param_description = $description;
-
-		$_SESSION['title'];
-		$_SESSION['description'];
-
-		if($stmt->execute())
-			{
-				//redirect
-			}else
-			{
-				echo "Something went wrong. Try again later.";
-			}
-	}
-}
-*/
-?>
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -51,6 +17,7 @@ VALUES (:title,'1',:description);";
             <a class="navbar-brand" href="#">Home</a>
         </div>
     </nav>
+=======
 
     <div class="container">
     	<div class="row">
@@ -85,5 +52,36 @@ VALUES (:title,'1',:description);";
 	</form>
 -->
 </body>
-
 </html>
+
+<?php
+	require_once('conn.php');
+	session_start();
+	date_default_timezone_set('Europe/London');
+
+	if(isset($_POST['submit']))
+	{
+		$title = $description = "";
+
+		if ($_SERVER["REQUEST_METHOD"] == "POST") 
+		{
+		    $sql = "CALL createFormReturnID (:title,:dateopened,'1',:description);";
+		    if ($stmt = $pdo->prepare($sql)) {
+		        $stmt->bindParam(":title", $title, PDO::PARAM_STR);
+		        $stmt->bindParam(":dateopened", $datetime, PDO::PARAM_STR);
+		        $stmt->bindParam(":description", $description, PDO::PARAM_STR);
+
+		        $datetime = date('Y/m/d h:i:s', time());
+
+		        $title = $_POST['title'];
+		        $description = $_POST['description'];
+
+		        $stmt->execute();
+		        $result = $stmt->fetchColumn();
+				
+				$_SESSION['id'] = $result;
+				header('Location: blank_Questionnaire.php');
+		    }
+		}
+	}
+?>

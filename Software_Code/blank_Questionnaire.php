@@ -1,28 +1,22 @@
 <?php
-require_once('conn.php');
-session_start();
-date_default_timezone_set('Europe/London');
+    require('conn.php');
+    session_start();
+    $id = $_SESSION['id'];
 
-$title = $description = "";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $sql = "INSERT INTO questionnaire (`name`,`date opened`,`creator ID`,`description`)
-VALUES (:title,:dateopened,'1',:description);";
-    if ($stmt = $pdo->prepare($sql)) {
-        $stmt->bindParam(":title", $title, PDO::PARAM_STR);
-        $stmt->bindParam(":dateopened", $datetime, PDO::PARAM_STR);
-        $stmt->bindParam(":description", $description, PDO::PARAM_STR);
-
-        $datetime = date('Y/m/d h:i:s', time());
-
-        $title = $_POST['title'];
-        $description = $_POST['description'];
-
-        $stmt->execute();
+    $query = "SELECT * FROM Questionnaire WHERE Questionnaire.id = :questionnaireID";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(":questionnaireID", $questionnaireID, PDO::PARAM_STR);
+    $questionnaireID = $id;
+    $stmt->execute();
+    $results = $stmt->fetchAll();
+    foreach ($result as $row) 
+    {
+        $title = $row['name'];
+        $description = $row['description'];
     }
-}
-?>
 
+
+?>
 <link rel="stylesheet" href="questionAppearance.css">
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -47,8 +41,8 @@ VALUES (:title,:dateopened,'1',:description);";
     <div class="row">
         <form method="post" class="newForm" action="submitForm.php">
             <!--Input Boxes to change Form name and description -->
-            <input type="text" id="formName" value="<? echo $_POST['title']?>" class="card-title question-title" name="formName"/>
-            <input name = "formDesc" type="text" id="formDescription"  value="<? echo $_POST['description']?>"
+            <input type="text" id="formName" value="<?php echo $title ?>" class="card-title question-title" name="formName"/>
+            <input name = "formDesc" type="text" id="formDescription"  value="<? echo $description ?>"
                    class="card-title question-title"/>
             <!--All question/cards will be placed here when append-->
             <div id="questionPanel">
@@ -101,3 +95,10 @@ VALUES (:title,:dateopened,'1',:description);";
         crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/8741ca18b0.js" crossorigin="anonymous"></script>
 <script src="addQuestions.js"></script>
+
+<?php
+    if(isset($_POST['submit']))
+    {
+        
+    }
+?>
