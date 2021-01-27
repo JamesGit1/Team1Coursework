@@ -56,7 +56,7 @@ VALUES (:title,'1',:description);";
     	<div class="row">
         	<h1><u>Create a new Questionnaire</u></h1>
         </div>
-        <div class="row">
+        <div class="row" id="imageRow">
 	        <form action="blank_Questionnaire.php" method="POST">
 	            <div class="form-group">
 	                <label for="exampleFormControlInput1">Title</label>
