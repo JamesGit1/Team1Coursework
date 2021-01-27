@@ -44,12 +44,6 @@ VALUES (:title,'1',:description);";
 
     <title></title>
 </head>
-
-<nav class="navbar navbar-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Home</a>
-  </div>
-</nav>
     
 <body>
     <nav class="navbar navbar-dark">
