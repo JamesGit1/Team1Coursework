@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="description" content="Webpage description goes here" />
+  <meta charset="utf-8">
+  <title>Video Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+
+  <style>
+    #container {
+        margin: 0px auto;
+        width: 500px;
+        height: 375px;
+        border: 10px #333 solid;
+    }
+    #videoElement {
+        width: 500px;
+        height: 375px;
+        background-color: #666;
+    }
+    </style>
+
+</head>
+
+<body>
+  <!--Allow user to upload a video file and thumnail!-->
+    <form action="upload.php" method="post" enctype="multipart/form-data"> Select video to upload:
+        <input type="file" accept="video/*" name="videoToUpload" id="videoToUpload">
+        <input type="submit" value="Submit" name="submit">
+    </form>
+    <form action="upload.php" method="post" enctype="multipart/form-data"> Select thumbnail to upload:
+        <input type="file" name="thumbnailToUpload" id="thumbnailToUpload">
+        <input type="submit" value="Submit" name="submit">
+    </form>
+
+<!--Access webcam
+https://www.kirupa.com/html5/accessing_your_webcam_in_html5.htm
+https://www.html5rocks.com/en/tutorials/getusermedia/intro/
+-->
+<div id="container">
+	<video autoplay="true" id="videoElement">
+	</video>
+</div>
+
+<script>
+    var video = document.querySelector("#videoElement");
+
+if (navigator.mediaDevices.getUserMedia) {
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function (stream) {
+      video.srcObject = stream;
+    })
+    .catch(function (err0r) {
+      console.log("Something went wrong!");
+    });
+}
+</script>
+
+<!--
+    Upload a video and play it.
+https://developers.google.com/web/fundamentals/media/recording-video
+-->
+<input type="file" accept="video/*" capture="camera" id="recorder">
+<video id="player" controls></video>
+<script>
+  var recorder = document.getElementById('recorder');
+  var player = document.getElementById('player');
+
+  recorder.addEventListener('change', function(e) {
+    var file = e.target.files[0];
+    // Do something with the video file.
+    player.src = URL.createObjectURL(file);
+  });
+</script>
+
+
+
+
+</body>
+</html>
