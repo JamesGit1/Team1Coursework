@@ -42,6 +42,9 @@
 
 <body>
 <div class="container">
+    <div class="row">
+        <h1>View Questionnaires</h1>
+    </div>
     <div class="dropdown">
       <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Questionnaire ID
