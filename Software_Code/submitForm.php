@@ -11,7 +11,7 @@ if (isset($_POST['submitForm']))
 {
     $formName = $_POST['formName'];
     $desc = $_POST['formDesc'];
-    foreach ($_POST[''] as $screw){
+    foreach ($_POST['testQuestion'] as $screw){
         echo();
     }
     $stmt2 = $pdo->prepare("CALL insertQuestionAnswer");

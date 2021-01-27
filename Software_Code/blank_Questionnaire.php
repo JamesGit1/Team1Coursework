@@ -8,7 +8,7 @@
     $stmt->bindParam(":questionnaireID", $questionnaireID, PDO::PARAM_STR);
     $questionnaireID = $id;
     $stmt->execute();
-    $results = $stmt->fetchAll();
+    $result = $stmt->fetchAll();
     foreach ($result as $row) 
     {
         $title = $row['name'];
@@ -95,10 +95,14 @@
         crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/8741ca18b0.js" crossorigin="anonymous"></script>
 <script src="addQuestions.js"></script>
+<script src="ajaxForQuestionnaire.js"></script>
 
 <?php
     if(isset($_POST['submit']))
     {
-        
+        $query = "INSERT INTO question VALUES :contents, :Type, :questionNumber";
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam("contents",$_POST["myText"]);
     }
+    $stmt->execute();
 ?>
