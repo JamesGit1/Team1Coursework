@@ -46,13 +46,13 @@
     Questionnaire ID
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-  <a class="dropdown-item" href="http://localhost/Software_Code/dataViewer.php">ALL</a>
+  <a class="dropdown-item" href="https://dundata.azurewebsites.net/Software_Code/dataViewer.php">ALL</a>
     <?php 
     foreach($questionnaires as $row) {
-      echo "<a class='dropdown-item' href='http://localhost/Software_Code/dataViewer.php?qId=".$row['ID']."'>".$row['ID']."</a>";
+      echo "<a class='dropdown-item' href='https://dundata.azurewebsites.net/Software_Code/dataViewer.php?qId=".$row['ID']."'>".$row['ID']."</a>";
     }
     ?>
-    <!--<a class="dropdown-item" href="http://localhost/Software_Code/dataViewer.php?qId=1">1</a>-->
+    <!--<a class="dropdown-item" href="https://dundata.azurewebsites.net/Software_Code/dataViewer.php?qId=1">1</a>-->
   </div>
   <p style="margin-left:1em;">#<?php echo $currentID?></p>
 </div>
