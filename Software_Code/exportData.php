@@ -2,9 +2,9 @@
 	require('conn.php');
 
 	$query = "SELECT q.id,q.`name` as `Title`,COUNT(DISTINCT(`participant ID`)) AS `responses` FROM answer a 
-INNER JOIN `questionnaire question map` qqm ON a.`question ID` = qqm.`Question ID` 
-INNER JOIN questionnaire q ON qqm.`questionnaire ID` = q.ID
-GROUP BY q.id;";
+INNER JOIN question qn ON a.`question ID` = qn.id 
+INNER JOIN questionnaire q ON qn.`questionnaire ID` = q.ID
+GROUP BY q.id";
 	$stmt = $pdo->prepare($query);
 	$stmt->execute();
 	$result = $stmt->fetchall();
