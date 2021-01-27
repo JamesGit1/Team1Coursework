@@ -45,7 +45,7 @@
       <div class="row">
           <h1><u>View Questionnaires</u></h1>
       </div>
-      <div class="row">
+      <div class="row" id="imageRow">
         <div class="dropdown">
           <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Questionnaire ID
