@@ -94,6 +94,6 @@ img {
 img{
 	animation: 2s ease-out 0s 1 slideInFromLeft;
 }
-h1, u{
+#fade{
 	animation: 2s ease-out 0s 1 slideInFromLeft;
 }
