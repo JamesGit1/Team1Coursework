@@ -12,7 +12,7 @@ if(isset($_POST['download']))
 		$questionnaireID = trim($_POST["download"]);
 	}
 
-	$sql = "SELECT q.id as `question ID`,a.`participant ID`,a.id,a.contents FROM answer a
+	$sql = "SELECT q.id as `question ID`,q.`question number`,a.`participant ID`,a.id,a.contents as `aContents`,q.contents FROM answer a
 INNER JOIN question q ON q.id = a.`question ID`
 WHERE q.`questionnaire ID` = :questionnaireID";
 	if($stmt = $pdo->prepare($sql))
@@ -27,13 +27,13 @@ WHERE q.`questionnaire ID` = :questionnaireID";
 	$result = $stmt->fetchAll();
 	$csv_filename = 'db_export_'.date('Y-m-d').'.csv';
 
-	$csv = '"questionID", "participantID", "answerID", "contents"';
+	$csv = '"Question Number", "Question", "Participant ID", "Answer"';
 	$csv.= '
 ';
 
 	foreach ($result as $row) 
 	{ 
-		$csv.= '"'.$row['question ID'].'", "'.$row['participant ID'].'", "'.$row['id'].'", "'.$row['contents'].'"';
+		$csv.= '"'.$row['question number'].'", "'.$row['contents'].'", "'.$row['participant ID'].'", "'.$row['aContents'].'"';
 		$csv.= '
 ';
 	}
