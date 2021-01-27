@@ -50,6 +50,8 @@ img {
 }
 .card{
 	border: 0.2em solid rgb(86 116 228);
+	margin-bottom: 1em;
+    margin-top: 1em;
 }
 
 .btn-primary {
