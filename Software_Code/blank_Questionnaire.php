@@ -8,7 +8,7 @@
     $stmt->bindParam(":questionnaireID", $questionnaireID, PDO::PARAM_STR);
     $questionnaireID = $id;
     $stmt->execute();
-    $results = $stmt->fetchAll();
+    $result = $stmt->fetchAll();
     foreach ($result as $row) 
     {
         $title = $row['name'];
@@ -39,10 +39,10 @@
 <body>
 <div class="container">
     <div class="row">
-        <form method="post" class="newForm" action="submitForm.php">
+        <form method="post" class="newForm">
             <!--Input Boxes to change Form name and description -->
             <input type="text" id="formName" value="<?php echo $title ?>" class="card-title question-title" name="formName"/>
-            <input name = "formDesc" type="text" id="formDescription"  value="<? echo $description ?>"
+            <input name = "formDesc" type="text" id="formDescription"  value="<?php echo $description ?>"
                    class="card-title question-title"/>
             <!--All question/cards will be placed here when append-->
             <div id="questionPanel">
@@ -95,10 +95,3 @@
         crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/8741ca18b0.js" crossorigin="anonymous"></script>
 <script src="addQuestions.js"></script>
-
-<?php
-    if(isset($_POST['submit']))
-    {
-        
-    }
-?>
