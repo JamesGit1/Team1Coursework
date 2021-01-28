@@ -80,7 +80,7 @@
                         <p><?php echo $row['Contents'] ?></p>
                         <p class="card-text"><em>Answer here</em></p>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button name ="delete" value="<?php echo $row['ID']?>" class="btn btn-primary btn-danger fas fa-trash"></button>
+                            <button name ="delete" value="<?php echo $row['ID']?>" class="btn btn-primary btn-danger fas fa-trash" onClick=myFunction()></button>
                         </div>
                     </form>
                 </div>
