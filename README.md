@@ -26,9 +26,6 @@ https://docs.google.com/document/d/1GIzwbMIxGo_43YNpUKrhUI1D3c20H5vkwmQIdvG9aTc/
 - Ground Rules: contains our ground rules for the rest of the coursework: 
 https://docs.google.com/document/d/1K0xLSf1Xhw6GyveNL03kO8drHvIZrGjOIyDPnGqCnCk/edit?usp=sharing
 
-- Product Backlog: 
-https://docs.google.com/document/d/18oEzV3Z4BTLq69IYUClhsndiv7V8GGJl7S79TGC2e7s/edit?usp=sharing
-
 - Connection / Database information: 
 https://docs.google.com/document/d/12TagZX2myHawdoy81jpF6uNX3-b_WTno-yR8dWh8mHg/edit?usp=sharing
 
