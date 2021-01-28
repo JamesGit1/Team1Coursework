@@ -79,15 +79,13 @@ input#formName {
     text-decoration: underline;
 }
 
-input#formDescription {
+textarea#formDescription {
     width: 100%;
     font-style: italic;
     margin-bottom: 2em;
 }
 
-textarea:focus, input#formDescription:focus {
-    outline: none;
-}
+
 
 textarea:focus, input#formName:focus {
     outline: none;
