@@ -29,4 +29,7 @@ https://docs.google.com/document/d/1K0xLSf1Xhw6GyveNL03kO8drHvIZrGjOIyDPnGqCnCk/
 - Connection / Database information: 
 https://docs.google.com/document/d/12TagZX2myHawdoy81jpF6uNX3-b_WTno-yR8dWh8mHg/edit?usp=sharing
 
+- Impediment Log: 
+https://docs.google.com/document/d/1aLvthxwaKqmT-kJ9zPhuyenc0Y2Sscm7J3AohqEdLBI/edit?usp=sharing
+
 - Our other documents such as sprint backlogs, scrum meeting notes and scrum diary can be found in the 'Sprint 1' and 'Sprint 2' folders. Our product backlog can be found in the 'product backlog' folder.
