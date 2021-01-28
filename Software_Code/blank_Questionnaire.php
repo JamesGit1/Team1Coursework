@@ -16,10 +16,9 @@
     }
     unset($stmt);
 
-    $query = "SELECT * FROM question q where q.`questionnaire id` = 2";
+    $query = "SELECT * FROM question q where q.`questionnaire id` = :questionnaireID";
     $stmt = $pdo->prepare($query);
-    //$stmt->bindParam(":questionnaireID", $questionnaireID, PDO::PARAM_STR);
-    $questionnaireID = $id;
+    $stmt->bindParam(":questionnaireID", $id, PDO::PARAM_STR);
     $stmt->execute();
     $questions = $stmt->fetchAll();
 
@@ -27,10 +26,24 @@
 
     if(isset($_POST['submitQuestions']))
     {
-        $query = "INSERT INTO `question`(`Contents`,`Type`,`questionnaire ID`,`question number`,`required`) VALUES (:contents,'text', 2, 9,0);";
+        $query = "INSERT INTO `question`(`Contents`,`Type`,`questionnaire ID`,`question number`,`required`) 
+                    VALUES (:contents,'text', :questionnaireID, 2, :required);";
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(":contents", $contents, PDO::PARAM_STR);
+        $stmt->bindParam(":questionnaireID", $id);
+        $stmt->bindParam(":required", $required);
+        $required = $_POST['required'];
         $contents = $_POST['questionText'];
+        $stmt->execute();
+        header("Refresh:0");
+    }
+
+    if(isset($_POST['delete']))
+    {
+        $query = "DELETE FROM question WHERE question.ID=:questionID";
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(":questionID", $questionID, PDO::PARAM_STR);
+        $questionID = $_POST['delete'];
         $stmt->execute();
         header("Refresh:0");
     }
@@ -59,14 +72,20 @@
     <div class="row">
         <form method="POST">
         <?php
-            foreach ($questions as $row) 
-            {
-                echo $row['question number'];
-                echo $row['Contents'];
-                echo "<br>";
+            foreach ($questions as $row) {
         ?>
-        <button class="btn btn-primary" name="<?php echo $row['ID'] ?>" value="<?php echo $row['ID'] ?>">Delete</button>
-        <?php 
+            <div class="card">
+                <div class="card-body">
+                    <form name="textQuestion" method="POST">
+                        <p><?php echo $row['Contents'] ?></p>
+                        <p class="card-text"><em>Answer here</em></p>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button name ="delete" value="<?php echo $row['ID']?>" class="btn btn-primary btn-danger fas fa-trash"></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        <?php
             }
         ?>
         </form>
@@ -74,21 +93,6 @@
             <input type="text" name="questionText">
             <button type="submit" name="submitQuestions">Submit</button>
         </form>
-        <div class="card">
-            <div class="card-body">
-                <form name="textQuestion" method="POST">
-                    <input type = "text" id =' + questionNumber +' name="myText" placeholder="Enter question here:" class="card-title question-title"/>
-                    <p class="card-text"><em>Answer here</em></p>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button value="submit" name="submit" id ="submitQuestion" onclick="tickButton()">Submit</button>
-                        <a href="#" id = ' + questionNumber + ' onclick="deleteCard(this.id)" class="btn btn-primary btn-danger fas fa-trash"></a>
-                    </div>
-                    <div class="form-check"><input name = "required" type="checkbox" class="form-check-input" id="required">
-                        <label class="form-check-label" for="required">Required</label>
-                    </div>
-                </form>
-            </div>
-        </div>
         <!-- <form method="post" class="newForm">
             
             <input type="text" id="formName" value="<?php echo $title ?>" class="card-title question-title" name="formName"/>
