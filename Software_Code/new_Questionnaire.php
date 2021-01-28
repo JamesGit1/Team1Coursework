@@ -14,10 +14,9 @@
 <body>
     <nav class="navbar navbar-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Home</a>
+            <a class="navbar-brand" href="index.html">Home</a>
         </div>
     </nav>
-=======
 
     <div class="container">
     	<div class="row">
