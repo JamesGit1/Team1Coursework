@@ -75,10 +75,13 @@ input#formName {
     border: none;
     /* background: white; */
     appearance: none;
+    font-weight: bold;
 }
 
 input#formDescription {
     width: 100%;
+    font-style: italic;
+    margin-bottom: 2em;
 }
 
 textarea:focus, input#formDescription:focus {
