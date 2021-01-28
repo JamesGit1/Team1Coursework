@@ -1,3 +1,4 @@
 # Sprint 1 Review
 
-You should include in this folder any documentation that is important for your sprint review.
+Our powerpoint presentation can be found at:
+https://docs.google.com/presentation/d/1i5xcmW7MDhWOuzgYq0RmGTFpGndyyT6KSnW6JDV2DIY/edit?usp=sharing

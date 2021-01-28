@@ -2,33 +2,38 @@
 <html lang="en" dir="ltr">
 
 <?php 
-  require('conn.php');
-  if(isset($_GET["qId"])){
+  require('conn.php'); // initilise conneciton to the database
+  if(isset($_GET["qId"])){  //Need a different sql statement if ALL is selected
     $currentID = $_GET["qId"];
+    // Statement to select the relevant questinnaire to display a table of the questions and answers to them
     $sql = "SELECT q.id as `question ID`, q.`questionnaire ID`,q.`question number`,q.`Contents`,a.`participant ID`,a.contents 
     FROM answer a 
     INNER JOIN question q ON q.id = a.`question ID` WHERE `questionnaire ID` = '$currentID';";
   }
   else{
     $currentID = "ALL";
+    // Statement to select all questionnaires when all is selected in dropdown
     $sql = "SELECT q.id as `question ID`, q.`questionnaire ID`,q.`question number`,q.`Contents`,a.`participant ID`,a.contents 
     FROM answer a 
     INNER JOIN question q ON q.id = a.`question ID`;";
   }
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute();
+
+  //PREPARE AND RUN STATEMENTS
+  $stmt = $pdo->prepare($sql);
+  $stmt->execute();
   $result = $stmt->fetchAll();
 
   $sql = "SELECT * FROM questionnaire;";
   $stmt = $pdo->prepare($sql);
-	$stmt->execute();
+  $stmt->execute();
   $questionnaires = $stmt->fetchAll();
 
+  // Statement to find number of questions
   $sql = "SELECT qr.`id` as `Questionnaire ID`,count(*) as `Number of Questions` FROM question q
   INNER JOIN questionnaire qr on q.`questionnaire ID` = qr.id
   group by qr.`id`;";
   $stmt = $pdo->prepare($sql);
-	$stmt->execute();
+  $stmt->execute();
   $questionnairescount = $stmt->fetchAll();
 
   //var_dump($questionnaires);
@@ -46,12 +51,11 @@
         crossorigin="anonymous"></script>
 </head>
 
+<!-- Cheeky navbar -->
 <nav class="navbar navbar-dark">
-
-  <div class="container-fluid">
-    <a class="navbar-brand" href="index.html">Home</a>
-  </div>
-
+    <div class="container-fluid">
+        <a class="navbar-brand" href="https://dundata.azurewebsites.net">Home</a>
+    </div>
 </nav>
 
 <body>
@@ -68,20 +72,22 @@
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item"
                         href="https://dundata.azurewebsites.net/Software_Code/dataViewer.php">ALL</a>
-                    <?php 
-            foreach($questionnaires as $row) {
-              echo "<a class='dropdown-item' href='https://dundata.azurewebsites.net/Software_Code/dataViewer.php?qId=".$row['ID']."'>".$row['ID']."</a>";
-            }
-            ?>
+                    <?php //Fill the bootstrap dropdown with links to the questionnaire table listing
+                        foreach($questionnaires as $row) {
+                            echo "<a class='dropdown-item' href='https://dundata.azurewebsites.net/Software_Code/dataViewer.php?qId=".$row['ID']."'>".$row['ID']."</a>";
+                        }
+                    ?>
                     <!--<a class="dropdown-item" href="https://dundata.azurewebsites.net/Software_Code/dataViewer.php?qId=1">1</a>-->
                 </div>
-                <b><p style="margin-left:1em;">#<?php echo $currentID?></p></b>
+                <b>
+                    <p style="margin-left:1em;">#<?php echo $currentID?></p> <!-- Print the table we are currently on -->
+                </b>
             </div>
 
             <div class="table-responsive">
                 <table id="dtable" class="table" ;>
                     <thead>
-                        <tr>
+                        <tr> <!-- Table Titles -->
                             <th>Question Number</th>
                             <th>Participant ID</th>
                             <th>Question</th>
@@ -90,14 +96,14 @@
                     </thead>
                     <tbody id="dataTable">
                         <tr>
-                            <?php 
-                  foreach($result as $row) {
-                      echo "<td>".$row['question number']."</td>";
-                      echo "<td>".$row['participant ID']."</td>";
-                      echo "<td>".$row['Contents']."</td>";
-                      echo "<td>".$row['contents']."</td></tr>";
-                    }
-                ?>
+                        <?php // Fill table with the relevant data from sql request
+                            foreach($result as $row) {
+                                echo "<td>".$row['question number']."</td>";
+                                echo "<td>".$row['participant ID']."</td>";
+                                echo "<td>".$row['Contents']."</td>";
+                                echo "<td>".$row['contents']."</td></tr>";
+                            }
+                        ?>
                     </tbody>
                 </table>
             </div>
