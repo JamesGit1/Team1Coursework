@@ -91,7 +91,7 @@
         </form>
         <form method="POST">
             <input type="text" name="questionText">
-            <button type="submit" name="submitQuestions">Submit</button>
+            <button type="submit" name="submitQuestions" onClick=myFunction()>Submit</button>
         </form>
         <!-- <form method="post" class="newForm">
             
@@ -130,7 +130,7 @@
       <img src="logo.png" class="fix">
     </div>
   </div>
-
+<div id="loader"></div>
 </body>
 
 
@@ -145,3 +145,15 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/8741ca18b0.js" crossorigin="anonymous"></script>
+<script>
+var myVar;
+
+function myFunction() {
+  myVar = setTimeout(showPage, 300);
+}
+
+function showPage() {
+  document.getElementByClass("container").style.display = "none"; //change to container
+  document.getElementById("loader").style.display = "block";
+}
+</script>
