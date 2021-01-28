@@ -42,8 +42,8 @@
         <form method="post" class="newForm">
             <!--Input Boxes to change Form name and description -->
             <input type="text" id="formName" value="<?php echo $title ?>" class="card-title question-title" name="formName"/>
-            <input name = "formDesc" type="text" id="formDescription"  value="<?php echo $description ?>"
-                   class="card-title question-title"/>
+            <textarea name = "formDesc" type="text" id="formDescription"  value="<?php echo $description ?>"
+                   class="card-title question-title"></textarea>
             <!--All question/cards will be placed here when append-->
             <div id="questionPanel">
 
