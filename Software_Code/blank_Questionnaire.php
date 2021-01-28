@@ -34,6 +34,15 @@ if (isset($_POST['submitQuestions']))
 
     $questionNumber = $previousQuestionNumber + 1;
 
+    if(isset($_POST['required']))
+    {
+        $required = 1;
+    }
+    else
+    {
+        $required = 0;
+    }
+
     $query = "INSERT INTO `question`(`Contents`,`Type`,`questionnaire ID`,`question number`,`required`) 
                     VALUES (:contents,'text', :questionnaireID, :questionNumber, :required);";
     $stmt = $pdo->prepare($query);
@@ -41,7 +50,6 @@ if (isset($_POST['submitQuestions']))
     $stmt->bindParam(":questionnaireID", $id);
     $stmt->bindParam(":questionNumber", $questionNumber);
     $stmt->bindParam(":required", $required);
-    $required = $_POST['required'];
     $contents = $_POST['questionText'];
     $stmt->execute();
     header("Refresh:0");
@@ -54,6 +62,19 @@ if (isset($_POST['delete'])) {
     $questionID = $_POST['delete'];
     $stmt->execute();
     header("Refresh:0");
+}
+
+if (isset($_POST['submitForm'])) 
+{
+    $query = "UPDATE questionnaire SET `name` = :formName, `description` = :formDescription WHERE `ID` = :questionnaireID;";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(":questionnaireID", $id);
+    $stmt->bindParam(":formName", $formName);
+    $stmt->bindParam(":formDescription", $formDescription);
+    $formName = $_POST['formName'];
+    $formDescription = $_POST['formDescription'];
+    $stmt->execute();
+    header("Location: index.html");
 }
 ?>
 <link rel="stylesheet" href="questionAppearance.css">
@@ -78,6 +99,10 @@ if (isset($_POST['delete'])) {
 <body>
 <div class="container" id="myDiv">
     <div class="row">
+        <form method="post" class="newForm" id="submitQuestionnaire">
+            <input type="text" id="formName" value="<?php echo $title ?>" class="card-title question-title" name="formName"/>
+            <textarea name = "formDesc" type="text" id="formDescription" class="card-title question-title"><?php echo $description ?></textarea>
+        </form>
         <div id="questionPanel">
             <?php
             foreach ($questions as $row) {
@@ -106,6 +131,8 @@ if (isset($_POST['delete'])) {
                 </button>
             </form>
 
+            <button form="submitQuestionnaire" type="submit" class="btn btn-primary" name="submitForm" method="post" id="submitForm">Submit Questionnaire</button>
+
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
                 <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
@@ -122,23 +149,6 @@ if (isset($_POST['delete'])) {
                     </div>
                 </div>
             </div>
-
-            <!-- <form method="post" class="newForm">
-            
-            <input type="text" id="formName" value="<?php echo $title ?>" class="card-title question-title" name="formName"/>
-            <input name = "formDesc" type="text" id="formDescription"  value="<?php echo $description ?>"
-                   class="card-title question-title"/>
-           
-            <div id="questionPanel">
-
-            </div>
-            
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="newQuestion">
-                Add New Question
-            </button>
-            <button type="submit" class="btn btn-primary" name="submitForm" method="post" id="submitForm"> Create Form
-            </button>
-        </form>-->
         </div>
     </div>
 
