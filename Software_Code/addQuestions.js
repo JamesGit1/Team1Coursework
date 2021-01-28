@@ -7,7 +7,7 @@ var numberOfQuestions = 0;
 var addCols = function(num, type) {
   if (type == "text") {
     // Text Card
-    var myCol = $('<div class="card"  id = question' + questionNumber + '><div class="card-body"><form action="" name="textQuestion" method="POST"><input type = "text" id =' + questionNumber +' name="myText" placeholder="Enter question here:" class="card-title question-title"/><p class="card-text"><em>Answer here</em></p><div class="d-grid gap-2 d-md-flex justify-content-md-end"><button value="submit" name="submit" onclick="tickButton()">Submit</button><a href="#" id = ' + questionNumber + ' onclick="deleteCard(this.id)" class="btn btn-primary btn-danger fas fa-trash"></a></div><div class="form-check"><input type="checkbox" class="form-check-input" id="required"><label class="form-check-label" for="required">Required</label></div></form></div></div>');
+    var myCol = $('<div class="card"  id = question' + questionNumber + '><div class="card-body"><form action="" name="textQuestion" method="POST"><input type = "text" id =' + questionNumber +' name="myText" placeholder="Enter question here:" class="card-title question-title"/><p class="card-text"><em>Answer here</em></p><div class="d-grid gap-2 d-md-flex justify-content-md-end"><button value="submit" name="submit" id ="submitQuestion" onclick="tickButton()">Submit</button><a href="#" id = ' + questionNumber + ' onclick="deleteCard(this.id)" class="btn btn-primary btn-danger fas fa-trash"></a></div><div class="form-check"><input type="checkbox" class="form-check-input" id="required"><label class="form-check-label" for="required">Required</label></div></form></div></div>');
   } else if (type == "radio") {
     //Radio Card
     var myCol = $('<div class="card" id = question' + questionNumber + ' "><div class="card-body">  ' +
@@ -36,7 +36,7 @@ function addExtraRadio(id) {
 
   var div = $('<div class="cardParent" id = option' + numberOfOptions + ' ></div>');
   var myCol = $('<p class="card-text"><input type = "text" id =' + numberOfOptions + ' placeholder="Enter option here..." class="card-title option"/></p>\n');
-  var deleteButton = $('<a href="#" id = ' + numberOfOptions + ' onclick="deleteRadio(this.id)" class="btn btn-primary btn-secondary fas fa-times onclick="" btn-delete close" style="margin-left: 20px;"></a>');
+  var deleteButton = $('<a href="#" id = ' + numberOfOptions + ' onclick="deleteRadio(this.id)" class="btn btn-primary btn-secondary fas fa-times btn-delete close" style="margin-left: 20px;"></a>');
   deleteButton.appendTo(myCol);
   myCol.appendTo(div);
   div.appendTo('#contentPanel' + id);
@@ -58,7 +58,7 @@ function deleteRadio(deleteNumberofOption) {
 $("#btnText").click(function() {
   document.getElementById('newQuestion').style.visibility = 'hidden';
   addCols('1', 'text');
-  
+
 });
 
 //Runs when Radio button has been pressed
@@ -69,17 +69,18 @@ $("#btnRadio").click(function() {
 
 function tickButton()
 {
-  preventDefault();
+  document.getElementById("submitQuestion").addEventListener("submit", stopRefresh(event))
   document.getElementById('newQuestion').style.visibility = 'visible';
 };
 
-function stopRefresh(){
-  this.preventDefault();
+function stopRefresh(e){
+  alert("Stop refresh");
+  e.preventDefault();
 }
 
 $("textQuestion").on("submit", function (e) {
     var dataString = $(this).serialize();
-     
+
     $.ajax({
       type: "POST",
       url: "bin/process.php",
@@ -88,6 +89,6 @@ $("textQuestion").on("submit", function (e) {
         // Display message back to the user here
       }
     });
- 
+
     e.preventDefault();
 });
