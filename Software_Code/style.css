@@ -80,7 +80,7 @@ input#formName {
     text-decoration: underline;
 }
 
-textarea#formDescription {
+input#formDescription {
     width: 100%;
     font-style: italic;
     margin-bottom: 2em;
