@@ -79,10 +79,12 @@ input#formName {
     text-decoration: underline;
 }
 
-input#formDescription {
+textarea#formDescription {
     width: 100%;
     font-style: italic;
     margin-bottom: 2em;
+    resize: none;
+ 	overflow: hidden;
 }
 
 
