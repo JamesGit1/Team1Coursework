@@ -23,12 +23,23 @@ $questions = $stmt->fetchAll();
 
 unset($stmt);
 
-if (isset($_POST['submitQuestions'])) {
+if (isset($_POST['submitQuestions'])) 
+{
+    $query = "SELECT `question number` FROM question q WHERE q.`questionnaire ID` = :questionnaireID ORDER BY `question number` DESC";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(":questionnaireID", $id);
+    $stmt->execute();
+    $previousQuestionNumber = $stmt->fetchColumn();
+    unset($stmt);
+
+    $questionNumber = $previousQuestionNumber + 1;
+
     $query = "INSERT INTO `question`(`Contents`,`Type`,`questionnaire ID`,`question number`,`required`) 
-                    VALUES (:contents,'text', :questionnaireID, 2, :required);";
+                    VALUES (:contents,'text', :questionnaireID, :questionNumber, :required);";
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(":contents", $contents, PDO::PARAM_STR);
     $stmt->bindParam(":questionnaireID", $id);
+    $stmt->bindParam(":questionNumber", $questionNumber);
     $stmt->bindParam(":required", $required);
     $required = $_POST['required'];
     $contents = $_POST['questionText'];
@@ -75,7 +86,7 @@ if (isset($_POST['delete'])) {
                     <div class="card-body">
                         <form name="textQuestion" method="POST">
                             <p><?php echo $row['Contents'] ?></p>
-                            <p class="card-text"><em>Answer here</em></p>
+                            <p class="card-text"><em>Participant will answer here...</em></p>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                 <button name="delete" value="<?php echo $row['ID'] ?>"
                                         class="btn btn-primary btn-danger fas fa-trash"></button>
@@ -88,16 +99,10 @@ if (isset($_POST['delete'])) {
             ?>
 
             <form method="POST">
-
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
                         id="newQuestion">
                     Add New Question
                 </button>
-
-                <input type="text" name="questionText" required>
-                    <button type="submit" name="submitQuestions">Submit</button>
-
-
             </form>
 
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
