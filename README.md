@@ -20,7 +20,7 @@ Hints:
 - Have a look at the gitHub documentation for advice on how to use more advanced features in GitHub to support your work
 
 Links to our Google Docs
-- Meeting notes: includes our user stories, user personas, definition of done, definition of ready, etc.: 
+- General notes: includes our user stories, user personas, definition of done, definition of ready, etc.: 
 https://docs.google.com/document/d/1GIzwbMIxGo_43YNpUKrhUI1D3c20H5vkwmQIdvG9aTc/edit?usp=sharing
 
 - Ground Rules: contains our ground rules for the rest of the coursework: 
