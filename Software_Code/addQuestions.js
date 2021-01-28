@@ -7,7 +7,7 @@ var numberOfQuestions = 0;
 var addCols = function(num, type) {
   if (type == "text") {
     // Text Card
-    var myCol = $('<div class="card"  id = question' + questionNumber + '><div class="card-body"><form action="" name="textQuestion" method="POST"><input type = "text" id =' + questionNumber +' name="myText" placeholder="Enter question here:" class="card-title question-title"/><p class="card-text"><em>Answer here</em></p><div class="d-grid gap-2 d-md-flex justify-content-md-end"><button value="submit" name="submit" id ="submitQuestion" onclick="tickButton()">Submit</button><a href="#" id = ' + questionNumber + ' onclick="deleteCard(this.id)" class="btn btn-primary btn-danger fas fa-trash"></a></div><div class="form-check"><input type="checkbox" class="form-check-input" id="required"><label class="form-check-label" for="required">Required</label></div></form></div></div>');
+    var myCol = $('<div class="card"  id = question' + questionNumber + '><div class="card-body"><form name="textQuestion" method="POST"><input type = "text" id =' + questionNumber +' name="myText" placeholder="Enter question here:" class="card-title question-title"/><p class="card-text"><em>Answer here</em></p><div class="d-grid gap-2 d-md-flex justify-content-md-end"><button value="submit" name="submit" id ="submitQuestion" onclick="tickButton()">Submit</button><a href="#" id = ' + questionNumber + ' onclick="deleteCard(this.id)" class="btn btn-primary btn-danger fas fa-trash"></a></div><div class="form-check"><input name = "required" type="checkbox" class="form-check-input" id="required"><label class="form-check-label" for="required">Required</label></div></form></div></div>');
   } else if (type == "radio") {
     //Radio Card
     var myCol = $('<div class="card" id = question' + questionNumber + ' "><div class="card-body">  ' +
@@ -19,10 +19,6 @@ var addCols = function(num, type) {
         '</div>  <div class="form-check">  <input type="checkbox" class="form-check-input" id="required">    ' +
         '<label class="form-check-label" for="required">Required</label></div></div></div>');
   }
-  /*
-  var url = window.location.href;
-  url.indexOf('?');
-  */
 
   //Appends to questionPanel
   myCol.appendTo('#questionPanel');
@@ -74,21 +70,16 @@ function tickButton()
 };
 
 function stopRefresh(e){
-  alert("Stop refresh");
-  e.preventDefault();
-}
-
-$("textQuestion").on("submit", function (e) {
+  $("textQuestion").on("submit", function (e) {
+    e.preventDefault();
     var dataString = $(this).serialize();
 
     $.ajax({
       type: "POST",
-      url: "bin/process.php",
+      url: "submitQuestion.php",
       data: dataString,
-      success: function () {
-        // Display message back to the user here
-      }
     });
+  });
+  return false;
+}
 
-    e.preventDefault();
-});

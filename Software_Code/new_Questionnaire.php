@@ -1,3 +1,35 @@
+<?php
+require_once('conn.php');
+session_start();
+date_default_timezone_set('Europe/London');
+
+if(isset($_POST['submit']))
+{
+    $title = $description = "";
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST")
+    {
+        $sql = "CALL createFormReturnID (:title,:dateopened,'1',:description);";
+        if ($stmt = $pdo->prepare($sql)) {
+            $stmt->bindParam(":title", $title, PDO::PARAM_STR);
+            $stmt->bindParam(":dateopened", $datetime, PDO::PARAM_STR);
+            $stmt->bindParam(":description", $description, PDO::PARAM_STR);
+
+            $datetime = date('Y/m/d h:i:s', time());
+
+            $title = $_POST['title'];
+            $description = $_POST['description'];
+
+            $stmt->execute();
+            $result = $stmt->fetchColumn();
+
+            $_SESSION['id'] = $result;
+            header('Location: blank_Questionnaire.php');
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -23,7 +55,7 @@
         	<h1><u>Create a new Questionnaire</u></h1>
         </div>
         <div class="row" id="imageRow">
-	        <form action="blank_Questionnaire.php" method="POST">
+	        <form method="POST">
 	            <div class="form-group">
 	                <label for="exampleFormControlInput1">Title</label>
 	                <input type="text" name="title" class="form-control" id="exampleFormControlInput1" placeholder="e.g. Quiz" required>
@@ -34,7 +66,7 @@
 	                    placeholder="e.g. This is is what the questionnaire is about or something like that"
 	                    required style="margin-bottom: 10px;"></textarea>
 	            </div>
-	            <button value="Submit" type="submit" class="btn btn-primary">Make a new Questionnaire</button>
+	            <button name ="submit" value="Submit" type="submit" class="btn btn-primary">Make a new Questionnaire</button>
 	        </form>
         </div>
 	      <div class="row justify-content-end" id="imageRow">
@@ -53,34 +85,3 @@
 </body>
 </html>
 
-<?php
-	require_once('conn.php');
-	session_start();
-	date_default_timezone_set('Europe/London');
-
-	if(isset($_POST['submit']))
-	{
-		$title = $description = "";
-
-		if ($_SERVER["REQUEST_METHOD"] == "POST") 
-		{
-		    $sql = "CALL createFormReturnID (:title,:dateopened,'1',:description);";
-		    if ($stmt = $pdo->prepare($sql)) {
-		        $stmt->bindParam(":title", $title, PDO::PARAM_STR);
-		        $stmt->bindParam(":dateopened", $datetime, PDO::PARAM_STR);
-		        $stmt->bindParam(":description", $description, PDO::PARAM_STR);
-
-		        $datetime = date('Y/m/d h:i:s', time());
-
-		        $title = $_POST['title'];
-		        $description = $_POST['description'];
-
-		        $stmt->execute();
-		        $result = $stmt->fetchColumn();
-				
-				$_SESSION['id'] = $result;
-				header('Location: blank_Questionnaire.php');
-		    }
-		}
-	}
-?>
