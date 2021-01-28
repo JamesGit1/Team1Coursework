@@ -1,4 +1,4 @@
 <?php
 
-header('Location: Software_Code/new_Questionnaire.php');
+header('Location: Software_Code/index.html');
 ?>
