@@ -71,11 +71,11 @@ img {
 
 input#formName {
     width: 100%;
-    font-size: 5em;
+    font-size: 4em;
     border: none;
     /* background: white; */
     appearance: none;
-    font-weight: bold;
+    font-weight: 500;
     text-decoration: underline;
 }
 
