@@ -69,10 +69,24 @@ img {
 
 }
 
-footer{
-	position: absolute;
-  	bottom: 0;
-  	width: 90%;
+input#formName {
+    width: 100%;
+    font-size: 3em;
+    border: none;
+    /* background: white; */
+    appearance: none;
+}
+
+input#formDescription {
+    width: 100%;
+}
+
+textarea:focus, input#formDescription:focus {
+    outline: none;
+}
+
+textarea:focus, input#formName:focus {
+    outline: none;
 }
 
 @media screen and (max-width: 550px) {
@@ -84,9 +98,12 @@ footer{
 
 @media screen and (max-width: 375px) {
     .row h1{
-	padding-bottom: 0.2em;
-	font-size: 2em;
-}
+		padding-bottom: 0.2em;
+		font-size: 2em;
+	}
+	input#formName {
+	    font-size: 2em;
+	}
 }
 
 @keyframes slideInFromLeft {
