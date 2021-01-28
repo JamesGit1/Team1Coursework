@@ -76,11 +76,12 @@ if (isset($_POST['delete'])) {
 </nav>
 
 <body>
-<div class="container">
+<div class="container" id="myDiv">
     <div class="row">
         <div id="questionPanel">
             <?php
             foreach ($questions as $row) {
+
                 ?>
                 <div class="card">
                     <div class="card-body">
@@ -112,6 +113,7 @@ if (isset($_POST['delete'])) {
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Question Type</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
                         </div>
                         <div class="modal-body">
                             <a href="#" id="btnText" data-bs-dismiss="modal" class="btn btn-primary">Text Based</a>
@@ -120,6 +122,7 @@ if (isset($_POST['delete'])) {
                     </div>
                 </div>
             </div>
+
             <!-- <form method="post" class="newForm">
             
             <input type="text" id="formName" value="<?php echo $title ?>" class="card-title question-title" name="formName"/>
@@ -157,8 +160,21 @@ if (isset($_POST['delete'])) {
     <div class="row justify-content-end" id="imageRow">
         <img src="logo.png" class="fix">
     </div>
-</div>
 
+  </div>
+<div id="loader"></div>
+  <script>
+    var myVar;
+
+    function myFunction() {
+      myVar = setTimeout(showPage, 300);
+    }
+
+    function showPage() {
+      document.getElementById("myDiv").style.display = "none"; //change to container
+      document.getElementById("loader").style.display = "block";
+    }
+  </script>
 </body>
 
 
