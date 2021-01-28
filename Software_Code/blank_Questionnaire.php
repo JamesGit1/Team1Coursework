@@ -68,7 +68,7 @@
 </nav>
 
 <body>
-<div class="container">
+<div class="container" id="myDiv">
     <div class="row">
         <form method="POST">
         <?php
@@ -131,6 +131,18 @@
     </div>
   </div>
 <div id="loader"></div>
+  <script>
+    var myVar;
+
+    function myFunction() {
+      myVar = setTimeout(showPage, 300);
+    }
+
+    function showPage() {
+      document.getElementById("myDiv").style.display = "none"; //change to container
+      document.getElementById("loader").style.display = "block";
+    }
+  </script>
 </body>
 
 
@@ -145,15 +157,3 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/8741ca18b0.js" crossorigin="anonymous"></script>
-<script>
-var myVar;
-
-function myFunction() {
-  myVar = setTimeout(showPage, 300);
-}
-
-function showPage() {
-  document.getElementByClass("container").style.display = "none"; //change to container
-  document.getElementById("loader").style.display = "block";
-}
-</script>
