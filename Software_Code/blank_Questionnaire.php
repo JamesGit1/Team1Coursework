@@ -101,7 +101,7 @@ if (isset($_POST['submitForm']))
     <div class="row">
         <form method="post" class="newForm" id="submitQuestionnaire">
             <input type="text" id="formName" value="<?php echo $title ?>" class="card-title question-title" name="formName"/>
-            <textarea name = "formDesc" type="text" id="formDescription" class="card-title question-title" oninput="auto_grow(this)"><?php echo $description ?></textarea>
+            <textarea name = "formDesc" class="form-control" id="formDescription" oninput="auto_grow(this)"><?php echo $description ?></textarea>
         </form>
         <div id="questionPanel">
             <?php
