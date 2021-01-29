@@ -78,6 +78,7 @@ if (isset($_POST['submitForm']))
 }
 ?>
 <link rel="stylesheet" href="questionAppearance.css">
+<link rel="stylesheet" href="style.css">
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 

@@ -50,9 +50,9 @@ unset($stmt);
     <div class="row">
         <form name="quiz" method="POST" action="submitAnswers.php">
             <div id="questionPanel">
+                <h1><?php echo $title; ?></h1>
+                <h3><?php echo $description; ?></h3>
                 <?php
-                echo $title;
-                echo $description;
                 $questionArray = array();
                 foreach ($questions
 
@@ -99,7 +99,7 @@ unset($stmt);
                         }
                         $_SESSION['questionArray'] = $questionArray;
                         ?>
-                        <button type="submit" name="submitQuestion" class="btn btn-primary"></button>
+                        <button type="submit" name="submitQuestion" class="btn btn-primary fas fa-check" style = "float: right;"></button>
                     </div>
                 </div>
             </div>
@@ -107,3 +107,17 @@ unset($stmt);
     </div>
 </div>
 </body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/8741ca18b0.js" crossorigin="anonymous"></script>
+
