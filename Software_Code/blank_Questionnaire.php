@@ -26,6 +26,7 @@ unset($stmt);
 if (isset($_POST['submitRadioQuestions'])) 
 {
     $arrayID = explode(",", $_POST['idNumbers']);
+    var_dump($arrayID);
 
     $query = "SELECT `question number` FROM question q WHERE q.`questionnaire ID` = :questionnaireID ORDER BY `question number` DESC";
     $stmt = $pdo->prepare($query);
@@ -63,12 +64,14 @@ if (isset($_POST['submitRadioQuestions']))
     $radioQuestionID = $stmt->fetchColumn();
     unset($stmt);
     
-    foreach ($arrayID as $id => $value) {
+    foreach ($arrayID as $id) 
+    {
     	$query = "INSERT INTO `options` (`question ID`,`option`) VALUES(:radioQuestionID,:option);";
     	$stmt = $pdo->prepare($query);
     	$stmt->bindParam(":radioQuestionID", $radioQuestionID);
     	$stmt->bindParam(":option", $option);
-    	$option = $_POST[$arrayID[$id]];
+        var_dump($id);
+    	$option = $_POST[$id];
     	$stmt->execute();
     	unset($stmt);
     }
@@ -119,7 +122,6 @@ if (isset($_POST['delete'])) {
 
 if (isset($_POST['deleteRadio'])) {
 
-    var_dump($_POST['deleteRadio']);
     $query = "DELETE FROM `options` WHERE options.`question ID` = :questionID;";
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(":questionID", $questionID, PDO::PARAM_STR);
