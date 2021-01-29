@@ -23,6 +23,11 @@ $questions = $stmt->fetchAll();
 
 unset($stmt);
 
+if (isset($_POST['submitRadioQuestions'])) 
+{
+    echo "000000000000000000000000000000000000000000000000";
+}
+
 if (isset($_POST['submitQuestions'])) 
 {
     $query = "SELECT `question number` FROM question q WHERE q.`questionnaire ID` = :questionnaireID ORDER BY `question number` DESC";

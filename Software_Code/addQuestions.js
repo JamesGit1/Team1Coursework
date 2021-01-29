@@ -2,7 +2,7 @@
 var questionNumber = 1;
 // keeps track of the number of questions
 var numberOfQuestions = 0;
-
+var currentRadio = 0;
 //Adds the card depending on Condition
 var addCols = function(num, type) {
   if (type == "text") {
@@ -14,9 +14,9 @@ var addCols = function(num, type) {
         '<input type = "text" id = "myText" placeholder="Enter question here:" class="card-title question-title"/>    ' +
         '<div id="contentPanel' + questionNumber + '">  </div><a href="#"  id = ' +
         questionNumber + ' onclick="addExtraRadio(this.id)" class="btn btn-primary btn-success fas fa-plus"></a>' +
-        '<div class="d-grid gap-2 d-md-flex justify-content-md-end">  <a href="#" onclick="tickButton()" class="btn btn-primary fas fa-check"></a>' +
+        '<div class="d-grid gap-2 d-md-flex justify-content-md-end"><button class="btn btn-primary" value="submit" name="submitRadioQuestions" id ="submitQuestion" onclick="myFunction()">Submit</button>' +
         '  <a href="#" id = ' + questionNumber + ' onclick="deleteCard(this.id)" class="btn btn-primary btn-danger fas fa-trash"></a>  ' +
-        '</div>  <div class="form-check">  <input type="checkbox" class="form-check-input" id="required">    ' +
+        '</div>  <div class="form-check"> <input type = "text" id ="idNumbers" name="questionText" placeholder="Enter question here:" class="card-title question-title"/> <input type="checkbox" class="form-check-input" id="required">    ' +
         '<label class="form-check-label" for="required">Required</label></div></div></div>');
   }
 
@@ -36,7 +36,14 @@ function addExtraRadio(id) {
   deleteButton.appendTo(myCol);
   myCol.appendTo(div);
   div.appendTo('#contentPanel' + id);
+  if(numberOfOptions == 1){
+    idNumbers.value += numberOfOptions;
+  }
+  else{
+  idNumbers.value += ","+numberOfOptions;
+  }
   numberOfOptions++;
+  currentRadio++;
 }
 // Deletes the card
 function deleteCard(deleteCardId) {
@@ -47,7 +54,24 @@ function deleteCard(deleteCardId) {
 
 // Deletes the radio button
 function deleteRadio(deleteNumberofOption) {
-  document.getElementById('option' + deleteNumberofOption).remove();
+
+document.getElementById('option' + deleteNumberofOption).remove();
+var allIdNumbers = document.getElementById('idNumbers').value
+var deleteLastNumber = numberOfOptions - 1
+
+
+if(deleteNumberofOption == currentRadio){
+allIdNumbers = allIdNumbers.replace(deleteNumberofOption,' ');
+}
+else if(currentRadio == deleteLastNumber){
+  allIdNumbers = allIdNumbers.replace(","+deleteNumberofOption , '');
+}
+else{
+  allIdNumbers = allIdNumbers.replace(deleteNumberofOption+"," , '');
+}
+
+idNumbers.value = allIdNumbers;
+currentRadio--;
 };
 
 //Runs when text button has been pressed
@@ -82,4 +106,3 @@ function stopRefresh(e){
   });
   return false;
 }
-
