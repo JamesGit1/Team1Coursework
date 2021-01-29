@@ -140,26 +140,29 @@ if (isset($_POST['submitForm']))
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <!--Navigation bar -->
 <nav class="navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="index.html">Home</a>
-    </div>
+    <a class="navbar-brand" href="index.html">
+        <img src="University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
+            style="margin-right: 20px;">Home
+    </a>
 </nav>
 
 <body>
-<div class="container" id="myDiv">
-    <div class="row">
-        <form method="post" class="newForm" id="submitQuestionnaire">
-            <input type="text" id="formName" value="<?php echo $title ?>" class="card-title question-title" name="formName"/>
-            <textarea name = "formDesc" class="card-title question-title" id="formDescription" oninput="auto_grow(this)"><?php echo $description ?></textarea>
-        </form>
-        <div id="questionPanel">
-            <?php
+    <div class="container" id="myDiv">
+        <div class="row">
+            <form method="post" class="newForm" id="submitQuestionnaire">
+                <input type="text" id="formName" value="<?php echo $title ?>" class="card-title question-title"
+                    name="formName" />
+                <textarea name="formDesc" class="card-title question-title" id="formDescription"
+                    oninput="auto_grow(this)"><?php echo $description ?></textarea>
+            </form>
+            <div id="questionPanel">
+                <?php
             foreach ($questions as $row) 
             {
             	if ($row['Type'] == 'text') 
@@ -172,7 +175,7 @@ if (isset($_POST['submitForm']))
                             <p class="card-text"><em>Participant will answer here...</em></p>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                 <button name="delete" value="<?php echo $row['ID'] ?>"
-                                        class="btn btn-primary btn-danger fas fa-trash"></button>
+                                    class="btn btn-primary btn-danger fas fa-trash"></button>
                             </div>
                         </form>
                     </div>
@@ -182,35 +185,38 @@ if (isset($_POST['submitForm']))
             }
             ?>
 
-            <form method="POST">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                <form method="POST">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
                         id="newQuestion">
-                    Add New Question
-                </button>
-            </form>
+                        Add New Question
+                    </button>
+                </form>
 
-            <button form="submitQuestionnaire" type="submit" class="btn btn-success" name="submitForm" method="post" id="submitForm">Submit Questionnaire</button>
+                <button form="submitQuestionnaire" type="submit" class="btn btn-success" name="submitForm" method="post"
+                    id="submitForm">Submit Questionnaire</button>
 
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Question Type</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Question Type</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
 
-                        </div>
-                        <div class="modal-body">
-                            <a href="#" id="btnText" data-bs-dismiss="modal" class="btn btn-primary">Text Based</a>
-                            <a href="#" id="btnRadio" data-bs-dismiss="modal" class="btn btn-primary">Radio Button</a>
+                            </div>
+                            <div class="modal-body">
+                                <a href="#" id="btnText" data-bs-dismiss="modal" class="btn btn-primary">Text Based</a>
+                                <a href="#" id="btnRadio" data-bs-dismiss="modal" class="btn btn-primary">Radio
+                                    Button</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!--     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!--     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -225,42 +231,42 @@ if (isset($_POST['submitForm']))
                 </div>
             </div>
         </div> -->
-    <div class="row justify-content-end" id="imageRow">
-        <img src="logo.png" class="fix">
-    </div>
+        <div class="row justify-content-end" id="imageRow">
+            <img src="logo.png" class="fix">
+        </div>
 
-  </div>
-<div id="loader"></div>
-  <script>
+    </div>
+    <div id="loader"></div>
+    <script>
     var myVar;
 
     function myFunction() {
-      myVar = setTimeout(showPage, 300);
+        myVar = setTimeout(showPage, 300);
     }
 
     function showPage() {
-      document.getElementById("myDiv").style.display = "none"; //change to container
-      document.getElementById("loader").style.display = "block";
+        document.getElementById("myDiv").style.display = "none"; //change to container
+        document.getElementById("loader").style.display = "block";
     }
 
     function auto_grow(element) {
         element.style.height = "5px";
-        element.style.height = (element.scrollHeight)+"px";
+        element.style.height = (element.scrollHeight) + "px";
     }
-  </script>
+    </script>
 </body>
 
 
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-        crossorigin="anonymous"></script>
+    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
+</script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+</script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+</script>
 <script src="https://kit.fontawesome.com/8741ca18b0.js" crossorigin="anonymous"></script>
 <script src="addQuestions.js"></script>

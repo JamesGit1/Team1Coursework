@@ -40,9 +40,9 @@ unset($stmt);
 
 <!--Navigation bar -->
 <nav class="navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="index.html">Home</a>
-    </div>
+    <a class="navbar-brand" href="index.html">
+        <img src="University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo" style="margin-right: 20px;">Home
+    </a>
 </nav>
 
 <body>
