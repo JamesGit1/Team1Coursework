@@ -54,9 +54,7 @@ unset($stmt);
                 <h3><?php echo $description; ?></h3>
                 <?php
                 $questionArray = array();
-                foreach ($questions
-
-                as $row) {
+                foreach ($questions as $row) {
                 if ($row['Type'] == 'text') {
                     ?>
                     <div class="card">
@@ -90,19 +88,22 @@ unset($stmt);
                         unset($stmt);
                         foreach ($options as $option) {
                             ?>
-                            <input type="radio" name="<?php echo $row['Contents']; ?>"
-                                   value=<?php echo $option['option']; ?>/>
+                            <input type="radio" value="<?php echo $option['option']; ?>" name="<?php echo $row['ID']; ?>"/>
+                            <label for="<?php echo $option['option']; ?>"><?php echo $option['option']; ?></label><br>
                             <?php
-                        }
+                        }?>
+                    </div>
+                </div>
+                <?php
                         }
                         array_push($questionArray, $row['ID']);
                         }
                         $_SESSION['questionArray'] = $questionArray;
+                        $_SESSION['questionnaireID'] = $id;
                         ?>
                         <button type="submit" name="submitQuestion" class="btn btn-primary fas fa-check"
                                 style="float: right;"></button>
-                    </div>
-                </div>
+                    
             </div>
         </form>
     </div>

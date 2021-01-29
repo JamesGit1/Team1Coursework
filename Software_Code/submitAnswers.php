@@ -9,8 +9,21 @@ $questionArray = $_SESSION['questionArray'];
 //var_dump($_SESSION);
 //echo "THANKS FOR FILLING IN THE FORM";
 if (isset($_POST['submitQuestion'])) {
-    for ($i = 0; $i < sizeof($questionArray); $i++) {
-        // then we need to read out all the questions that is in the questionnaire
+    foreach ($questionArray as $i) {
+
+        //1. we need to determine the type of each question in the array *
+        //2. Based on that, we insert them using either text or radio insert
+        //radio insert - insert the options after the question
+
+        //1
+        // $query = "SELECT q.`Type` FROM question q WHERE ID = :questionID;";
+        // $stmt = $pdo->prepare($query);
+        // $stmt->bindParam(":questionID", $questionID, PDO::PARAM_STR);
+        // $questionID = $questionArray[$i];
+        // $stmt->execute();
+        // $questionType = $stmt->fetchColumn();
+        // unset($stmt);
+           // then we need to read out all the questions that is in the questionnaire
         $query = "INSERT INTO answer (`contents`, `question ID`, `participant ID`) 
                 VALUES (:contents, :questionID, :participantID)";
         $stmt = $pdo->prepare($query);
@@ -21,8 +34,8 @@ if (isset($_POST['submitQuestion'])) {
 
         // here, we want the name of the variable $questionArray[$i] so that we can get the value of that
         // from $_POST
-        $contents = $_POST[$questionArray[$i]];
-        $questionID = $questionArray[$i];
+        $contents = $_POST[$i];
+        $questionID = $i;
         $participantID = 1;
 
         $stmt->execute();
