@@ -57,7 +57,10 @@ img {
     width: 100%;
     margin-left: 0px;
     margin-right: 0px;
-    height: 90%;
+}
+
+.card #height{
+	height: 90%;
 }
 
 .btn-primary {

@@ -42,7 +42,7 @@ GROUP BY q.id";
 				{
 				?>
             <div class="col-md-3">
-                <div class="card text-center">
+                <div class="card text-center" id="height">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $row['Title'];?></h5>
                         <p class="card-text">Number of Responses: <?php echo $row['responses'];?></p>
