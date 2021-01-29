@@ -36,6 +36,8 @@ unset($stmt);
           integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
           crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Dundata</title>
+    <link rel="icon" type="image/png" href="favicon.ico"/>
 </head>
 
 <!--Navigation bar -->
