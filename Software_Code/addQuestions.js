@@ -14,7 +14,7 @@ var addCols = function(num, type) {
         '<input type = "text" id = "myText" placeholder="Enter question here:" class="card-title question-title"/>    ' +
         '<div id="contentPanel' + questionNumber + '">  </div><a href="#"  id = ' +
         questionNumber + ' onclick="addExtraRadio(this.id)" class="btn btn-primary btn-success fas fa-plus"></a>' +
-        '<div class="d-grid gap-2 d-md-flex justify-content-md-end">  <a href="#" onclick="tickButton()" class="btn btn-primary fas fa-check"></a>' +
+        '<div class="d-grid gap-2 d-md-flex justify-content-md-end"><button class="btn btn-primary" value="submit" name="submitRadioQuestions" id ="submitQuestion" onclick="myFunction()">Submit</button>' +
         '  <a href="#" id = ' + questionNumber + ' onclick="deleteCard(this.id)" class="btn btn-primary btn-danger fas fa-trash"></a>  ' +
         '</div>  <div class="form-check">  <input type="checkbox" class="form-check-input" id="required">    ' +
         '<label class="form-check-label" for="required">Required</label></div></div></div>');
