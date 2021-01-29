@@ -21,7 +21,7 @@ GROUP BY q.id";
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
 	<title>Export Data</title>
-    <link rel="icon" type="image/png" href="favicon.ico"/>
+    <link rel="icon" type="image/x-icon" href="favicon.ico"/>
 </head>
 
 <nav class="navbar navbar-dark">
