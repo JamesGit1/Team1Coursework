@@ -72,7 +72,7 @@ if (isset($_POST['submitForm']))
     $stmt->bindParam(":formName", $formName);
     $stmt->bindParam(":formDescription", $formDescription);
     $formName = $_POST['formName'];
-    $formDescription = $_POST['formDescription'];
+    $formDescription = $_POST['formDesc'];
     $stmt->execute();
     header("Location: index.html");
 }
@@ -102,7 +102,7 @@ if (isset($_POST['submitForm']))
     <div class="row">
         <form method="post" class="newForm" id="submitQuestionnaire">
             <input type="text" id="formName" value="<?php echo $title ?>" class="card-title question-title" name="formName"/>
-            <textarea name = "formDesc" type="text" id="formDescription" class="card-title question-title"><?php echo $description ?></textarea>
+            <textarea name = "formDesc" class="card-title question-title" id="formDescription" oninput="auto_grow(this)"><?php echo $description ?></textarea>
         </form>
         <div id="questionPanel">
             <?php
@@ -184,6 +184,11 @@ if (isset($_POST['submitForm']))
     function showPage() {
       document.getElementById("myDiv").style.display = "none"; //change to container
       document.getElementById("loader").style.display = "block";
+    }
+
+    function auto_grow(element) {
+        element.style.height = "5px";
+        element.style.height = (element.scrollHeight)+"px";
     }
   </script>
 </body>
