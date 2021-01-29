@@ -42,39 +42,42 @@ if(isset($_POST['submit']))
 
     <title></title>
 </head>
-    
+
 <body>
     <nav class="navbar navbar-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">Home</a>
-        </div>
+        <a class="navbar-brand" href="index.html">
+            <img src="University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
+                style="margin-right: 20px;">Home
+        </a>
     </nav>
 
     <div class="container">
-    	<div class="row">
-        	<h1><u>Create a new Questionnaire</u></h1>
+        <div class="row">
+            <h1><u>Create a new Questionnaire</u></h1>
         </div>
         <div class="row" id="imageRow">
-	        <form method="POST">
-	            <div class="form-group">
-	                <label for="exampleFormControlInput1">Title</label>
-	                <input type="text" name="title" class="form-control" id="exampleFormControlInput1" placeholder="e.g. Quiz" required>
-	            </div>
-	            <div class="form-group">
-	                <label for="txtarea">Description</label>
-	                <textarea class="form-control" name="description" id="txtarea" rows="3"
-	                    placeholder="e.g. This is is what the questionnaire is about or something like that"
-	                    required style="margin-bottom: 10px;"></textarea>
-	            </div>
-	            <button name ="submit" value="Submit" type="submit" class="btn btn-primary">Make a new Questionnaire</button>
-	        </form>
+            <form method="POST">
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Title</label>
+                    <input type="text" name="title" class="form-control" id="exampleFormControlInput1"
+                        placeholder="e.g. Quiz" required>
+                </div>
+                <div class="form-group">
+                    <label for="txtarea">Description</label>
+                    <textarea class="form-control" name="description" id="txtarea" rows="3"
+                        placeholder="e.g. This is is what the questionnaire is about or something like that" required
+                        style="margin-bottom: 10px;"></textarea>
+                </div>
+                <button name="submit" value="Submit" type="submit" class="btn btn-primary">Make a new
+                    Questionnaire</button>
+            </form>
         </div>
-	      <div class="row justify-content-end" id="imageRow">
-	      	<img src="logo.png" class="fix">
-	    </div>
-	</div>
-	
-	<!--
+        <div class="row justify-content-end" id="imageRow">
+            <img src="logo.png" class="fix">
+        </div>
+    </div>
+
+    <!--
     <form action="blank_Questionnaire.php" method="POST">
         Title: <input type="text" name="title" placeholder="e.g. Data Collection" required>
         Description: <input type="text" name="description"
@@ -83,5 +86,5 @@ if(isset($_POST['submit']))
 	</form>
 -->
 </body>
-</html>
 
+</html>

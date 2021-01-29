@@ -49,16 +49,17 @@ if (isset($_POST['submitQuestion'])) {
 
 <body>
     <nav class="navbar navbar-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">Home</a>
-        </div>
+        <a class="navbar-brand" href="index.html">
+            <img src="University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
+                style="margin-right: 20px;">Home
+        </a>
     </nav>
 
     <div class="container">
         <div class="row">
             <h1><u>Answers Submitted!</u></h1>
         </div>
-        <div class="row" >
+        <div class="row">
             <a href="index.html">Back to home</a>
         </div>
 
