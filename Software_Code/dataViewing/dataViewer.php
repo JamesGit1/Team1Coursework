@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
-<?php 
-  require('conn.php'); // initilise conneciton to the database
+<?php
+require_once('../conn.php'); // initilise conneciton to the database
   if(isset($_GET["qId"])){  //Need a different sql statement if ALL is selected
     $currentID = $_GET["qId"];
     // Statement to select the relevant questinnaire to display a table of the questions and answers to them
@@ -44,19 +44,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="addOptionButton.js"></script>
+    <link rel="stylesheet" type="text/css" href="../CSS/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
         integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
         crossorigin="anonymous"></script>
     <title>Dundata</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico"/>
 </head>
 
 <!-- Cheeky navbar -->
 <nav class="navbar navbar-dark">
-    <a class="navbar-brand" href="index.html">
-        <img src="University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo" style="margin-right: 20px;">Home
+    <a class="navbar-brand" href="../index.html">
+        <img src="../images/University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo" style="margin-right: 20px;">Home
     </a>
 </nav>
 
@@ -120,7 +119,7 @@
         </div>
 
         <div class="row justify-content-end" id="imageRow">
-            <img src="logo.png" class="fix">
+            <img src="../images/logo.png" class="fix">
         </div>
     </div>
 

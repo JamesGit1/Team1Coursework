@@ -1,5 +1,5 @@
 <?php
-	require('conn.php');
+require_once('../conn.php');
 
 	$query = "SELECT q.id,q.`name` as `Title`,COUNT(DISTINCT(`participant ID`)) AS `responses` FROM answer a 
 INNER JOIN question qn ON a.`question ID` = qn.id 
@@ -19,15 +19,15 @@ GROUP BY q.id";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/style.css">
 	<title>Export Data</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico"/>
 </head>
 
 <nav class="navbar navbar-dark">
-    <a class="navbar-brand" href="index.html">
-        <img src="University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
-            style="margin-right: 20px;">Home
+    <a class="navbar-brand" href="../index.html">
+        <img src="../images/University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
+             style="margin-right: 20px;">Home
     </a>
 </nav>
 
@@ -58,7 +58,7 @@ GROUP BY q.id";
 			?>
         </div>
         <div class="row justify-content-end" id="imageRow">
-            <img src="logo.png" class="fix">
+            <img src="../images/logo.png" class="fix">
         </div>
     </div>
 

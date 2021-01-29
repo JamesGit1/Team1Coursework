@@ -1,5 +1,5 @@
 <?php
-require_once('conn.php');
+require_once('../conn.php');
 session_start();
 
 $link = $_SESSION["questionnaireLink"];
@@ -13,16 +13,16 @@ $link = $_SESSION["questionnaireLink"];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/style.css">
     <title>Dundata</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico"/>
 </head>
 
 <body>
     <nav class="navbar navbar-dark">
-        <a class="navbar-brand" href="index.html">
-            <img src="University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
-                style="margin-right: 20px;">Home
+        <a class="navbar-brand" href="../index.html">
+            <img src="../images/University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
+                 style="margin-right: 20px;">Home
         </a>
     </nav>
 
@@ -33,12 +33,12 @@ $link = $_SESSION["questionnaireLink"];
         <div class="row">
             <div class="linkpage" style="text-align:center;">
                 <?php 
-                echo "<button type='button' id='copyText' class='btn btn-primary' onclick='copyToClipboard(`#copyText`)'>https://dundata.azurewebsites.net/Software_Code/".$link."</button>";
+                echo "<button type='button' id='copyText' class='btn btn-primary' onclick='copyToClipboard(`#copyText`)'>https://dundata.azurewebsites.net/Software_Code/formAnswering/".$link."</button>";
             ?>
             </div>
         </div>
         <div class="row">
-            <a class="btn btn-primary" id="homeButton" href="index.html">Back to home</a>
+            <a class="btn btn-primary" id="homeButton" href="../index.html">Back to home</a>
         </div>
 
     </div>

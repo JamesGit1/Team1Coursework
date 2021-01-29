@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="questionAppearance.css">
+<link rel="stylesheet" href="../CSS/questionAppearance.css">
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -6,16 +6,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="../CSS/style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
   <title>Dundata</title>
-  <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+  <link rel="icon" type="image/x-icon" href="../images/favicon.ico"/>
 </head>
 
 <!--Navigation bar -->
 <nav class="navbar navbar-dark">
-    <a class="navbar-brand" href="index.html">
-        <img src="University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo" style="margin-right: 20px;">Home
+    <a class="navbar-brand" href="../index.html">
+        <img src="../images/University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo" style="margin-right: 20px;">Home
     </a>
 </nav>
 
@@ -89,4 +89,4 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/8741ca18b0.js" crossorigin="anonymous"></script>
-<script src="addQuestions.js"></script>
+<script src="../createForm/addQuestions.js"></script>

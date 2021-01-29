@@ -1,6 +1,5 @@
 <?php
-require "conn.php";
-
+require_once('../conn.php');
 session_start();
 
 $stmt = $pdo->prepare("INSERT INTO question (`Contents`,`Type`,`questionnaire ID`, `question number`, `required`) 

@@ -1,5 +1,5 @@
-<?php  
-	require('conn.php');
+<?php
+require_once('../conn.php');
 
 	$sql = "SELECT * FROM answer";
 	$stmt = $pdo->prepare($sql);
