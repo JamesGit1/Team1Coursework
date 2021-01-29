@@ -50,7 +50,7 @@
         integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
         crossorigin="anonymous"></script>
     <title>Dundata</title>
-    <link rel="icon" type="image/png" href="favicon.ico"/>
+    <link rel="icon" type="image/x-icon" href="favicon.ico"/>
 </head>
 
 <!-- Cheeky navbar -->

@@ -37,7 +37,7 @@ unset($stmt);
           crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>Dundata</title>
-    <link rel="icon" type="image/png" href="favicon.ico"/>
+    <link rel="icon" type="image/x-icon" href="favicon.ico"/>
 </head>
 
 <!--Navigation bar -->
