@@ -74,7 +74,8 @@ if (isset($_POST['submitForm']))
     $formName = $_POST['formName'];
     $formDescription = $_POST['formDesc'];
     $stmt->execute();
-    header("Location: index.html");
+    $_SESSION["questionnaireLink"] = "answerSheet?id=".$questionnaireID;
+    header("Location: submitted.php");
 }
 ?>
 <link rel="stylesheet" href="questionAppearance.css">
