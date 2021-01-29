@@ -88,20 +88,22 @@ unset($stmt);
                         unset($stmt);
                         foreach ($options as $option) {
                             ?>
-                            <input type="radio" name="<?php echo $row['Contents']; ?>"
-                                   value="<?php echo $option['ID']; ?>" id="<?php echo $row['ID']; ?>"/>
+                            <input type="radio" value="<?php echo $option['option']; ?>" name="<?php echo $row['ID']; ?>"/>
                             <label for="<?php echo $option['option']; ?>"><?php echo $option['option']; ?></label><br>
                             <?php
-                        }
+                        }?>
+                    </div>
+                </div>
+                <?php
                         }
                         array_push($questionArray, $row['ID']);
                         }
                         $_SESSION['questionArray'] = $questionArray;
+                        $_SESSION['questionnaireID'] = $id;
                         ?>
                         <button type="submit" name="submitQuestion" class="btn btn-primary fas fa-check"
                                 style="float: right;"></button>
-                    </div>
-                </div>
+                    
             </div>
         </form>
     </div>
