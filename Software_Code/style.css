@@ -143,14 +143,11 @@ textarea:focus, input#formName:focus {
 }
 
 @media screen and (max-width: 770px) {
-	.h3{
-		font-size: 1.4em;
-	}
-}
-
-@media screen and (max-width: 770px) {
 	.linkpage button{
 		font-size: 0.5em;
+	}
+	h3{
+		font-size: 1.4em;
 	}
 }
 @media screen and (max-width: 550px) {
