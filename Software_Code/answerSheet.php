@@ -54,9 +54,7 @@ unset($stmt);
                 <h3><?php echo $description; ?></h3>
                 <?php
                 $questionArray = array();
-                foreach ($questions
-
-                as $row) {
+                foreach ($questions as $row) {
                 if ($row['Type'] == 'text') {
                     ?>
                     <div class="card">
@@ -91,7 +89,8 @@ unset($stmt);
                         foreach ($options as $option) {
                             ?>
                             <input type="radio" name="<?php echo $row['Contents']; ?>"
-                                   value=<?php echo $option['option']; ?>/>
+                                   value="<?php echo $option['ID']; ?>" id="<?php echo $row['ID']; ?>"/>
+                            <label for="<?php echo $option['option']; ?>"><?php echo $option['option']; ?></label><br>
                             <?php
                         }
                         }

@@ -1,7 +1,7 @@
 <?php
 require_once('conn.php');
 session_start();
-$id = $_SESSION['id'];
+$id = $_GET['id'];
 $questionArray = $_SESSION['questionArray'];
 //echo "ALL POST VARIABLES";
 //var_dump($_POST);
@@ -10,6 +10,8 @@ $questionArray = $_SESSION['questionArray'];
 //echo "THANKS FOR FILLING IN THE FORM";
 if (isset($_POST['submitQuestion'])) {
     for ($i = 0; $i < sizeof($questionArray); $i++) {
+
+
         // then we need to read out all the questions that is in the questionnaire
         $query = "INSERT INTO answer (`contents`, `question ID`, `participant ID`) 
                 VALUES (:contents, :questionID, :participantID)";
