@@ -117,6 +117,25 @@ if (isset($_POST['delete'])) {
     header("Refresh:0");
 }
 
+if (isset($_POST['deleteRadio'])) {
+
+    var_dump($_POST['deleteRadio']);
+    $query = "DELETE FROM `options` WHERE options.`question ID` = :questionID;";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(":questionID", $questionID, PDO::PARAM_STR);
+    $questionID = $_POST['deleteRadio'];
+    $stmt->execute();
+    unset($stmt);
+
+
+    $query = "DELETE FROM question WHERE question.ID=:questionID";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(":questionID", $questionID, PDO::PARAM_STR);
+    $questionID = $_POST['deleteRadio'];
+    $stmt->execute();
+    header("Refresh:0");
+}
+
 if (isset($_POST['submitForm'])) 
 {
     $query = "UPDATE questionnaire SET `name` = :formName, `description` = :formDescription WHERE `ID` = :questionnaireID;";
@@ -186,32 +205,32 @@ if (isset($_POST['submitForm']))
             	}
                 else if ($row['Type'] == 'radio')
                 {
-                ?>
-                <div class="card">
-                    <div class="card-body">
-                        <p>
-                            <?php 
-                            echo $row['Contents']; 
-                            ?>
-                        </p>
-                        <?php
-                        // then we need to read out all the options that is in the questionnaire
-                        $query = "SELECT * FROM options o where o.`question ID` = :questionID";
-                        $stmt = $pdo->prepare($query);
-                        $stmt->bindParam(":questionID", $row['ID'], PDO::PARAM_STR);
-                        $stmt->execute();
-                        $options = $stmt->fetchAll();
-                        unset($stmt);
-                        foreach($options as $option){​​
-                            ?>            
-                            <input type="radio" value="<?php echo $option['option'] ?>" name="<?php echo $row['ID'] ?>"/>
-                            <label for="<?php echo $option['option'] ?>"><?php echo $option['option']; ?></label><br>
-                            <?php
-                        }​​?>    
-                    </div>
-                </div>
-
-                <?php
+                    ?>
+                        <div class="card">
+                            <div class="card-body">
+                                <form name="radioQuestion" method="POST">
+                                    <p><strong><?php echo $row['Contents'] ?></strong></p>
+                                    <ul>
+                                    <?php
+                                        $query = "SELECT * FROM options o where o.`question ID` = :questionID";
+                                        $stmt = $pdo->prepare($query);
+                                        $stmt->bindParam(":questionID", $row['ID'], PDO::PARAM_STR);
+                                        $stmt->execute();
+                                        $options = $stmt->fetchAll();
+                                        unset($stmt);
+                                        foreach($options as $option)
+                                        {
+                                        ?>
+                                            <li><?php echo $option['option']?></li>
+                                        <?php
+                                        }
+                                    ?>
+                                    </ul>
+                                    <button name="deleteRadio" value="<?php echo $row['ID'] ?>" class="btn btn-primary btn-danger fas fa-trash"></button>
+                                </form>
+                            </div>
+                        </div>
+                    <?php
                 }
             }
             ?>
