@@ -179,6 +179,35 @@ if (isset($_POST['submitForm']))
                 </div>
                 <?php
             	}
+                else if ($row['Type'] == 'radio')
+                {
+                ?>
+                <div class="card">
+                    <div class="card-body">
+                        <p>
+                            <?php 
+                            echo $row['Contents']; 
+                            ?>
+                        </p>
+                        <?php
+                        // then we need to read out all the options that is in the questionnaire
+                        $query = "SELECT * FROM options o where o.`question ID` = :questionID";
+                        $stmt = $pdo->prepare($query);
+                        $stmt->bindParam(":questionID", $row['ID'], PDO::PARAM_STR);
+                        $stmt->execute();
+                        $options = $stmt->fetchAll();
+                        unset($stmt);
+                        foreach($options as $option){​​
+                            ?>            
+                            <input type="radio" value="<?php echo $option['option'] ?>" name="<?php echo $row['ID'] ?>"/>
+                            <label for="<?php echo $option['option'] ?>"><?php echo $option['option']; ?></label><br>
+                            <?php
+                        }​​?>    
+                    </div>
+                </div>
+
+                <?php
+                }
             }
             ?>
 
