@@ -99,7 +99,8 @@ unset($stmt);
                         }
                         $_SESSION['questionArray'] = $questionArray;
                         ?>
-                        <button type="submit" name="submitQuestion" class="btn btn-primary fas fa-check" style = "float: right;"></button>
+                        <button type="submit" name="submitQuestion" class="btn btn-primary fas fa-check"
+                                style="float: right;"></button>
                     </div>
                 </div>
             </div>
