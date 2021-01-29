@@ -25,7 +25,55 @@ unset($stmt);
 
 if (isset($_POST['submitRadioQuestions'])) 
 {
-    echo "000000000000000000000000000000000000000000000000";
+    $arrayID = explode(",", $_POST['idNumbers']);
+
+    $query = "SELECT `question number` FROM question q WHERE q.`questionnaire ID` = :questionnaireID ORDER BY `question number` DESC";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(":questionnaireID", $id);
+    $stmt->execute();
+    $previousQuestionNumber = $stmt->fetchColumn();
+    unset($stmt);
+
+    $questionNumber = $previousQuestionNumber + 1;
+
+    if(isset($_POST['required']))
+    {
+        $required = 1;
+    }
+    else
+    {
+        $required = 0;
+    }
+
+    $query = "INSERT INTO `question`(`Contents`,`Type`,`questionnaire ID`,`question number`,`required`) 
+                    VALUES (:contents,'radio', :questionnaireID, :questionNumber, :required);";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(":contents", $contents, PDO::PARAM_STR);
+    $stmt->bindParam(":questionnaireID", $id);
+    $stmt->bindParam(":questionNumber", $questionNumber);
+    $stmt->bindParam(":required", $required);
+    $contents = $_POST['questionText'];
+    $stmt->execute();
+
+    $query = "SELECT `ID` FROM question q WHERE q.`questionnaire ID` = :questionnaireID AND q.`contents` = :contents";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(":questionnaireID", $id);
+    $stmt->bindParam(":contents", $contents, PDO::PARAM_STR);
+    $stmt->execute();
+    $radioQuestionID = $stmt->fetchColumn();
+    unset($stmt);
+    
+    foreach ($arrayID as $id => $value) {
+    	$query = "INSERT INTO `options` (`question ID`,`option`) VALUES(:radioQuestionID,:option);";
+    	$stmt = $pdo->prepare($query);
+    	$stmt->bindParam(":radioQuestionID", $radioQuestionID);
+    	$stmt->bindParam(":option", $option);
+    	$option = $_POST[$arrayID[$id]];
+    	$stmt->execute();
+    	unset($stmt);
+    }
+
+    header("Refresh:0");
 }
 
 if (isset($_POST['submitQuestions'])) 
@@ -77,12 +125,14 @@ if (isset($_POST['submitForm']))
     $stmt->bindParam(":formName", $formName);
     $stmt->bindParam(":formDescription", $formDescription);
     $formName = $_POST['formName'];
-    $formDescription = $_POST['formDescription'];
+    $formDescription = $_POST['formDesc'];
     $stmt->execute();
-    header("Location: index.html");
+    $_SESSION["questionnaireLink"] = "answerSheet.php?id=".$questionnaireID;
+    header("Location: submitted.php");
 }
 ?>
 <link rel="stylesheet" href="questionAppearance.css">
+<link rel="stylesheet" href="style.css">
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -106,12 +156,14 @@ if (isset($_POST['submitForm']))
     <div class="row">
         <form method="post" class="newForm" id="submitQuestionnaire">
             <input type="text" id="formName" value="<?php echo $title ?>" class="card-title question-title" name="formName"/>
-            <textarea name = "formDesc" type="text" id="formDescription" class="card-title question-title"><?php echo $description ?></textarea>
+            <textarea name = "formDesc" class="card-title question-title" id="formDescription" oninput="auto_grow(this)"><?php echo $description ?></textarea>
         </form>
         <div id="questionPanel">
             <?php
-            foreach ($questions as $row) {
-
+            foreach ($questions as $row) 
+            {
+            	if ($row['Type'] == 'text') 
+            	{
                 ?>
                 <div class="card">
                     <div class="card-body">
@@ -126,6 +178,7 @@ if (isset($_POST['submitForm']))
                     </div>
                 </div>
                 <?php
+            	}
             }
             ?>
 
@@ -136,7 +189,7 @@ if (isset($_POST['submitForm']))
                 </button>
             </form>
 
-            <button form="submitQuestionnaire" type="submit" class="btn btn-primary" name="submitForm" method="post" id="submitForm">Submit Questionnaire</button>
+            <button form="submitQuestionnaire" type="submit" class="btn btn-success" name="submitForm" method="post" id="submitForm">Submit Questionnaire</button>
 
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
@@ -188,6 +241,11 @@ if (isset($_POST['submitForm']))
     function showPage() {
       document.getElementById("myDiv").style.display = "none"; //change to container
       document.getElementById("loader").style.display = "block";
+    }
+
+    function auto_grow(element) {
+        element.style.height = "5px";
+        element.style.height = (element.scrollHeight)+"px";
     }
   </script>
 </body>
