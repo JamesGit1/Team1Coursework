@@ -37,7 +37,7 @@ $link = $_SESSION["questionnaireLink"];
             </div>
         </div>
         <div class="row" >
-            <a href="index.html">Back to home</a>
+            <a class = "btn btn-primary" id="homeButton" href="index.html">Back to home</a>
         </div>
 
     </div>

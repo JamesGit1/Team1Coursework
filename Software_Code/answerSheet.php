@@ -1,7 +1,7 @@
 <?php
 require_once('conn.php');
 session_start();
-$id = $_SESSION['id'];
+$id = $_GET['id'];
 
 // we want to find the questionnaire that we need to read from
 $query = "SELECT * FROM Questionnaire WHERE Questionnaire.id = :questionnaireID";

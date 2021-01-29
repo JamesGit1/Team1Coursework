@@ -142,11 +142,17 @@ textarea:focus, input#formName:focus {
     outline: none;
 }
 
+
+@media screen and (max-width: 770px) {
+	.linkpage button{
+		font-size: 0.5em;
+	}
+}
 @media screen and (max-width: 550px) {
     .row h1{
-	padding-bottom: 0.2em;
-	font-size: 3em;
-}
+		padding-bottom: 0.2em;
+		font-size: 3em;
+	}
 }
 
 @media screen and (max-width: 375px) {
@@ -159,9 +165,8 @@ textarea:focus, input#formName:focus {
 	}
 
 	.linkpage button{
-		font-size: 0.5em;
+		font-size: 0.4em;
 	}
-
 }
 
 @keyframes slideInFromLeft {
@@ -171,6 +176,11 @@ textarea:focus, input#formName:focus {
     100% { 
         opacity: 1; 
      } 
+}
+
+#homeButton{
+	width: 33.3%;
+	margin:auto;
 }
 
 #fade{
