@@ -3,6 +3,7 @@ var questionNumber = 1;
 // keeps track of the number of questions
 var numberOfQuestions = 0;
 var currentRadio = 0;
+var totalRadios = 0;
 //Adds the card depending on Condition
 var addCols = function(num, type) {
   if (type == "text") {
@@ -58,16 +59,24 @@ function deleteRadio(deleteNumberofOption) {
   var allIdNumbers = document.getElementById('idNumbers').value
   var deleteLastNumber = numberOfOptions - 1
 
-
-    allIdNumbers = allIdNumbers.replace(deleteNumberofOption + ",", '');
-    if(deleteNumberofOption == deleteLastNumber){
+alert("currentRadio " + currentRadio );
+alert("deleteNumberofOption " + deleteNumberofOption );
+    if(deleteNumberofOption == currentRadio){
     allIdNumbers = allIdNumbers.replace(","+deleteNumberofOption, '');
     }
-    if(allIdNumbers.includes(",")){
+
+    else if(allIdNumbers.length == 1){
+      alert(allIdNumbers.length);
+      alert("1?")
       allIdNumbers = allIdNumbers.replace(deleteNumberofOption,'');
     }
+    else{
+        allIdNumbers = allIdNumbers.replace(deleteNumberofOption + ",", '');
+    }
+
   idNumbers.value = allIdNumbers;
   currentRadio--;
+  deleteLastNumber--;
 };
 
 //Runs when text button has been pressed
