@@ -6,7 +6,7 @@ Group Members:
 - James Shaw (180005665): Product Owner
 - Jesse Chan (180010828): Team Member
 - Luke Dawe (180006521): Team Member
-- James Robb (190010640): Team Member
+- James Robb (180010640): Team Member
 - Harry Finch (180004617): Team Member
 - Alan Sunny : (160009235) Team Member
 
