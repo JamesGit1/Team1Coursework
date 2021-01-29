@@ -47,5 +47,5 @@ document.getElementById("ethics").addEventListener("click", function () {
 })
 
 document.getElementById("continue").addEventListener("click", function () {
-    document.location.href = "new_Questionnaire.php";
+    document.location.href = "createForm/new_Questionnaire.php";
 });

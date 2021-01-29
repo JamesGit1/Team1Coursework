@@ -1,5 +1,5 @@
 <?php
-require('conn.php');
+require_once('../conn.php');
 session_start();
 $id = $_SESSION['id'];
 
@@ -152,8 +152,8 @@ if (isset($_POST['submitForm']))
     header("Location: submitted.php");
 }
 ?>
-<link rel="stylesheet" href="questionAppearance.css">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../CSS/questionAppearance.css">
+<link rel="stylesheet" href="../CSS/style.css">
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -162,16 +162,16 @@ if (isset($_POST['submitForm']))
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/style.css">
     <title>Dundata</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico"/>
 </head>
 
 <!--Navigation bar -->
 <nav class="navbar navbar-dark">
-    <a class="navbar-brand" href="index.html">
-        <img src="University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
-            style="margin-right: 20px;">Home
+    <a class="navbar-brand" href="../index.html">
+        <img src="../images/University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
+             style="margin-right: 20px;">Home
     </a>
 </nav>
 
@@ -284,7 +284,7 @@ if (isset($_POST['submitForm']))
             </div>
         </div> -->
         <div class="row justify-content-end" id="imageRow">
-            <img src="logo.png" class="fix">
+            <img src="../images/logo.png" class="fix">
         </div>
 
     </div>

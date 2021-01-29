@@ -1,5 +1,5 @@
-<?php  
-	require('conn.php');
+<?php
+require_once('../conn.php');
 
 if(isset($_POST['download']))
 {
