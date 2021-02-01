@@ -5,6 +5,7 @@
 require_once('../conn.php'); // initilise conneciton to the database
   if(isset($_GET["qId"])){  //Need a different sql statement if ALL is selected
     $currentID = $_GET["qId"];
+    $currentQuestionnaire = $_GET["name"];
     // Statement to select the relevant questinnaire to display a table of the questions and answers to them
     $sql = "SELECT q.id as `question ID`, q.`questionnaire ID`,q.`question number`,q.`Contents`,a.`participant ID`,a.contents 
     FROM answer a 
@@ -68,20 +69,28 @@ require_once('../conn.php'); // initilise conneciton to the database
             <div class="dropdown">
                 <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
-                    Questionnaire ID
+                    Questionnaires
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item"
                         href="https://dundata.azurewebsites.net/Software_Code/dataViewing/dataViewer.php">ALL</a>
                     <?php //Fill the bootstrap dropdown with links to the questionnaire table listing
                         foreach($questionnaires as $row) {
-                            echo "<a class='dropdown-item' href='https://dundata.azurewebsites.net/Software_Code/dataViewing/dataViewer.php?qId=".$row['ID']."'>".$row['ID']."</a>";
+                            echo "<a class='dropdown-item' href='https://dundata.azurewebsites.net/Software_Code/dataViewing/dataViewer.php?qId=".$row['ID']."&name=".$row['name']."'><strong>(".$row['ID'].") </strong>".$row['name']."</a>";
                         }
                     ?>
                     <!--<a class="dropdown-item" href="https://dundata.azurewebsites.net/Software_Code/dataViewing/dataViewer.php?qId=1">1</a>-->
                 </div>
                 <b>
-                    <p style="margin-left:1em;">#<?php echo $currentID?></p> <!-- Print the table we are currently on -->
+                    <p style="margin-left:1em;">
+                    <?php 
+                    if(isset($currentID) && isset($currentQuestionnaire)){
+                        echo "#".$currentID." ".$currentQuestionnaire;
+                    }
+                    else{
+                        echo "All Questionnaire Questions!";
+                    }
+                    ?></p> <!-- Print the table we are currently on -->
                 </b>
             </div>
 

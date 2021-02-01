@@ -1,22 +1,18 @@
-# Sprint 1
+# Sprint 2
 
 All information about your first sprint should be put into this folder. Additionally, the information below should be updated to give a short summary of your daily scrum meetings.
 
 ---
 
-## Day [X] - Scrum Meeting summary
-The Scrum Master for this meeting was **Mike Crabb**
+## Day 1 - Scrum Meeting summary
+The Scrum Master for this meeting was Joshua Bradley
 
 ### Members Present:
-Mike, Rachel, information
-
-### Members Not Present:
-Naughty Student 1, Naughty Student 2
-
-### Apologies:
-Ill Student 1.
+Josh, Jesse, Luke, James R, James S, Alan, Harry
 
 ### Summary of Conversation:
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+We covered our sprint retrospective, user feedback/sprint review, and lecture feedback to refresh what we needed to do this sprint.
+We then planned what each person would do for the day, updating our sprint 2 backlog.
+After that, we predicted blockages and impediments.
 
 ---
