@@ -76,6 +76,16 @@ if (isset($_POST['submitRadioQuestions']))
     	unset($stmt);
     }
 
+    $query = "UPDATE questionnaire SET `name` = :formName, `description` = :formDescription WHERE `ID` = :questionnaireID;";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(":questionnaireID", $id);
+    $stmt->bindParam(":formName", $formName);
+    $stmt->bindParam(":formDescription", $formDescription);
+    $formName = $_POST['formName'];
+    $formDescription = $_POST['formDesc'];
+    $stmt->execute();
+    $unset($stmt);
+    
     header("Refresh:0");
 }
 
@@ -107,6 +117,16 @@ if (isset($_POST['submitQuestions']))
     $stmt->bindParam(":questionNumber", $questionNumber);
     $stmt->bindParam(":required", $required);
     $contents = $_POST['questionText'];
+    $stmt->execute();
+    unset($stmt);
+
+    $query = "UPDATE questionnaire SET `name` = :formName, `description` = :formDescription WHERE `ID` = :questionnaireID;";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(":questionnaireID", $id);
+    $stmt->bindParam(":formName", $formName);
+    $stmt->bindParam(":formDescription", $formDescription);
+    $formName = $_POST['formName'];
+    $formDescription = $_POST['formDesc'];
     $stmt->execute();
     header("Refresh:0");
 }
