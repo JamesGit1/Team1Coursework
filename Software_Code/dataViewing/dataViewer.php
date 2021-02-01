@@ -14,7 +14,7 @@ require_once('../conn.php'); // initilise conneciton to the database
   else{
     $currentID = "ALL";
     // Statement to select all questionnaires when all is selected in dropdown
-    $sql = "SELECT q.id as `question ID`, q.`questionnaire ID`,q.`question number`,q.`Contents`,a.`participant ID`,a.contents 
+    $sql = "SELECT q.id as `question ID`,q.`Type`, q.`questionnaire ID`,q.`question number`,q.`Contents`,a.`participant ID`,a.contents 
     FROM answer a 
     INNER JOIN question q ON q.id = a.`question ID`;";
   }
@@ -100,6 +100,7 @@ require_once('../conn.php'); // initilise conneciton to the database
                         <tr> <!-- Table Titles -->
                             <th>Question Number</th>
                             <th>Participant ID</th>
+                            <th>Question Type</th>
                             <th>Question</th>
                             <th>Response</th>
                         </tr>
@@ -110,6 +111,7 @@ require_once('../conn.php'); // initilise conneciton to the database
                             foreach($result as $row) {
                                 echo "<td>".$row['question number']."</td>";
                                 echo "<td>".$row['participant ID']."</td>";
+                                echo "<td>".$row['Type']."</td>";
                                 echo "<td>".$row['Contents']."</td>";
                                 echo "<td>".$row['contents']."</td></tr>";
                             }
