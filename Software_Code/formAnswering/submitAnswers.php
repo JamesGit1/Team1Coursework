@@ -9,6 +9,15 @@ $questionArray = $_SESSION['questionArray'];
 //var_dump($_SESSION);
 //echo "THANKS FOR FILLING IN THE FORM";
 if (isset($_POST['submitQuestion'])) {
+
+    $query = "SELECT `participant ID` FROM answer a INNER JOIN question q ON a.`question ID` = q.ID WHERE q.`questionnaire id` = :questionnaireID GROUP BY `participant ID` ORDER BY `participant ID` DESC;";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(":questionnaireID", $id, PDO::PARAM_STR);
+    $stmt->execute();
+    $oldParticipantID = $stmt->fetchColumn();
+    $participantID = $oldParticipantID + 1;
+    unset($stmt);
+
     foreach ($questionArray as $i) {
 
         //1. we need to determine the type of each question in the array *
@@ -36,8 +45,6 @@ if (isset($_POST['submitQuestion'])) {
         // from $_POST
         $contents = $_POST[$i];
         $questionID = $i;
-        $participantID = 1;
-
         $stmt->execute();
         $questions = $stmt->fetchAll();
 
@@ -62,7 +69,7 @@ if (isset($_POST['submitQuestion'])) {
 
 <body>
     <nav class="navbar navbar-dark">
-        <a class="navbar-brand" ">
+        <a class="navbar-brand">
             <img src="../images/University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
                  style="margin-right: 20px;">
         </a>

@@ -115,6 +115,7 @@ if (isset($_POST['submitQuestions']))
     $contents = $_POST['questionText'];
     $stmt->execute();
     unset($stmt);
+    header("Refresh:0");
 }
 
 // deletes a question
