@@ -56,20 +56,18 @@ if (isset($_POST['submitAccount']))
   </head>
 
   <body class="text-center">
-    <div class="container">
-      <form class="form-signin" method="POST">
-        <img class="mb-4" src="../images/University_Of_Dundee_shield.png" alt="" width="72" height="72">
+	  <form class="form-signin" method="POST">
+	    <img class="mb-4" src="../images/University_Of_Dundee_shield.png" alt="" width="72" height="100">
 
-        <h1 class="h3 mb-3 font-weight-normal">Please register with Dundata</h1>
+	    <h1 class="h3 mb-3 font-weight-normal">Please register with Dundata</h1>
 
-        <input type="text" name="name" id="inputName" class="form-control" placeholder="Name" required autofocus>
-        <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
-        <span class="help-block"><?php echo $username_err; ?></span>
-        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+	    <input type="text" name="name" id="inputName" class="form-control" placeholder="Name" required autofocus>
+	    <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+	    <span class="help-block"><?php echo $username_err; ?></span>
+	    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit" name="submitAccount">Sign up</button>
-      </form>
-    </div>
+	    <button class="btn btn-lg btn-primary btn-block" type="submit" name="submitAccount">Sign up</button>
+	  </form>
   </body>
 
 </html>
