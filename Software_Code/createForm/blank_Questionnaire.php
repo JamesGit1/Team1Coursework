@@ -41,7 +41,7 @@ if (isset($_POST['submitRadioQuestions']))
 
     $questionNumber = $previousQuestionNumber + 1;
 
-    if(isset($_POST['required']))
+    if(isset($_POST['required1']))
     {
         $required = 1;
     }
