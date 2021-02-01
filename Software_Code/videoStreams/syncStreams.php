@@ -49,6 +49,8 @@ date_default_timezone_set('Europe/London');
                         <video width="300" id="player3" controls></video>
                     </div>
                 </div>
+
+                <button onclick="playAll()">Hello there</button>
             </div>
 
             <!--

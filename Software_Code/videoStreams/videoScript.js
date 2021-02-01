@@ -5,6 +5,7 @@ var fileUpload3 = document.getElementById('fileUpload3');
 var player1 = document.getElementById('player1');
 var player2 = document.getElementById('player2');
 var player3 = document.getElementById('player3');
+var play = false;
 
 // we need to find
 fileUpload1.addEventListener('change', function(e) {
@@ -26,3 +27,18 @@ fileUpload3.addEventListener('change', function(e) {
     // Do something with the video file.
     player3.src = URL.createObjectURL(file);
 });
+
+function playAll() {
+    if (play == false){
+        player1.play();
+        player2.play();
+        player3.play();
+        play = true;
+    }
+    else{
+        player1.pause();
+        player2.pause();
+        player3.pause();
+        play = false;
+    }
+}
