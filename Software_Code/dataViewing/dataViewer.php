@@ -7,7 +7,7 @@ require_once('../conn.php'); // initilise conneciton to the database
     $currentID = $_GET["qId"];
     $currentQuestionnaire = $_GET["name"];
     // Statement to select the relevant questinnaire to display a table of the questions and answers to them
-    $sql = "SELECT q.id as `question ID`, q.`questionnaire ID`,q.`question number`,q.`Contents`,a.`participant ID`,a.contents 
+    $sql = "SELECT q.id as `question ID`, q.`questionnaire ID`,q.`question number`,q.`Contents`,a.`participant ID`,a.contents, q.`Type`
     FROM answer a 
     INNER JOIN question q ON q.id = a.`question ID` WHERE `questionnaire ID` = '$currentID';";
   }
