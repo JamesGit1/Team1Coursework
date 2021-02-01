@@ -72,13 +72,13 @@ require_once('../conn.php'); // initilise conneciton to the database
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item"
-                        href="https://dundata.azurewebsites.net/Software_Code/dataViewer.php">ALL</a>
+                        href="https://dundata.azurewebsites.net/Software_Code/dataViewing/dataViewer.php">ALL</a>
                     <?php //Fill the bootstrap dropdown with links to the questionnaire table listing
                         foreach($questionnaires as $row) {
-                            echo "<a class='dropdown-item' href='https://dundata.azurewebsites.net/Software_Code/dataViewer.php?qId=".$row['ID']."'>".$row['ID']."</a>";
+                            echo "<a class='dropdown-item' href='https://dundata.azurewebsites.net/Software_Code/dataViewing/dataViewer.php?qId=".$row['ID']."'>".$row['ID']."</a>";
                         }
                     ?>
-                    <!--<a class="dropdown-item" href="https://dundata.azurewebsites.net/Software_Code/dataViewer.php?qId=1">1</a>-->
+                    <!--<a class="dropdown-item" href="https://dundata.azurewebsites.net/Software_Code/dataViewing/dataViewer.php?qId=1">1</a>-->
                 </div>
                 <b>
                     <p style="margin-left:1em;">#<?php echo $currentID?></p> <!-- Print the table we are currently on -->
