@@ -66,8 +66,8 @@ unset($stmt);
                                     echo "*";
                                 } ?></p>
                             <!-- do we need ID here or question number? -->
-                            <input class="card-text" placeholder="Participant will answer here..."
-                                   name="<?php echo $row['ID'] ?>"/>
+                            <textarea class="card-text" id="formDescription" placeholder="Participant will answer here..."
+                                   name="<?php echo $row['ID'] ?>"  oninput="auto_grow(this)" ></textarea>
                         </div>
                     </div>
                     <?php
@@ -110,6 +110,13 @@ unset($stmt);
         </form>
     </div>
 </div>
+
+<script type="text/javascript">
+    function auto_grow(element) {
+        element.style.height = "5px";
+        element.style.height = (element.scrollHeight) + "px";
+    }
+</script>
 </body>
 </html>
 
