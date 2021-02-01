@@ -5,6 +5,7 @@ var fileUpload3 = document.getElementById('fileUpload3');
 var player1 = document.getElementById('player1');
 var player2 = document.getElementById('player2');
 var player3 = document.getElementById('player3');
+var playButton = document.getElementById('playButton');
 var play = false;
 
 // we need to find
@@ -33,12 +34,17 @@ function playAll() {
         player1.play();
         player2.play();
         player3.play();
+        playButton.classList.add('fa-pause');
+        playButton.classList.remove('fa-play');
         play = true;
     }
     else{
         player1.pause();
         player2.pause();
         player3.pause();
+        playButton.classList.add('fa-play');
+        playButton.classList.remove('fa-pause');
+
         play = false;
     }
 }

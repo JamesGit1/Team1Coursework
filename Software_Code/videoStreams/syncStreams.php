@@ -50,7 +50,7 @@ date_default_timezone_set('Europe/London');
                     </div>
                 </div>
 
-                <button onclick="playAll()">Hello there</button>
+                <button class="fas fa-play btn btn-primary" onclick="playAll()" id="playButton" ></button>
             </div>
 
             <!--
@@ -65,6 +65,10 @@ date_default_timezone_set('Europe/London');
     </div>
 </body>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://kit.fontawesome.com/8741ca18b0.js" crossorigin="anonymous"></script>
 <script src="videoScript.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
+
 
 </html>
