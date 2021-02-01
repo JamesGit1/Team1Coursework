@@ -34,31 +34,28 @@ date_default_timezone_set('Europe/London');
         </div>
         <div class="row" id="imageRow">
 
-            <!--Allow user to upload a video file and thumnail!-->
-            <form action="upload.php" method="post" enctype="multipart/form-data"> Select video to upload:
-                <input type="file" accept="video/*" name="videoToUpload" id="videoToUpload">
-                <input type="submit" value="Submit" name="submit">
-            </form>
-            <form action="upload.php" method="post" enctype="multipart/form-data"> Select thumbnail to upload:
-                <input type="file" name="thumbnailToUpload" id="thumbnailToUpload">
-                <input type="submit" value="Submit" name="submit">
-            </form>
-
-            <!--Access webcam
-            https://www.kirupa.com/html5/accessing_your_webcam_in_html5.htm
-            https://www.html5rocks.com/en/tutorials/getusermedia/intro/
-            -->
-            <div id="container">
-                <video autoplay="true" id="videoElement">
-                </video>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm">
+                        <input type="file" accept="video/*" capture="camera" id="recorder">
+                        <video id="player" controls></video>
+                    </div>
+                    <div class="col-sm">
+                        <input type="file" accept="video/*" capture="camera" id="recorder">
+                        <video id="player" controls></video>
+                    </div>
+                    <div class="col-sm">
+                        <input type="file" accept="video/*" capture="camera" id="recorder">
+                        <video id="player" controls></video>
+                    </div>
+                </div>
             </div>
 
             <!--
                 Upload a video and play it.
             https://developers.google.com/web/fundamentals/media/recording-video
             -->
-            <input type="file" accept="video/*" capture="camera" id="recorder">
-            <video id="player" controls></video>
+
         </div>
         <div class="row justify-content-end" id="imageRow">
             <img src="../images/logo.png" class="fix">
