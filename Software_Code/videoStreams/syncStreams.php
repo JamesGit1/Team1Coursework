@@ -37,16 +37,16 @@ date_default_timezone_set('Europe/London');
             <div class="container">
                 <div class="row">
                     <div class="col-sm">
-                        <input type="file" accept="video/*" capture="camera" id="recorder">
-                        <video id="player" controls></video>
+                        <input type="file" accept="video/*" capture="camera" id="fileUpload1">
+                        <video width="300" id="player1" controls></video>
                     </div>
                     <div class="col-sm">
-                        <input type="file" accept="video/*" capture="camera" id="recorder">
-                        <video id="player" controls></video>
+                        <input type="file" accept="video/*" capture="camera" id="fileUpload2">
+                        <video width="300" id="player2" controls></video>
                     </div>
                     <div class="col-sm">
-                        <input type="file" accept="video/*" capture="camera" id="recorder">
-                        <video id="player" controls></video>
+                        <input type="file" accept="video/*" capture="camera" id="fileUpload3">
+                        <video width="300" id="player3" controls></video>
                     </div>
                 </div>
             </div>
