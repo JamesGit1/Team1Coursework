@@ -52,7 +52,25 @@ date_default_timezone_set('Europe/London');
             <button class="fas fa-play btn btn-primary" onclick="playAll()" id="playButton"></button>
             <button class="fas fa-flag btn btn-primary" onclick="flag()" id="flagButton"></button>
         </div>
-
+        <table  class="table">
+          <thead>
+            <tr>
+              <th width = "10%" scope="col">#</th>
+              <th width = "10%" scope="col">1st Video</th>
+              <th width = "10%"scope="col">2nd Video</th>
+              <th width = "10%"scope="col">3rd Video</th>
+              <th width = "60%"scope="col">Comment</th>
+            </tr>
+          </thead>
+          <tbody id ="timeStamps">
+            <!-- <tr>
+              <th scope="row">1</th>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr> -->
+          </tbody>
+        </table>
 
         <!--
             Upload a video and play it.
