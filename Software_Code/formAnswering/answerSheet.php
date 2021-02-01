@@ -67,8 +67,12 @@ unset($stmt);
                                     echo "*";
                                 } ?></h4>
                             <!-- do we need ID here or question number? -->
-                            <textarea class="card-text" id="formDescription" placeholder="Participant will answer here..."
+                         
+
+                            <textarea <?php if($row['required'] == 1){echo " required ";}?> class="card-text" id="formDescription" placeholder="Participant will answer here..."
                                    name="<?php echo $row['ID'] ?>"  oninput="auto_grow(this)" ></textarea>
+
+
                         </div>
                     </div>
                     <?php
@@ -91,7 +95,7 @@ unset($stmt);
                         unset($stmt);
                         foreach ($options as $option) {
                             ?>
-                            <input type="radio" value="<?php echo $option['option']; ?>" name="<?php echo $row['ID']; ?>"/>
+                            <input <?php if($row['required'] == 1){echo " required ";}?> type="radio" value="<?php echo $option['option']; ?>" name="<?php echo $row['ID']; ?>"/>
                             <label for="<?php echo $option['option']; ?>"><?php echo $option['option']; ?></label><br>
                             <?php
                         }?>

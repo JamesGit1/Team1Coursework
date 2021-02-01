@@ -19,7 +19,7 @@ var addCols = function(num, type) {
       questionNumber + ' onclick="addExtraRadio(this.id)" class="btn btn-primary btn-success fas fa-plus"></a>' +
       '<div class="d-grid gap-2 d-md-flex justify-content-md-end"><button class="btn btn-primary" value="submit" name="submitRadioQuestions" id ="submitQuestion">Submit</button>' +
       '  <a href="#" id = ' + questionNumber + ' onclick="deleteCard(this.id)" class="btn btn-primary btn-danger fas fa-trash"></a>  ' +
-      '</div>  <div class="form-check"> <input type = "hidden" id ="idNumbers" name="idNumbers" placeholder="Enter question here:" class="card-title question-title"/> <input type="checkbox" class="form-check-input" id="required">    ' +
+      '</div>  <div class="form-check"> <input type = "hidden" id ="idNumbers" name="idNumbers" placeholder="Enter question here:" class="card-title question-title"/> <input type="checkbox" name="required1" class="form-check-input" id="required">    ' +
       '<label class="form-check-label" for="required">Required</label></div></form></div></div>');
   }
 

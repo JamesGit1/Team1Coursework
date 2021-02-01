@@ -43,7 +43,13 @@ if (isset($_POST['submitQuestion'])) {
 
         // here, we want the name of the variable $questionArray[$i] so that we can get the value of that
         // from $_POST
-        $contents = $_POST[$i];
+        if (empty($_POST[$i])) {
+            $contents = "N/A";
+        }
+        else{
+            $contents = $_POST[$i];
+        }
+        
         $questionID = $i;
         $stmt->execute();
         $questions = $stmt->fetchAll();
