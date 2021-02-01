@@ -3,6 +3,7 @@ require_once('../conn.php');
 session_start();
 date_default_timezone_set('Europe/London');
 
+//submit the title and description and creates the new questionnaire
 if(isset($_POST['submit']))
 {
     $title = $description = "";
@@ -76,15 +77,6 @@ if(isset($_POST['submit']))
             <img src="../images/logo.png" class="fix">
         </div>
     </div>
-
-    <!--
-    <form action="blank_Questionnaire.php" method="POST">
-        Title: <input type="text" name="title" placeholder="e.g. Data Collection" required>
-        Description: <input type="text" name="description"
-            placeholder="e.g. This is is what the questionnaire is about or something like that" required>
-        <button value="Submit" type="submit" class="btn btn-primary">Make a new Questionnaire</button>
-	</form>
--->
 </body>
 
 </html>
