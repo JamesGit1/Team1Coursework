@@ -173,14 +173,14 @@ if (isset($_POST['submitForm']))
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../CSS/style.css">
     <title>Dundata</title>
-    <link rel="icon" type="image/x-icon" href="../images/favicon.ico"/>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
 </head>
 
 <!--Navigation bar -->
 <nav class="navbar navbar-dark">
     <a class="navbar-brand" href="../index.html">
         <img src="../images/University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
-             style="margin-right: 20px;">Home
+            style="margin-right: 20px;">Home
     </a>
 </nav>
 
@@ -188,10 +188,14 @@ if (isset($_POST['submitForm']))
     <div class="container" id="myDiv">
         <div class="row">
             <form method="post" class="newForm" id="submitQuestionnaire">
-                <input type="text" id="formName" value="<?php echo $title ?>" class="card-title question-title"
-                    name="formName" />
+                    <input type="text" id="formName" style="margin-bottom: 0px;" value="<?php echo $title ?>"
+                        class="card-title question-title" name="formName" />
+                    <div class="edittip">
+                        <em style="opacity: 0.5;">click to edit title or description!</em>
+                    </div>
                 <textarea name="formDesc" class="card-title question-title" id="formDescription"
                     oninput="auto_grow(this)"><?php echo $description ?></textarea>
+
             </form>
             <div id="questionPanel">
                 <?php
@@ -217,12 +221,12 @@ if (isset($_POST['submitForm']))
                 else if ($row['Type'] == 'radio')
                 {
                     ?>
-                        <div class="card">
-                            <div class="card-body">
-                                <form name="radioQuestion" method="POST">
-                                    <p><strong><?php echo $row['Contents'] ?></strong></p>
-                                    <ul>
-                                    <?php
+                <div class="card">
+                    <div class="card-body">
+                        <form name="radioQuestion" method="POST">
+                            <p><strong><?php echo $row['Contents'] ?></strong></p>
+                            <ul>
+                                <?php
                                         $query = "SELECT * FROM options o where o.`question ID` = :questionID";
                                         $stmt = $pdo->prepare($query);
                                         $stmt->bindParam(":questionID", $row['ID'], PDO::PARAM_STR);
@@ -232,16 +236,17 @@ if (isset($_POST['submitForm']))
                                         foreach($options as $option)
                                         {
                                         ?>
-                                            <li><?php echo $option['option']?></li>
-                                        <?php
+                                <li><?php echo $option['option']?></li>
+                                <?php
                                         }
                                     ?>
-                                    </ul>
-                                    <button name="deleteRadio" value="<?php echo $row['ID'] ?>" class="btn btn-primary btn-danger fas fa-trash"></button>
-                                </form>
-                            </div>
-                        </div>
-                    <?php
+                            </ul>
+                            <button name="deleteRadio" value="<?php echo $row['ID'] ?>"
+                                class="btn btn-primary btn-danger fas fa-trash"></button>
+                        </form>
+                    </div>
+                </div>
+                <?php
                 }
             }
             ?>
