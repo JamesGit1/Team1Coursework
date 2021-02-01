@@ -31,9 +31,11 @@ WHERE q.`questionnaire ID` = :questionnaireID";
 		$title = $row['qrTitle'];
 	}
 
-	$csv_filename =$title.'_results_export'.date('Y-m-d').'.csv';
+	$csv_filename =$title.'_results_export_'.date('Y-m-d').'.csv';
 
-	$csv = '"'.$title.'"';
+	$csv = '"'.$title.' Results"';
+	$csv.= '
+';
 	$csv.= '"Question Number", "Question", "Participant ID", "Answer", "Question Type"';
 	$csv.= '
 ';
