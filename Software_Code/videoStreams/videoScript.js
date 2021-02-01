@@ -1,12 +1,15 @@
-var video = document.querySelector("#videoElement");
 var fileUpload1 = document.getElementById('fileUpload1');
 var fileUpload2 = document.getElementById('fileUpload2');
 var fileUpload3 = document.getElementById('fileUpload3');
 var player1 = document.getElementById('player1');
 var player2 = document.getElementById('player2');
 var player3 = document.getElementById('player3');
+var playerArray = [player1,player2,player3];
+var fileUploadArray = [fileUpload1,fileUpload2,fileUpload3];
 var playButton = document.getElementById('playButton');
 var play = false;
+// this might change
+var noOfVids = 3;
 
 // we need to find
 fileUpload1.addEventListener('change', function(e) {
@@ -31,20 +34,25 @@ fileUpload3.addEventListener('change', function(e) {
 
 function playAll() {
     if (play == false){
-        player1.play();
-        player2.play();
-        player3.play();
+        for (i = 0; i < noOfVids; i++){
+            playerArray[i].play();
+        }
         playButton.classList.add('fa-pause');
         playButton.classList.remove('fa-play');
         play = true;
     }
     else{
-        player1.pause();
-        player2.pause();
-        player3.pause();
+        for (i = 0; i < noOfVids; i++){
+            playerArray[i].pause();
+        }
         playButton.classList.add('fa-play');
         playButton.classList.remove('fa-pause');
-
         play = false;
     }
+}
+
+function flag(){
+    var timestampArray = [];
+    for(i = 0; i < noOfVids; i++)
+        timestampArray.push(playerArray[i].currentTime);
 }
