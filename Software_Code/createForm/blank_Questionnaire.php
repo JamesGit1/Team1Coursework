@@ -114,7 +114,7 @@ if (isset($_POST['submitQuestions']))
     $stmt->bindParam(":required", $required);
     $contents = $_POST['questionText'];
     $stmt->execute();
-    header("Refresh:0");
+    unset($stmt);
 }
 
 // deletes a question
@@ -159,6 +159,20 @@ if (isset($_POST['submitForm']))
     $_SESSION["questionnaireLink"] = "answerSheet.php?id=".$questionnaireID;
     header("Location: submitted.php");
 }
+
+if (isset($_POST['updateForm'])) 
+{
+    $query = "UPDATE questionnaire SET `name` = :formName, `description` = :formDescription WHERE `ID` = :questionnaireID;";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(":questionnaireID", $id);
+    $stmt->bindParam(":formName", $formName);
+    $stmt->bindParam(":formDescription", $formDescription);
+    $formName = $_POST['formName'];
+    $formDescription = $_POST['formDesc'];
+    $stmt->execute();
+    unset($stmt);
+    header("Refresh:0");
+}
 ?>
 <link rel="stylesheet" href="../CSS/questionAppearance.css">
 <link rel="stylesheet" href="../CSS/style.css">
@@ -195,6 +209,10 @@ if (isset($_POST['submitForm']))
                     </div>
                 <textarea name="formDesc" class="card-title question-title" id="formDescription"
                     oninput="auto_grow(this)"><?php echo $description ?></textarea>
+              
+                    <p><em>Remember to press 'Update' when you change the title/description <strong>BEFORE</strong> adding a question to avoid losing your changes!</em></p>
+                    <button type="submit" class="btn btn-primary" name="updateForm" method="post"
+                    id="submitForm">Update</button>
 
             </form>
             <div id="questionPanel">
