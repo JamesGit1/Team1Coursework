@@ -54,16 +54,6 @@
     pointer-events: none;
 }
 
-.modal-header .close-btn{
-    cursor: pointer;
-    border: none;
-    outline: none;
-    display:inline;
-    font-size: 1.25rem;
-    font-weight: bold;
-
-}
-
 #user-click{
     display:flex;
     justify-content: space-between;
