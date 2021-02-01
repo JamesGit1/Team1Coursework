@@ -1,8 +1,11 @@
 <?php
 require_once('../conn.php');
+//Sessions Variables to get ID's
 session_start();
 $id = $_SESSION['id'];
 
+
+//Gets the questionnaire
 $query = "SELECT * FROM Questionnaire WHERE Questionnaire.id = :questionnaireID";
 $stmt = $pdo->prepare($query);
 $stmt->bindParam(":questionnaireID", $questionnaireID, PDO::PARAM_STR);
@@ -15,6 +18,7 @@ foreach ($result as $row) {
 }
 unset($stmt);
 
+//Get's question for question
 $query = "SELECT * FROM question q where q.`questionnaire id` = :questionnaireID";
 $stmt = $pdo->prepare($query);
 $stmt->bindParam(":questionnaireID", $id, PDO::PARAM_STR);
@@ -23,10 +27,10 @@ $questions = $stmt->fetchAll();
 
 unset($stmt);
 
-if (isset($_POST['submitRadioQuestions'])) 
+//Submit radio questions
+if (isset($_POST['submitRadioQuestions']))
 {
     $arrayID = explode(",", $_POST['idNumbers']);
-    var_dump($arrayID);
 
     $query = "SELECT `question number` FROM question q WHERE q.`questionnaire ID` = :questionnaireID ORDER BY `question number` DESC";
     $stmt = $pdo->prepare($query);
@@ -46,7 +50,8 @@ if (isset($_POST['submitRadioQuestions']))
         $required = 0;
     }
 
-    $query = "INSERT INTO `question`(`Contents`,`Type`,`questionnaire ID`,`question number`,`required`) 
+// Submits radioquestions into database
+    $query = "INSERT INTO `question`(`Contents`,`Type`,`questionnaire ID`,`question number`,`required`)
                     VALUES (:contents,'radio', :questionnaireID, :questionNumber, :required);";
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(":contents", $contents, PDO::PARAM_STR);
@@ -63,8 +68,8 @@ if (isset($_POST['submitRadioQuestions']))
     $stmt->execute();
     $radioQuestionID = $stmt->fetchColumn();
     unset($stmt);
-    
-    foreach ($arrayID as $id) 
+
+    foreach ($arrayID as $id)
     {
     	$query = "INSERT INTO `options` (`question ID`,`option`) VALUES(:radioQuestionID,:option);";
     	$stmt = $pdo->prepare($query);
@@ -79,7 +84,8 @@ if (isset($_POST['submitRadioQuestions']))
     header("Refresh:0");
 }
 
-if (isset($_POST['submitQuestions'])) 
+// Submit the text or radio question into database
+if (isset($_POST['submitQuestions']))
 {
     $query = "SELECT `question number` FROM question q WHERE q.`questionnaire ID` = :questionnaireID ORDER BY `question number` DESC";
     $stmt = $pdo->prepare($query);
@@ -99,7 +105,7 @@ if (isset($_POST['submitQuestions']))
         $required = 0;
     }
 
-    $query = "INSERT INTO `question`(`Contents`,`Type`,`questionnaire ID`,`question number`,`required`) 
+    $query = "INSERT INTO `question`(`Contents`,`Type`,`questionnaire ID`,`question number`,`required`)
                     VALUES (:contents,'text', :questionnaireID, :questionNumber, :required);";
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(":contents", $contents, PDO::PARAM_STR);
@@ -111,6 +117,7 @@ if (isset($_POST['submitQuestions']))
     header("Refresh:0");
 }
 
+// deletes a question
 if (isset($_POST['delete'])) {
     $query = "DELETE FROM question WHERE question.ID=:questionID";
     $stmt = $pdo->prepare($query);
@@ -120,6 +127,7 @@ if (isset($_POST['delete'])) {
     header("Refresh:0");
 }
 
+// Deletes a radio button
 if (isset($_POST['deleteRadio'])) {
 
     $query = "DELETE FROM `options` WHERE options.`question ID` = :questionID;";
@@ -137,8 +145,8 @@ if (isset($_POST['deleteRadio'])) {
     $stmt->execute();
     header("Refresh:0");
 }
-
-if (isset($_POST['submitForm'])) 
+// Submits the entire questionnaire
+if (isset($_POST['submitForm']))
 {
     $query = "UPDATE questionnaire SET `name` = :formName, `description` = :formDescription WHERE `ID` = :questionnaireID;";
     $stmt = $pdo->prepare($query);
@@ -156,6 +164,7 @@ if (isset($_POST['submitForm']))
 <link rel="stylesheet" href="../CSS/style.css">
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 
 <head>
     <meta charset="utf-8">
@@ -186,9 +195,9 @@ if (isset($_POST['submitForm']))
             </form>
             <div id="questionPanel">
                 <?php
-            foreach ($questions as $row) 
+            foreach ($questions as $row)
             {
-            	if ($row['Type'] == 'text') 
+            	if ($row['Type'] == 'text')
             	{
                 ?>
                 <div class="card">
@@ -267,22 +276,6 @@ if (isset($_POST['submitForm']))
                 </div>
             </div>
         </div>
-
-        <!--     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Question Type</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <a href="#" id="btnText" data-bs-dismiss="modal" class="btn btn-primary">Text Based</a>
-                        <a href="#" id="btnRadio" data-bs-dismiss="modal" class="btn btn-primary">Radio Button</a>
-                        <button type="button" class="btn btn-primary">Drop Down</button>
-                    </div>
-                </div>
-            </div>
-        </div> -->
         <div class="row justify-content-end" id="imageRow">
             <img src="../images/logo.png" class="fix">
         </div>
@@ -307,9 +300,9 @@ if (isset($_POST['submitForm']))
     }
     </script>
 </body>
-
-
 </html>
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
