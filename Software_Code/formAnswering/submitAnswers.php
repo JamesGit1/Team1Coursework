@@ -62,9 +62,9 @@ if (isset($_POST['submitQuestion'])) {
 
 <body>
     <nav class="navbar navbar-dark">
-        <a class="navbar-brand" href="../index.html">
+        <a class="navbar-brand" ">
             <img src="../images/University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
-                 style="margin-right: 20px;">Home
+                 style="margin-right: 20px;">
         </a>
     </nav>
 
@@ -73,7 +73,10 @@ if (isset($_POST['submitQuestion'])) {
             <h1><u>Answers Submitted!</u></h1>
         </div>
         <div class="row">
-            <a href="../index.html">Back to home</a>
+            <p>Thank you for completing this questionnaire.</p>
+        </div>
+        <div class="row justify-content-end" id="imageRow">
+            <img src="../images/logo.png" class="fix">
         </div>
 
     </div>

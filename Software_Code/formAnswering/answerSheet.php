@@ -2,6 +2,7 @@
 require_once('../conn.php');
 session_start();
 $id = $_GET['id'];
+$_SESSION['id'] = $id;
 
 // we want to find the questionnaire that we need to read from
 $query = "SELECT * FROM Questionnaire WHERE Questionnaire.id = :questionnaireID";
@@ -61,10 +62,10 @@ unset($stmt);
                     ?>
                     <div class="card">
                         <div class="card-body">
-                            <p><?php echo $row['Contents'];
+                            <h4><?php echo $row['Contents'];
                                 if ($row['required'] == 1) {
                                     echo "*";
-                                } ?></p>
+                                } ?></h4>
                             <!-- do we need ID here or question number? -->
                             <textarea class="card-text" id="formDescription" placeholder="Participant will answer here..."
                                    name="<?php echo $row['ID'] ?>"  oninput="auto_grow(this)" ></textarea>
@@ -75,11 +76,11 @@ unset($stmt);
                 ?>
                 <div class="card">
                     <div class="card-body">
-                        <p>
+                        <h4>
                             <?php echo $row['Contents'];
                             if ($row['required'] == 1) {
                                 echo "*";
-                            } ?></p>
+                            } ?></h4>
                         <?php
                         // then we need to read out all the options that is in the questionnaire
                         $query = "SELECT * FROM options o where o.`question ID` = :questionID";
@@ -109,6 +110,9 @@ unset($stmt);
             </div>
         </form>
     </div>
+    <div class="row justify-content-end" id="imageRow">
+            <img src="../images/logo.png" class="fix">
+        </div>
 </div>
 
 <script type="text/javascript">
