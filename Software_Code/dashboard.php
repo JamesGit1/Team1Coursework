@@ -4,7 +4,7 @@ session_start();
 require('accountSystem/loginStatus.php');
 
 if(isset($_SESSION['name'])){
-    $username = $_SESSION['name'];
+    $name = $_SESSION['name'];
 }
 
 ?>
@@ -34,11 +34,10 @@ if(isset($_SESSION['name'])){
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item dropdown">  
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" style="margin-right: 3em;">
-            Hello, <?php if(isset($username)){echo $username;}else{echo "user";}?>
+            Hello, <?php if(isset($name)){echo $name;}else{echo "user";}?>
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="accountSystem/accountDetails.php">Account Details</a></li>
-            <li><a class="dropdown-item" href="#">Something</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="accountSystem/logOut.php">Log Out</a></li>
           </ul>

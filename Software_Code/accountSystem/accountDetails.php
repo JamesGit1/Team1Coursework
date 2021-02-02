@@ -1,12 +1,54 @@
 <?php
-require_once('../conn.php');
-session_start();
-require('loginStatus.php');
+    require_once('../conn.php');
+    session_start();
+    require('loginStatus.php');
+    if (isset($_POST['submitDetails'])) {
+        $id = $_SESSION['UserID'];
+        $query = "SELECT * FROM account WHERE `ID` = $id";
+        $stmt = $pdo->prepare($query);
+        $stmt->execute();
+        $passcheck = $stmt->fetch();
+        unset($stmt);
 
-if(isset($_SESSION['username'])){
-    $username = $_SESSION['username'];
-}
+        $oldpassword = $_POST['oldpassword'];
 
+        if($oldpassword==$passcheck["Password"]){
+            $query = "UPDATE account SET `firstname` = :firstName, `Password` = :password, `lastname` = :lastName WHERE `ID` = $id;";
+            $stmt = $pdo->prepare($query);
+            $stmt->bindParam(":firstName", $firstname);
+            $stmt->bindParam(":password", $password);
+            $stmt->bindParam(":lastName", $lastname);
+            $firstname = $_POST['firstname'];
+            $lastname = $_POST['lastname'];
+
+            $newpassword = $_POST['newpassword'];
+            if(empty($newpassword)){
+                $password = $_POST['oldpassword'];
+            }
+            else{
+                $password = $newpassword;
+            }
+            $stmt->execute();
+            unset($stmt);
+
+            echo "Details Updated!";
+        }
+        else{
+            echo "Details failed to update, Password incorrect?";
+        }
+        unset($passcheck);
+    }
+        
+    if(isset($_SESSION['name'])){
+        $name = $_SESSION['name'];
+        $id = $_SESSION['UserID'];
+    }
+
+    $query = "SELECT * FROM account WHERE `ID` = $id";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+    $result = $stmt->fetch();
+    unset($stmt);
 ?>
 
 <!DOCTYPE html>
@@ -34,12 +76,11 @@ if(isset($_SESSION['username'])){
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" style="margin-right: 3em;">
-                            Hello, <?php if(isset($username)){echo $username;}else{echo "user";}?>
+                            Hello, <?php if(isset($name)){echo $name;}else{echo "user";}?>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="accountDetails.php">Account Details</a>
                             </li>
-                            <li><a class="dropdown-item" href="#">Something</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -62,18 +103,18 @@ if(isset($_SESSION['username'])){
                 <h2>Password:</h2>
             </div>
             <div class="col-8">
-                <h2>Name</h2>
-                <h2>Username</h2>
-                <h2>*********</h2>
+                <h2><?php echo $result['firstname']." ".$result['lastname']; ?></h2>
+                <h2><?php echo $result['Username']; ?></h2>
+                <h2><?php for($i=0;$i<strlen($result['Password']);$i++){echo "*";} ?></h2>
             </div>
         </div>
         <div class="row justify-content-end">
             <!-- Button trigger modal -->
             <div class="button-holder" style="justify-content:flex-end;display:flex;">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal">
-                        Edit
-                    </button>
-                </div>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal">
+                    Edit
+                </button>
+            </div>
         </div>
 
         <!-- Modal -->
@@ -86,26 +127,34 @@ if(isset($_SESSION['username'])){
                     </div>
                     <div class="modal-body">
                         <!-- Form Body -->
-                        <form class="row g-3" style="padding-top: 0px;">
-                            <div class="col-12">
-                                <label for="inputAddress" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="inputAddress">
-                            </div>
-                            <div class="col-12">
-                                <label for="inputAddress" class="form-label">Username</label>
-                                <input type="text" class="form-control" id="inputAddress" readonly>
+                        <form class="row g-3" style="padding-top: 0px;" method="post">
+                            <div class="col-md-6">
+                                <label for="inputfirstname" class="form-label">First Name *</label>
+                                <input type="text" class="form-control" maxlength="50" id="inputfirstname" name="firstname" required
+                                    <?php if(isset($result['firstname'])){echo "value='".$result['firstname']."'";}?>>
                             </div>
                             <div class="col-md-6">
-                                <label for="inputEmail4" class="form-label">Old Password</label>
-                                <input type="email" class="form-control" id="inputEmail4">
+                                <label for="inputlastname" class="form-label">Last Name *</label>
+                                <input type="text" class="form-control" maxlength="50" id="inputlastname" name="lastname" required
+                                    <?php if(isset($result['firstname'])){echo "value='".$result['lastname']."'";}?>>
+                            </div>
+                            <div class="col-12">
+                                <label for="inputUsername" class="form-label">Username (Please get in contact to
+                                    change)</label>
+                                <input type="text" class="form-control" maxlength="50" id="inputUsername" name="username" readonly
+                                    <?php if(isset($result['firstname'])){echo "value='".$result['Username']."'";}?>>
                             </div>
                             <div class="col-md-6">
-                                <label for="inputPassword4" class="form-label">New Password</label>
-                                <input type="password" class="form-control" id="inputPassword4">
+                                <label for="inputoldpass" class="form-label">Old Password *</label>
+                                <input type="password" class="form-control" maxlength="20" id="inputoldpass" name="oldpassword" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputnewpass" class="form-label">New Password</label>
+                                <input type="password" class="form-control" maxlength="20" id="inputnewpass" name="newpassword">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                <button type="submit" name="submitDetails" method="post" class="btn btn-primary">Save changes</button>
                             </div>
                         </form>
                         <!-- Form Body End -->
