@@ -31,12 +31,12 @@ if(isset($_SESSION['username'])){
             style="margin-right: 20px;">Home
     </a>
       <form class="d-flex">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-end">
-        <li class="nav-item dropdown">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">  
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" style="margin-right: 3em;">
             Hello, <?php if(isset($username)){echo $username;}else{echo "user";}?>
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="#">View Account</a></li>
             <li><a class="dropdown-item" href="#">Something</a></li>
             <li><hr class="dropdown-divider"></li>
