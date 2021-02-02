@@ -2,7 +2,7 @@
 
 if(!isset($_SESSION["loggedIn"])|| $_SESSION["loggedIn"] !==true)
 {
-    header("location: logIn.php");
+    header("location: ../accountSystem/logIn.php");
     exit;
 }
 
