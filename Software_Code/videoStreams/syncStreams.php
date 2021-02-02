@@ -52,7 +52,7 @@ date_default_timezone_set('Europe/London');
             <button class="fas fa-play btn btn-primary" onclick="playAll()" id="playButton"></button>
             <button class="fas fa-flag btn btn-primary" onclick="flag()" id="flagButton"></button>
         </div>
-        <form>
+        <form action="submitTable.php" id = "tableForm" method ="post">
         <table  class="table">
           <thead>
             <tr>
@@ -79,24 +79,20 @@ date_default_timezone_set('Europe/London');
 <td>'+timestampArray[2]+'</td>
 <td>rrr</td>
 </tr>
-
-
             </tr> -->
           </tbody>
-          
+
         </table>
-        <button class="fas fa-check btn btn-primary" onclick="submit()" id="submitButton"></button>
+        <input type="text" id="totalRows" name="totalRows">
+        <button type="submit" class="btn btn-primary" name="submitTable" method="post" id="submitForm">Update</button>
+
 </form>
-        <!--
-            Upload a video and play it.
-        https://developers.google.com/web/fundamentals/media/recording-video
-        -->
 
     </div>
     <div class="row justify-content-end" id="imageRow">
         <img src="../images/logo.png" class="fix">
     </div>
-    
+
 </div>
 </body>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
