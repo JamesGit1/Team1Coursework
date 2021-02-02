@@ -256,3 +256,18 @@ textarea:focus, input#formName:focus {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+#homepageIcon .card-body{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+#homepageIcon #imageRow {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+#homepageIcon a{
+  margin-top:auto;
+}
