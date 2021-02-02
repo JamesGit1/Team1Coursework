@@ -55,7 +55,7 @@ if (isset($_POST['submitAccount']))
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico"/>
   </head>
 
-  <body class="text-center">
+  <body class="text-center" id="background">
 	  <form class="form-signin" method="POST">
 	    <img class="mb-4" src="../images/University_Of_Dundee_shield.png" alt="" width="72" height="100">
 

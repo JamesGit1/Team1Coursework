@@ -215,5 +215,5 @@ textarea:focus, input#formName:focus {
 #background{
   background: url("../images/background.png");
   background-repeat: no-repeat;
-  background-size: auto;
+  background-size: cover;
 }
