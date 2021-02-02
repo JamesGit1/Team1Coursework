@@ -2,7 +2,7 @@
 
 session_start();
 require_once('../conn.php');
-require('accountSystem/loginStatus.php');
+require('../accountSystem/loginStatus.php');
 //Sessions Variables to get ID's
 
 $id = $_SESSION['id'];
