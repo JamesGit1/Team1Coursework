@@ -35,8 +35,3 @@ if (isset($_POST['submitTable'])) {
     }
 
 }
-
-if (isset($_POST['tableForm'])) {
-    //alert(var_dump($_POST));
-}
-?>
