@@ -1,6 +1,7 @@
 <?php
 require_once('../conn.php');
 session_start();
+require('accountSystem/loginStatus.php');
 
 $link = $_SESSION["questionnaireLink"];
 ?>

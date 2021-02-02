@@ -1,6 +1,8 @@
 <?php
-require_once('../conn.php');
 session_start();
+require_once('../conn.php');
+require('accountSystem/loginStatus.php');
+
 date_default_timezone_set('Europe/London');
 
 //submit the title and description and creates the new questionnaire
