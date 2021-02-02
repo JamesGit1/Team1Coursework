@@ -21,7 +21,7 @@ $link = $_SESSION["questionnaireLink"];
 
 <body>
     <nav class="navbar navbar-dark">
-        <a class="navbar-brand" href="../index.html">
+        <a class="navbar-brand" href="../dashboard.php">
             <img src="../images/University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
                  style="margin-right: 20px;">Home
         </a>
@@ -39,7 +39,7 @@ $link = $_SESSION["questionnaireLink"];
             </div>
         </div>
         <div class="row">
-            <a class="btn btn-primary" id="homeButton" href="../index.html">Back to home</a>
+            <a class="btn btn-primary" id="homeButton" href="../dashboard.php">Back to home</a>
         </div>
 
     </div>
