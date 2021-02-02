@@ -27,7 +27,7 @@ if (isset($_POST['signIn']))
       $_SESSION['username'] = $username;
       $_SESSION['role'] = $role;
 
-      header("Location: ../index.php");
+      header("Location: ../dashboard.php");
     }
     else
     {
@@ -55,10 +55,8 @@ if (isset($_POST['signIn']))
   </head>
 
   <body class="text-center">
-    <div class="container">
       <form class="form-signin" method="POST">
-        <img class="mb-4" src="../images/University_Of_Dundee_shield.png" alt="" width="72" height="72">
-
+        <img class="mb-4" src="../images/University_Of_Dundee_shield.png" alt="" width="72" height="100">
         <h1 class="h3 mb-3 font-weight-normal">Please Log In</h1>
         <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
         <span class="help-block"><?php echo $username_err; ?></span>
@@ -67,7 +65,6 @@ if (isset($_POST['signIn']))
         <button class="btn btn-lg btn-primary btn-block" type="submit" name="signIn">Sign In</button>
       </form>
       <p>Don't have an account? <a href="register.php">Register Here</a>.</p>
-    </div>
   </body>
 
 </html>
