@@ -56,6 +56,7 @@ if (isset($_POST['submitAccount']))
   </head>
 
   <body class="text-center" id="background">
+  	<div class="cont">
 	  <form class="form-signin" method="POST">
 	    <img class="mb-4" src="../images/University_Of_Dundee_shield.png" alt="" width="72" height="100">
 
@@ -68,6 +69,7 @@ if (isset($_POST['submitAccount']))
 
 	    <button class="btn btn-lg btn-primary btn-block" type="submit" name="submitAccount">Sign up</button>
 	  </form>
+	  </div>
   </body>
 
 </html>
