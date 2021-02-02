@@ -17,7 +17,7 @@ if(isset($_SESSION['name'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="CSS/style.css">
-    <link rel="stylesheet" type="text/css" href="createForm/ethicsStyle.css">
+    <link rel="stylesheet" type="text/css" href="CSS/ethicsStyle.css">
 
     <title>Dundata Dashboard</title>
 
