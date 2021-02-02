@@ -4,6 +4,10 @@
 require('../conn.php');
 session_start();
 
+if(isset($_SESSION['UserID'])){
+    header("Location: ../dashboard.php");
+}
+
 $username = "";
 $username_err = "";
 

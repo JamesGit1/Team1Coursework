@@ -3,6 +3,10 @@
 session_start();
 require('../conn.php');
 
+if(isset($_SESSION['UserID'])){
+    header("Location: ../dashboard.php");
+}
+
 $username_err = $password_err = "";
 
 if (isset($_POST['signIn'])) 
