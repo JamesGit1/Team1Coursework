@@ -1,11 +1,7 @@
 <?php
 session_start();
 
-if(!isset($_SESSION["loggedIn"])|| $_SESSION["loggedIn"] !==true)
-{
-    header("location: accountSystem/logIn.php");
-    exit;
-}
+require('accountSystem/loginStatus.php');
 
 ?>
 

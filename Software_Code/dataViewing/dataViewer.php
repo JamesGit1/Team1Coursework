@@ -2,6 +2,8 @@
 <html lang="en" dir="ltr">
 
 <?php
+session_start();
+require('accountSystem/loginStatus.php');
 require_once('../conn.php'); // initilise conneciton to the database
   if(isset($_GET["qId"])){  //Need a different sql statement if ALL is selected
     $currentID = $_GET["qId"];

@@ -1,4 +1,6 @@
 <?php
+session_start();
+require('accountSystem/loginStatus.php');
 require_once('../conn.php');
     //SQL that returns the questionnaires and the number of their responses to display 
 	$query = "SELECT q.id,q.`name` as `Title`,COUNT(DISTINCT(`participant ID`)) AS `responses` FROM answer a 
