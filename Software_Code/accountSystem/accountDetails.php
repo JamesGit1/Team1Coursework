@@ -96,17 +96,33 @@
         <div class="row">
             <h1><u>Account Details</u></h1>
         </div>
-        <div class="row">
-            <div class="col-4">
-                <h2>Name:</h2>
-                <h2>Username:</h2>
-                <h2>Password:</h2>
-            </div>
-            <div class="col-8">
-                <h2><?php echo $result['firstname']." ".$result['lastname']; ?></h2>
-                <h2><?php echo $result['Username']; ?></h2>
-                <h2><?php for($i=0;$i<strlen($result['Password']);$i++){echo "*";} ?></h2>
-            </div>
+        <div class="row" style="padding-top: 20px;">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Details</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Role</th>
+                        <td><?php echo $result['Role']?></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Name</th>
+                        <td><?php echo $result['firstname']." ".$result['lastname']; ?></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Username</th>
+                        <td><?php echo $result['Username']; ?></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Password</th>
+                        <td colspan="2"><?php for($i=0;$i<strlen($result['Password']);$i++){echo "*";} ?></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <div class="row justify-content-end">
             <!-- Button trigger modal -->
