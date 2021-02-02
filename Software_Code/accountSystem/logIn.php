@@ -54,7 +54,7 @@ if (isset($_POST['signIn']))
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico"/>
   </head>
 
-  <body class="text-center">
+  <body class="text-center" id="background">
       <form class="form-signin" method="POST">
         <img class="mb-4" src="../images/University_Of_Dundee_shield.png" alt="" width="72" height="100">
         <h1 class="h3 mb-3 font-weight-normal">Please Log In</h1>
