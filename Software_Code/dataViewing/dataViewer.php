@@ -18,16 +18,22 @@ require_once('../conn.php'); // initilise conneciton to the database
     // Statement to select all questionnaires when all is selected in dropdown
     $sql = "SELECT q.id as `question ID`,q.`Type`, q.`questionnaire ID`,q.`question number`,q.`Contents`,a.`participant ID`,a.contents 
     FROM answer a 
-    INNER JOIN question q ON q.id = a.`question ID`;";
+    INNER JOIN question q ON q.id = a.`question ID`
+    INNER JOIN questionnaire qr ON q.`questionnaire ID` = qr.id
+    WHERE qr.`creator ID` = :userID";
   }
 
   //PREPARE AND RUN STATEMENTS
   $stmt = $pdo->prepare($sql);
+  $stmt->bindParam(":userID", $userID, PDO::PARAM_STR);
+  $userID = $_SESSION['UserID'];
   $stmt->execute();
   $result = $stmt->fetchAll();
 
-  $sql = "SELECT * FROM questionnaire;";
+  $sql = "SELECT * FROM questionnaire WHERE questionnaire.`creator ID` = :userID;";
   $stmt = $pdo->prepare($sql);
+  $stmt->bindParam(":userID", $userID, PDO::PARAM_STR);
+  $userID = $_SESSION['UserID'];
   $stmt->execute();
   $questionnaires = $stmt->fetchAll();
 
