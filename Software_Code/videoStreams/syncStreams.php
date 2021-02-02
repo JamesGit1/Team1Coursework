@@ -59,15 +59,27 @@ date_default_timezone_set('Europe/London');
               <th width = "10%" scope="col">1st Video</th>
               <th width = "10%"scope="col">2nd Video</th>
               <th width = "10%"scope="col">3rd Video</th>
-              <th width = "60%"scope="col">Comment</th>
+              <th width = "50%"scope="col">Comment</th>
+              <th width = "10%"scope="col">Delete</th>
             </tr>
           </thead>
           <tbody id ="timeStamps">
             <!-- <tr>
               <th scope="row">1</th>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>1</td>
+              <td>2</td>
+              <td>3</td>
+              <td>4</td>
+              <td>5</td>
+<tr>
+<th scope="row">'+ row +'</th>
+<td>'+timestampArray[0]+'</td>
+<td>'+timestampArray[1]+'</td>
+<td>'+timestampArray[2]+'</td>
+<td>rrr</td>
+</tr>
+
+
             </tr> -->
           </tbody>
         </table>
