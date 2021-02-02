@@ -54,41 +54,75 @@ if(isset($_SESSION['name'])){
             <h1><u id="fade">Welcome to Dundata</u></h1>
         </div>
         <div class="row" id="homepageIcon">
-            <div class="col-md-4" align="center">
+            <div class="col-md-4 col-sm-6" align="center">
                 <div class="card text-center" id="height">
                     <div class="card-body">
-                        <h3 class="card-title">Create a questionnaire</h3>
-                        <p class="card-text">Use our create questionnaire tool to help you streamline your questionnaire
+                        <div class="row" id="imageRow">
+                            <h3 class="card-title">Create a questionnaire</h3>
+                        </div>
+                        <div class="row" id="imageRow">
+                            <p class="card-text">Use our create questionnaire tool to help you streamline your questionnaire
                             process</p>
+                        </div>
                         <!--href="new_Questionnaire.php"-->
-                        <a data-modal-target="#modal" class="btn btn-primary">Create!</a>
+                        <div class="row" id="imageRow">
+                            <a data-modal-target="#modal" class="btn btn-primary">Create!</a>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-4" align="center">
                 <div class="card text-center" id="height">
                     <div class="card-body">
-                        <h3 class="card-title">View a questionnaire</h3>
-                        <p class="card-text">View all your questionnaire responses on the website</p>
-                        <a href="dataViewing/dataViewer.php" class="btn btn-primary">View!</a>
+                        <div class="row" id="imageRow">
+                            <h3 class="card-title">View a questionnaire</h3>
+                        </div>
+                        <div class="row" id="imageRow">
+                            <p class="card-text">View all your questionnaire responses on the website</p>
+                        </div>
+                        <div class="row" id="imageRow">
+                            <a href="dataViewing/dataViewer.php" class="btn btn-primary">View!</a>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-4" align="center">
                 <div class="card text-center" id="height">
                     <div class="card-body">
-                        <h3 class="card-title">Export a questionnaire</h3>
-                        <p class="card-text">Export your questionnaire responses as CSV files to download</p>
-                        <a href="exportData/exportData.php" class="btn btn-primary">Export!</a>
+                        <div class="row" id="imageRow">
+                            <h3 class="card-title">Export a questionnaire</h3>
+                        </div>
+                        <div class="row" id="imageRow">
+                            <p class="card-text">Export your questionnaire responses as CSV files to download</p>
+                        </div>
+                        <div class="row" id="imageRow">
+                            <a href="exportData/exportData.php" class="btn btn-primary">Export!</a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-end" id="imageRow">
-                <img src="images/logo.png" class="fix" id="fade">
+            <div class="col-md-4" align="center">
+                <div class="card text-center" id="height">
+                    <div class="card-body">
+                        <div class="row" id="imageRow">
+                            <h3 class="card-title">Analyse a video</h3>
+                        </div>
+                        <div class="row" id="imageRow">
+                            <p class="card-text">Use our analysis tool to help you tag and comment on synchronized videos</p>
+                        </div>
+                        <!--href="new_Questionnaire.php"-->
+                        <div class="row" id="imageRow">
+                            <a href="videoStreams/syncStreams.php" class="btn btn-primary">Analyse!</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
+        <div class="row justify-content-end" id="imageRow">
+            <img src="images/logo.png" class="fix" id="fade">
+        </div>
+    </div>
 
     <div class="modal.activate" id="modal">
         <div id="header">
