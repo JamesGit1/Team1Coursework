@@ -195,27 +195,48 @@ if (isset($_POST['updateForm']))
 </head>
 
 <!--Navigation bar -->
-<nav class="navbar navbar-dark">
-    <a class="navbar-brand" href="../index.html">
-        <img src="../images/University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
-            style="margin-right: 20px;">Home
-    </a>
+<nav class="navbar navbar-expand navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="../dashboard.php" id="logo">
+            <img src="../images/University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
+                style="margin-right: 20px;">Home
+        </a>
+        <form class="d-flex">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                        style="margin-right: 3em;">
+                        Hello, <?php if(isset($name)){echo $name;}else{echo "user";}?>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="../accountSystem/accountDetails.php">Account Details</a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="../accountSystem/logOut.php">Log Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </form>
+    </div>
 </nav>
 
 <body>
     <div class="container" id="myDiv">
         <div class="row">
             <form method="post" class="newForm" id="submitQuestionnaire">
-                    <input type="text" id="formName" style="margin-bottom: 0px;" value="<?php echo $title ?>"
-                        class="card-title question-title" name="formName" />
-                    <div class="edittip">
-                        <em style="opacity: 0.5;">click to edit title or description!</em>
-                    </div>
+                <input type="text" id="formName" style="margin-bottom: 0px;" value="<?php echo $title ?>"
+                    class="card-title question-title" name="formName" />
+                <div class="edittip">
+                    <em style="opacity: 0.5;">click to edit title or description!</em>
+                </div>
                 <textarea name="formDesc" class="card-title question-title" id="formDescription"
                     oninput="auto_grow(this)"><?php echo $description ?></textarea>
-              
-                    <p><em>Remember to press 'Update' when you change the title/description <strong>BEFORE</strong> adding a question to avoid losing your changes!</em></p>
-                    <button type="submit" class="btn btn-primary" name="updateForm" method="post"
+
+                <p><em>Remember to press 'Update' when you change the title/description <strong>BEFORE</strong> adding a
+                        question to avoid losing your changes!</em></p>
+                <button type="submit" class="btn btn-primary" name="updateForm" method="post"
                     id="submitForm">Update</button>
 
             </form>
@@ -327,6 +348,7 @@ if (isset($_POST['updateForm']))
     }
     </script>
 </body>
+
 </html>
 
 

@@ -3,10 +3,6 @@ session_start();
 
 require('accountSystem/loginStatus.php');
 
-if(isset($_SESSION['name'])){
-    $name = $_SESSION['name'];
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -26,14 +22,14 @@ if(isset($_SESSION['name'])){
 
 <nav class="navbar navbar-expand navbar-dark">
   <div class="container-fluid">
-  <a class="navbar-brand" href="index.html" id="logo">
+  <a class="navbar-brand" href="dashboard.php" id="logo">
         <img src="images/University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
             style="margin-right: 20px;">Home
     </a>
       <form class="d-flex">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item dropdown">  
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" style="margin-right: 3em;">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" style="margin-right: 3em;">
             Hello, <?php if(isset($name)){echo $name;}else{echo "user";}?>
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
