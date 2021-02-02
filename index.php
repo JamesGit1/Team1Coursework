@@ -1,5 +1,5 @@
 <?php
 
-header('Location: Software_Code/index.html');
+header('Location: Software_Code/accountSystem/logIn.php');
 ?>
 

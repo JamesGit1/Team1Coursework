@@ -38,7 +38,7 @@ if (isset($_POST['submitAccount']))
 		$password = $_POST['password'];
 
 		$stmt->execute();
-
+		header("Location: ../dashboard.php")
 	}
 }
 
