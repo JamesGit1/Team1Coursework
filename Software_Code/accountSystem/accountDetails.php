@@ -67,24 +67,24 @@
 <body>
     <nav class="navbar navbar-expand navbar-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.html" id="logo">
+            <a class="navbar-brand" href="../dashboard.php" id="logo">
                 <img src="../images/University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
                     style="margin-right: 20px;">Home
             </a>
             <form class="d-flex">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" style="margin-right: 3em;">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                            style="margin-right: 3em;">
                             Hello, <?php if(isset($name)){echo $name;}else{echo "user";}?>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="accountDetails.php">Account Details</a>
+                            <li><a class="dropdown-item" href="../accountSystem/accountDetails.php">Account Details</a>
                             </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="logOut.php">Log Out</a></li>
+                            <li><a class="dropdown-item" href="../accountSystem/logOut.php">Log Out</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -130,31 +130,37 @@
                         <form class="row g-3" style="padding-top: 0px;" method="post">
                             <div class="col-md-6">
                                 <label for="inputfirstname" class="form-label">First Name *</label>
-                                <input type="text" class="form-control" maxlength="50" id="inputfirstname" name="firstname" required
+                                <input type="text" class="form-control" maxlength="50" id="inputfirstname"
+                                    name="firstname" required
                                     <?php if(isset($result['firstname'])){echo "value='".$result['firstname']."'";}?>>
                             </div>
                             <div class="col-md-6">
                                 <label for="inputlastname" class="form-label">Last Name *</label>
-                                <input type="text" class="form-control" maxlength="50" id="inputlastname" name="lastname" required
+                                <input type="text" class="form-control" maxlength="50" id="inputlastname"
+                                    name="lastname" required
                                     <?php if(isset($result['firstname'])){echo "value='".$result['lastname']."'";}?>>
                             </div>
                             <div class="col-12">
                                 <label for="inputUsername" class="form-label">Username (Please get in contact to
                                     change)</label>
-                                <input type="text" class="form-control" maxlength="50" id="inputUsername" name="username" readonly
+                                <input type="text" class="form-control" maxlength="50" id="inputUsername"
+                                    name="username" readonly
                                     <?php if(isset($result['firstname'])){echo "value='".$result['Username']."'";}?>>
                             </div>
                             <div class="col-md-6">
                                 <label for="inputoldpass" class="form-label">Old Password *</label>
-                                <input type="password" class="form-control" maxlength="20" id="inputoldpass" name="oldpassword" required>
+                                <input type="password" class="form-control" maxlength="20" id="inputoldpass"
+                                    name="oldpassword" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="inputnewpass" class="form-label">New Password</label>
-                                <input type="password" class="form-control" maxlength="20" id="inputnewpass" name="newpassword">
+                                <input type="password" class="form-control" maxlength="20" id="inputnewpass"
+                                    name="newpassword">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" name="submitDetails" method="post" class="btn btn-primary">Save changes</button>
+                                <button type="submit" name="submitDetails" method="post" class="btn btn-primary">Save
+                                    changes</button>
                             </div>
                         </form>
                         <!-- Form Body End -->
