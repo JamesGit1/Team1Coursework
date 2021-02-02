@@ -196,7 +196,7 @@ textarea:focus, input#formName:focus {
 
 .form-signin {
   width: 100%;
-  max-width: 330px;
+  max-width: 400px;
   padding: 15px;
   margin: 0 auto;
   padding-top: 20px;
@@ -211,6 +211,9 @@ textarea:focus, input#formName:focus {
   height: auto;
   padding: 10px;
   font-size: 16px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
 .form-signin .form-control:focus {
   z-index: 2;
