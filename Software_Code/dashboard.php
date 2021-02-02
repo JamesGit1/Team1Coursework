@@ -3,8 +3,8 @@ session_start();
 
 require('accountSystem/loginStatus.php');
 
-if(isset($_SESSION['username'])){
-    $username = $_SESSION['username'];
+if(isset($_SESSION['name'])){
+    $username = $_SESSION['name'];
 }
 
 ?>

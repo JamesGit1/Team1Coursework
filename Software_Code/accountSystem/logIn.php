@@ -20,12 +20,14 @@ if (isset($_POST['signIn']))
     $username = $row['Username'];
     $password = $row['Password'];
     $role = $row['Role'];
+    $name = $row['firstname'];
 
     if ($password == $_POST['inpassword']) {
       $_SESSION['loggedIn'] = true;
       $_SESSION['UserID'] = $id;
       $_SESSION['username'] = $username;
       $_SESSION['role'] = $role;
+      $_SESSION['name'] = $name;
 
       header("Location: ../dashboard.php");
     }
