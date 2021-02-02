@@ -25,17 +25,19 @@ if (isset($_POST['submitAccount']))
 
 	if (empty($username_err)) 
 	{
-		$query = "INSERT INTO account (`Name`,`Username`,`Password`,`Role`) VALUES (:name,:username,:password,'researcher')";
+		$query = "INSERT INTO account (`firstname`,`Username`,`Password`,`Role`, `lastname`) VALUES (:name,:username,:password,'researcher',:lastname)";
 
 		$stmt = $pdo->prepare($query);
 
 		$stmt->bindParam(":name", $name, PDO::PARAM_STR);
+		$stmt->bindParam(":lastname", $lastname, PDO::PARAM_STR);
 		$stmt->bindParam(":username", $username, PDO::PARAM_STR);
 		$stmt->bindParam(":password", $password, PDO::PARAM_STR);
 
 		$name = $_POST['name'];
 		$username = $_POST['username'];
 		$password = $_POST['password'];
+		$lastname = $_POST['lastname'];
 
 		$stmt->execute();
 		header("Location: logIn.php");
@@ -62,7 +64,8 @@ if (isset($_POST['submitAccount']))
 
 	    <h1 class="h3 mb-3 font-weight-normal">Please register with Dundata</h1>
 
-	    <input type="text" name="name" id="inputName" class="form-control" placeholder="Name" required autofocus>
+	    <input type="text" name="name" id="inputName" class="form-control" placeholder="firstname" required autofocus>
+	    <input type="text" name="lastname" id="inputLastname" class="form-control" placeholder="lastname" required autofocus>
 	    <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
 	    <span class="help-block"><?php echo $username_err; ?></span>
 	    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
