@@ -6,8 +6,11 @@ require_once('../conn.php');
 	$query = "SELECT q.id,q.`name` as `Title`,COUNT(DISTINCT(`participant ID`)) AS `responses` FROM answer a 
 INNER JOIN question qn ON a.`question ID` = qn.id 
 INNER JOIN questionnaire q ON qn.`questionnaire ID` = q.ID
+WHERE q.`creator ID` = :userID
 GROUP BY q.id";
 	$stmt = $pdo->prepare($query);
+    $stmt->bindParam(":userID", $userID, PDO::PARAM_STR);
+    $userID = $_SESSION['UserID'];
 	$stmt->execute();
 	$result = $stmt->fetchall();
 

@@ -12,16 +12,18 @@ if(isset($_POST['submit']))
 
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
-        $sql = "CALL createFormReturnID (:title,:dateopened,'1',:description);";
+        $sql = "CALL createFormReturnID (:title,:dateopened,:creatorID,:description);";
         if ($stmt = $pdo->prepare($sql)) {
             $stmt->bindParam(":title", $title, PDO::PARAM_STR);
             $stmt->bindParam(":dateopened", $datetime, PDO::PARAM_STR);
+            $stmt->bindParam(":creatorID", $creatorID, PDO::PARAM_STR);
             $stmt->bindParam(":description", $description, PDO::PARAM_STR);
 
             $datetime = date('Y/m/d h:i:s', time());
 
             $title = $_POST['title'];
             $description = $_POST['description'];
+            $creatorID = $_SESSION['UserID'];
 
             $stmt->execute();
             $result = $stmt->fetchColumn();
