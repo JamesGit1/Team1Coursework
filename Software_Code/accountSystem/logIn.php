@@ -55,6 +55,7 @@ if (isset($_POST['signIn']))
   </head>
 
   <body class="text-center" id="background">
+    <div class="cont">
       <form class="form-signin" method="POST">
         <img class="mb-4" src="../images/University_Of_Dundee_shield.png" alt="" width="72" height="100">
         <h1 class="h3 mb-3 font-weight-normal">Please Log In</h1>
@@ -63,8 +64,9 @@ if (isset($_POST['signIn']))
         <input type="password" name="inpassword" id="inputPassword" class="form-control" placeholder="Password" required>
         <span class="help-block"><?php echo $password_err; ?></span>
         <button class="btn btn-lg btn-primary btn-block" type="submit" name="signIn">Sign In</button>
+        <p>Don't have an account? <a href="register.php">Register Here</a>.</p>
       </form>
-      <p>Don't have an account? <a href="register.php">Register Here</a>.</p>
+     </div>
   </body>
 
 </html>
