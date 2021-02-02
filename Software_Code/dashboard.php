@@ -37,7 +37,7 @@ if(isset($_SESSION['username'])){
             Hello, <?php if(isset($username)){echo $username;}else{echo "user";}?>
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">View Account</a></li>
+            <li><a class="dropdown-item" href="accountSystem/accountDetails.php">Account Details</a></li>
             <li><a class="dropdown-item" href="#">Something</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="accountSystem/logOut.php">Log Out</a></li>
