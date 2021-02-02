@@ -27,7 +27,7 @@ if (isset($_POST['signIn']))
       $_SESSION['username'] = $username;
       $_SESSION['role'] = $role;
 
-      header("Location: ../index.php");
+      header("Location: ../dashboard.php");
     }
     else
     {

@@ -19,7 +19,7 @@ if(!isset($_SESSION["loggedIn"])|| $_SESSION["loggedIn"] !==true)
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="CSS/style.css">
     <link rel="stylesheet" type="text/css" href="createForm/ethicsStyle.css">
-    <title>Dundata</title>
+    <title>Dundata Dashboard</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico"/>
 </head>
 
