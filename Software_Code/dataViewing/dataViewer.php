@@ -16,11 +16,11 @@ require_once('../conn.php'); // initilise conneciton to the database
   else{
     $currentID = "ALL";
     // Statement to select all questionnaires when all is selected in dropdown
-    $sql = "SELECT q.id as `question ID`,q.`Type`, q.`questionnaire ID`,q.`question number`,q.`Contents`,a.`participant ID`,a.contents 
-    FROM answer a 
-    INNER JOIN question q ON q.id = a.`question ID`
-    INNER JOIN questionnaire qr ON q.`questionnaire ID` = qr.id
-    WHERE qr.`creator ID` = :userID";
+    $sql = "SELECT q.id as `question ID`,q.`Type`, q.`questionnaire ID`,q.`question number`,q.`Contents`,a.`participant ID`,a.contents FROM answer a 
+INNER JOIN question q ON q.id = a.`question ID`
+INNER JOIN questionnaire qr on qr.ID = q.`questionnaire ID`
+INNER JOIN questionnaireresearchermap qrm ON qrm.questionnaireID = qr.ID
+WHERE qrm.researcherID = :userID";
   }
 
   //PREPARE AND RUN STATEMENTS
@@ -30,7 +30,7 @@ require_once('../conn.php'); // initilise conneciton to the database
   $stmt->execute();
   $result = $stmt->fetchAll();
 
-  $sql = "SELECT * FROM questionnaire WHERE questionnaire.`creator ID` = :userID;";
+  $sql = "SELECT * FROM questionnaire q INNER JOIN questionnaireresearchermap qrm ON q.`ID` = qrm.`questionnaireID` WHERE qrm.`researcherID` = :userID;";
   $stmt = $pdo->prepare($sql);
   $stmt->bindParam(":userID", $userID, PDO::PARAM_STR);
   $userID = $_SESSION['UserID'];

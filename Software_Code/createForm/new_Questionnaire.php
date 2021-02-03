@@ -12,7 +12,7 @@ if(isset($_POST['submit']))
 
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
-        $sql = "CALL createFormReturnID (:title,:dateopened,:creatorID,:description);";
+        $sql = "CALL createFormReturnID (:title,:dateopened,:creatorID,:description,9999);";
         if ($stmt = $pdo->prepare($sql)) {
             $stmt->bindParam(":title", $title, PDO::PARAM_STR);
             $stmt->bindParam(":dateopened", $datetime, PDO::PARAM_STR);

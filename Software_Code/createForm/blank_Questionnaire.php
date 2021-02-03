@@ -118,6 +118,7 @@ if (isset($_POST['submitQuestions']))
     $contents = $_POST['questionText'];
     $stmt->execute();
     unset($stmt);
+
     header("Refresh:0");
 }
 
@@ -160,6 +161,17 @@ if (isset($_POST['submitForm']))
     $formName = $_POST['formName'];
     $formDescription = $_POST['formDesc'];
     $stmt->execute();
+    unset($stmt);
+
+    $query = "INSERT INTO `questionnaireresearchermap` (`researcherID`,`questionnaireID`) VALUES (:creatorID,:questionnaireID)";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(":questionnaireID", $id);
+    $stmt->bindParam(":creatorID", $researcherID);
+    $researcherID = $_SESSION['UserID'];
+    $stmt->execute();
+    unset($stmt);
+
+
     $_SESSION["questionnaireLink"] = "answerSheet.php?id=".$questionnaireID;
     header("Location: submitted.php");
 }
