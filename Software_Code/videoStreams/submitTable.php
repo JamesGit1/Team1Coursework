@@ -47,7 +47,7 @@ if (isset($_POST['test'])) {
 // Make sure file path varabile is set
   if ($tmpFilePath != ""){
     //Setup file path everytime
-    $newFilePath = "C:/wamp64/www/A/" . $_FILES['videoUpload']['name'][$i];
+    $newFilePath = "C:/home/site/wwwroot/videos" . $_FILES['videoUpload']['name'][$i];
 
     //Upload the file into the temp dir
     if(move_uploaded_file($tmpFilePath, $newFilePath)) {
