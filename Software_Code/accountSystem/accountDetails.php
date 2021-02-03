@@ -107,7 +107,7 @@
                 <tbody>
                     <tr>
                         <th scope="row">Role</th>
-                        <td><?php echo $result['Role']?></td>
+                        <td><?php echo ucfirst($result['Role'])?></td>
                     </tr>
                     <tr>
                         <th scope="row">Name</th>
@@ -119,7 +119,7 @@
                     </tr>
                     <tr>
                         <th scope="row">Password</th>
-                        <td colspan="2"><?php for($i=0;$i<strlen($result['Password']);$i++){echo "*";} ?></td>
+                        <td colspan="2"><em>hidden</em></td>
                     </tr>
                 </tbody>
             </table>
