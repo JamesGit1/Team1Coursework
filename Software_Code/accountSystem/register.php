@@ -36,11 +36,12 @@ if (isset($_POST['submitAccount']))
 		$stmt->bindParam(":name", $name, PDO::PARAM_STR);
 		$stmt->bindParam(":lastname", $lastname, PDO::PARAM_STR);
 		$stmt->bindParam(":username", $username, PDO::PARAM_STR);
-		$stmt->bindParam(":password", $password, PDO::PARAM_STR);
+		$stmt->bindParam(":password", $hashedpassword, PDO::PARAM_STR);
 
 		$name = $_POST['name'];
 		$username = $_POST['username'];
-		$password = $_POST['password'];
+		$passentered = $_POST['password'];
+		$hashedpassword = hash('sha256',$passentered);
 		$lastname = $_POST['lastname'];
 
 		$stmt->execute();
