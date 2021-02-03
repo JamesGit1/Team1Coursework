@@ -1,6 +1,7 @@
 <?php
 require_once('../conn.php');
 session_start();
+require('../accountSystem/loginStatus.php');
 
 $link = $_SESSION["questionnaireLink"];
 ?>
@@ -15,15 +16,35 @@ $link = $_SESSION["questionnaireLink"];
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../CSS/style.css">
     <title>Dundata</title>
-    <link rel="icon" type="image/x-icon" href="../images/favicon.ico"/>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
 </head>
 
 <body>
-    <nav class="navbar navbar-dark">
-        <a class="navbar-brand" href="../index.html">
-            <img src="../images/University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
-                 style="margin-right: 20px;">Home
-        </a>
+    <nav class="navbar navbar-expand navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../dashboard.php" id="logo">
+                <img src="../images/University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
+                    style="margin-right: 20px;">Home
+            </a>
+            <form class="d-flex">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                            style="margin-right: 3em;">
+                            Hello, <?php if(isset($name)){echo $name;}else{echo "user";}?>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="../accountSystem/accountDetails.php">Account Details</a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="../accountSystem/logOut.php">Log Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </form>
+        </div>
     </nav>
 
     <div class="container">
@@ -38,7 +59,7 @@ $link = $_SESSION["questionnaireLink"];
             </div>
         </div>
         <div class="row">
-            <a class="btn btn-primary" id="homeButton" href="../index.html">Back to home</a>
+            <a class="btn btn-primary" id="homeButton" href="../dashboard.php">Back to home</a>
         </div>
 
     </div>

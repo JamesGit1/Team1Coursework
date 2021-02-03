@@ -9,6 +9,15 @@ $questionArray = $_SESSION['questionArray'];
 //var_dump($_SESSION);
 //echo "THANKS FOR FILLING IN THE FORM";
 if (isset($_POST['submitQuestion'])) {
+
+    $query = "SELECT `participant ID` FROM answer a INNER JOIN question q ON a.`question ID` = q.ID WHERE q.`questionnaire id` = :questionnaireID GROUP BY `participant ID` ORDER BY `participant ID` DESC;";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(":questionnaireID", $id, PDO::PARAM_STR);
+    $stmt->execute();
+    $oldParticipantID = $stmt->fetchColumn();
+    $participantID = $oldParticipantID + 1;
+    unset($stmt);
+
     foreach ($questionArray as $i) {
 
         //1. we need to determine the type of each question in the array *
@@ -34,10 +43,14 @@ if (isset($_POST['submitQuestion'])) {
 
         // here, we want the name of the variable $questionArray[$i] so that we can get the value of that
         // from $_POST
-        $contents = $_POST[$i];
+        if (empty($_POST[$i])) {
+            $contents = "N/A";
+        }
+        else{
+            $contents = $_POST[$i];
+        }
+        
         $questionID = $i;
-        $participantID = 1;
-
         $stmt->execute();
         $questions = $stmt->fetchAll();
 
@@ -57,15 +70,35 @@ if (isset($_POST['submitQuestion'])) {
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../CSS/style.css">
     <title>Dundata</title>
-    <link rel="icon" type="image/x-icon" href="../images/favicon.ico"/>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
 </head>
 
 <body>
-    <nav class="navbar navbar-dark">
-        <a class="navbar-brand" href="../index.html">
-            <img src="../images/University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
-                 style="margin-right: 20px;">Home
-        </a>
+    <nav class="navbar navbar-expand navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../dashboard.php" id="logo">
+                <img src="../images/University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
+                    style="margin-right: 20px;">Home
+            </a>
+            <form class="d-flex">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                            style="margin-right: 3em;">
+                            Hello, <?php if(isset($name)){echo $name;}else{echo "user";}?>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="../accountSystem/accountDetails.php">Account Details</a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="../accountSystem/logOut.php">Log Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </form>
+        </div>
     </nav>
 
     <div class="container">
@@ -73,7 +106,10 @@ if (isset($_POST['submitQuestion'])) {
             <h1><u>Answers Submitted!</u></h1>
         </div>
         <div class="row">
-            <a href="../index.html">Back to home</a>
+            <p>Thank you for completing this questionnaire.</p>
+        </div>
+        <div class="row justify-content-end" id="imageRow">
+            <img src="../images/logo.png" class="fix">
         </div>
 
     </div>

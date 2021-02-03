@@ -1,11 +1,16 @@
 <?php
+session_start();
+require('../accountSystem/loginStatus.php');
 require_once('../conn.php');
-
+    //SQL that returns the questionnaires and the number of their responses to display 
 	$query = "SELECT q.id,q.`name` as `Title`,COUNT(DISTINCT(`participant ID`)) AS `responses` FROM answer a 
 INNER JOIN question qn ON a.`question ID` = qn.id 
 INNER JOIN questionnaire q ON qn.`questionnaire ID` = q.ID
+WHERE q.`creator ID` = :userID
 GROUP BY q.id";
 	$stmt = $pdo->prepare($query);
+    $stmt->bindParam(":userID", $userID, PDO::PARAM_STR);
+    $userID = $_SESSION['UserID'];
 	$stmt->execute();
 	$result = $stmt->fetchall();
 
@@ -38,6 +43,7 @@ GROUP BY q.id";
         </div>
         <div class="row">
             <?php 
+                //loop that displays all questionnaires with number of responses and download button with related ID
 				foreach ($result as $row) 
 				{
 				?>

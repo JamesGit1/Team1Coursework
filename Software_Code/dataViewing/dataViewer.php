@@ -2,29 +2,38 @@
 <html lang="en" dir="ltr">
 
 <?php
+session_start();
+require('../accountSystem/loginStatus.php');
 require_once('../conn.php'); // initilise conneciton to the database
   if(isset($_GET["qId"])){  //Need a different sql statement if ALL is selected
     $currentID = $_GET["qId"];
+    $currentQuestionnaire = $_GET["name"];
     // Statement to select the relevant questinnaire to display a table of the questions and answers to them
-    $sql = "SELECT q.id as `question ID`, q.`questionnaire ID`,q.`question number`,q.`Contents`,a.`participant ID`,a.contents 
+    $sql = "SELECT q.id as `question ID`, q.`questionnaire ID`,q.`question number`,q.`Contents`,a.`participant ID`,a.contents, q.`Type`
     FROM answer a 
     INNER JOIN question q ON q.id = a.`question ID` WHERE `questionnaire ID` = '$currentID';";
   }
   else{
     $currentID = "ALL";
     // Statement to select all questionnaires when all is selected in dropdown
-    $sql = "SELECT q.id as `question ID`, q.`questionnaire ID`,q.`question number`,q.`Contents`,a.`participant ID`,a.contents 
+    $sql = "SELECT q.id as `question ID`,q.`Type`, q.`questionnaire ID`,q.`question number`,q.`Contents`,a.`participant ID`,a.contents 
     FROM answer a 
-    INNER JOIN question q ON q.id = a.`question ID`;";
+    INNER JOIN question q ON q.id = a.`question ID`
+    INNER JOIN questionnaire qr ON q.`questionnaire ID` = qr.id
+    WHERE qr.`creator ID` = :userID";
   }
 
   //PREPARE AND RUN STATEMENTS
   $stmt = $pdo->prepare($sql);
+  $stmt->bindParam(":userID", $userID, PDO::PARAM_STR);
+  $userID = $_SESSION['UserID'];
   $stmt->execute();
   $result = $stmt->fetchAll();
 
-  $sql = "SELECT * FROM questionnaire;";
+  $sql = "SELECT * FROM questionnaire WHERE questionnaire.`creator ID` = :userID;";
   $stmt = $pdo->prepare($sql);
+  $stmt->bindParam(":userID", $userID, PDO::PARAM_STR);
+  $userID = $_SESSION['UserID'];
   $stmt->execute();
   $questionnaires = $stmt->fetchAll();
 
@@ -53,11 +62,32 @@ require_once('../conn.php'); // initilise conneciton to the database
 </head>
 
 <!-- Cheeky navbar -->
-<nav class="navbar navbar-dark">
-    <a class="navbar-brand" href="../index.html">
-        <img src="../images/University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo" style="margin-right: 20px;">Home
-    </a>
-</nav>
+<nav class="navbar navbar-expand navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../dashboard.php" id="logo">
+                <img src="../images/University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
+                    style="margin-right: 20px;">Home
+            </a>
+            <form class="d-flex">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                            style="margin-right: 3em;">
+                            Hello, <?php if(isset($name)){echo $name;}else{echo "user";}?>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="../accountSystem/accountDetails.php">Account Details</a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="../accountSystem/logOut.php">Log Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </nav>
 
 <body>
     <div class="container">
@@ -68,20 +98,28 @@ require_once('../conn.php'); // initilise conneciton to the database
             <div class="dropdown">
                 <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
-                    Questionnaire ID
+                    Questionnaires
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item"
-                        href="https://dundata.azurewebsites.net/Software_Code/dataViewer.php">ALL</a>
+                        href="https://dundata.azurewebsites.net/Software_Code/dataViewing/dataViewer.php">ALL</a>
                     <?php //Fill the bootstrap dropdown with links to the questionnaire table listing
                         foreach($questionnaires as $row) {
-                            echo "<a class='dropdown-item' href='https://dundata.azurewebsites.net/Software_Code/dataViewer.php?qId=".$row['ID']."'>".$row['ID']."</a>";
+                            echo "<a class='dropdown-item' href='https://dundata.azurewebsites.net/Software_Code/dataViewing/dataViewer.php?qId=".$row['ID']."&name=".$row['name']."'><strong>(".$row['ID'].") </strong>".$row['name']."</a>";
                         }
                     ?>
-                    <!--<a class="dropdown-item" href="https://dundata.azurewebsites.net/Software_Code/dataViewer.php?qId=1">1</a>-->
+                    <!--<a class="dropdown-item" href="https://dundata.azurewebsites.net/Software_Code/dataViewing/dataViewer.php?qId=1">1</a>-->
                 </div>
                 <b>
-                    <p style="margin-left:1em;">#<?php echo $currentID?></p> <!-- Print the table we are currently on -->
+                    <p style="margin-left:1em;">
+                    <?php 
+                    if(isset($currentID) && isset($currentQuestionnaire)){
+                        echo "#".$currentID." ".$currentQuestionnaire;
+                    }
+                    else{
+                        echo "All Questionnaire Questions!";
+                    }
+                    ?></p> <!-- Print the table we are currently on -->
                 </b>
             </div>
 
@@ -91,6 +129,7 @@ require_once('../conn.php'); // initilise conneciton to the database
                         <tr> <!-- Table Titles -->
                             <th>Question Number</th>
                             <th>Participant ID</th>
+                            <th>Question Type</th>
                             <th>Question</th>
                             <th>Response</th>
                         </tr>
@@ -101,6 +140,7 @@ require_once('../conn.php'); // initilise conneciton to the database
                             foreach($result as $row) {
                                 echo "<td>".$row['question number']."</td>";
                                 echo "<td>".$row['participant ID']."</td>";
+                                echo "<td>".$row['Type']."</td>";
                                 echo "<td>".$row['Contents']."</td>";
                                 echo "<td>".$row['contents']."</td></tr>";
                             }
