@@ -30,11 +30,14 @@
             }
             $stmt->execute();
             unset($stmt);
-
+            echo "<div class='alert alert-warning' role='alert' style='margin-bottom: 0px;padding-bottom: 5px;padding-top: 5px;'>";
             echo "Details Updated!";
+            echo "</div>";
         }
         else{
+            echo "<div class='alert alert-danger' role='alert' style='margin-bottom: 0px;padding-bottom: 5px;padding-top: 5px;'>";
             echo "Details failed to update, Password incorrect?";
+            echo "</div>";
         }
         unset($passcheck);
     }

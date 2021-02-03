@@ -15,134 +15,187 @@
     $result = $stmt->fetchAll();
     unset($stmt);
 
+    if (isset($_POST['submitDetails'])) {
+        $userID = $_POST['inputID']; 
+        //var_dump($_POST);
+
+        $query = "UPDATE account SET `firstname` = :firstname, `lastname` = :lastname, `Role` = :role, `Username` = :username WHERE `ID` = $userID;";
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(":firstname", $firstname);
+        $stmt->bindParam(":lastname", $lastname);
+        $stmt->bindParam(":role", $role);   
+        $stmt->bindParam(":username", $username);   
+
+        $firstname = $_POST['firstname'];
+        $lastname = $_POST['lastname'];
+        $role = $_POST['role'];
+        $username = $_POST['username'];
+
+        $stmt->execute();
+        unset($stmt);
+
+        echo "<div class='alert alert-warning' role='alert' style='margin-bottom: 0px;padding-bottom: 5px;padding-top: 5px;'>";
+        echo "Details Updated!";
+        echo "</div>";
+    }
+
+    if (isset($_POST['resetPassword'])) {
+        $userID = $_POST['inputID']; 
+
+        $query = "UPDATE account SET `Password` = :password WHERE `ID` = $userID;";
+        $stmt = $pdo->prepare($query);
+
+        $stmt->bindParam(":password", $password);   
+
+        $password = hash('sha256', "password");
+
+        $stmt->execute();
+        unset($stmt);
+
+        echo "<div class='alert alert-warning' role='alert' style='margin-bottom: 0px;padding-bottom: 5px;padding-top: 5px;'>";
+        echo "<strong>[".$_POST['inputID']."]"."</strong> ".$_POST['firstname']." ".$_POST['lastname']." - User account password changed to `<strong>password</strong>`";
+        echo "</div>";
+    }
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="../CSS/style.css">
-        <title>Dundata</title>
-        <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
-    </head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../CSS/style.css">
+    <title>Dundata</title>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
+</head>
 
-    <body>
-        <nav class="navbar navbar-expand navbar-dark">
-          <div class="container-fluid">
-          <a class="navbar-brand" href="../dashboard.php" id="logo">
+<body>
+    <nav class="navbar navbar-expand navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../dashboard.php" id="logo">
                 <img src="../images/University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
                     style="margin-right: 20px;">Home
             </a>
-              <form class="d-flex">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown">  
-                  <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" style="margin-right: 3em;">
-                    Hello, <?php if(isset($name)){echo $name;}else{echo "user";}?>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="accountDetails.php">Account Details</a></li>
-                    <?php if ($_SESSION["role"] == "labmanager") {
+            <form class="d-flex">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                            style="margin-right: 3em;">
+                            Hello, <?php if(isset($name)){echo $name;}else{echo "user";}?>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="accountDetails.php">Account Details</a></li>
+                            <?php if ($_SESSION["role"] == "labmanager") {
                         echo '<li><a class="dropdown-item active" href="manageUsers.php">Manage Researchers</a></li>';
                     } ?>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="logOut.php">Log Out</a></li>
-                  </ul>
-                </li>
-              </ul>
-              </form>
-          </div>
-        </nav>
-
-        <div class="container">
-            <div class="row">
-                <h1><u>Manage Researchers</u></h1>
-            </div>
-            <div class="row" style="padding-top: 20px;">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Role</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Username</th>
-                            <th scope="col">Edit</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php foreach ($result as $row) { ?>
-                        <tr>
-                            <th scope="row"><?php echo $row['ID']?></th>
-                            <td><?php echo $row['Role']?></td>
-                            <td><?php echo $row['firstname']." ".$row['lastname'] ?></td>
-                            <td><?php echo $row['Username']?></td>
-                            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#<?php echo $row['ID']?>">Edit</button></td>
-                        </tr>
-                    <?php } ?>
-                    </tbody>
-                </table>
-            </div>            
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="logOut.php">Log Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </form>
         </div>
+    </nav>
 
-        <!-- Modal -->
-        <?php foreach ($result as $row) {
-            ?>
-        <div class="modal fade" id="<?php echo $row['ID'] ?>" tabindex="-1" aria-labelledby="<?php echo $row['ID']."label" ?>" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="<?php echo $row['ID']."label" ?>">Edit</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="container">
+        <div class="row">
+            <h1><u>Manage Researchers</u></h1>
+        </div>
+        <div class="row" style="padding-top: 20px;">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($result as $row) { ?>
+                    <tr>
+                        <th scope="row"><?php echo $row['ID']?></th>
+                        <td><?php echo ucfirst($row['Role'])?></td>
+                        <td><?php echo $row['firstname']." ".$row['lastname'] ?></td>
+                        <td><?php echo $row['Username']?></td>
+                        <td><button type="button" data-identity="<?php echo $row['ID'];?>"
+                                data-firstname="<?php echo $row['firstname']?>"
+                                data-lastname="<?php echo $row['lastname']?>"
+                                data-username="<?php echo $row['Username']?>" data-role="<?php echo $row['Role']?>"
+                                id="<?php echo $row['ID'];?>" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#exampleModalCenter">Edit</button></td>
+
+
+                    </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="modallabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modallabel">Edit</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Form Body -->
+                    <form class="row g-3" style="padding-top: 0px;" method="post">
+                    <div class="col-md-2" style="padding-top: 7px;width: 36px;">
+                    <label for="inputID" class="form-label">ID</label>
                     </div>
-                    <div class="modal-body">
-                        <!-- Form Body -->
-                        <form class="row g-3" style="padding-top: 0px;" method="post">
-                            <div class="col-md-6">
-                                <label for="inputfirstname" class="form-label">First Name *</label>
-                                <input type="text" class="form-control" maxlength="50" id="inputfirstname"
-                                    name="firstname" required value="<?php echo $row['firstname']?>">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="inputlastname" class="form-label">Last Name *</label>
-                                <input type="text" class="form-control" maxlength="50" id="inputlastname"
-                                    name="lastname" required
-                                    <?php if(isset($result['firstname'])){echo "value='".$result['lastname']."'";}?>>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="inputUsername" class="form-label">Username</label>
-                                <input type="text" class="form-control" maxlength="50" id="inputUsername"
-                                    name="username" 
-                                    <?php if(isset($result['firstname'])){echo "value='".$result['Username']."'";}?>>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="inputRole" class="form-label">Role</label>
-                                <input type="text" class="form-control" maxlength="50" id="inputRole"
-                                    name="role" 
-                                    <?php if(isset($result['firstname'])){echo "value='".$result['Role']."'";}?>>
-                            </div>
-                            <div class="col-md-6">
-                                <button style="width: 100%;" type="button" class="btn btn-danger">Reset Password</button>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button value="<?php echo $row['ID']?>" type="submit" name="submitDetails" method="post" class="btn btn-primary">Save
-                                    changes</button>
-                            </div>
-                        </form>
-                        <!-- Form Body End -->
-                    </div>
+                        <div class="col-md-10">
+                            <input style="width:45px" readonly type="text" class="form-control" maxlength="50" id="inputID" name="inputID">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputfirstname" class="form-label">First Name *</label>
+                            <input type="text" class="form-control" maxlength="50" id="inputfirstname" name="firstname"
+                                required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputlastname" class="form-label">Last Name *</label>
+                            <input type="text" class="form-control" maxlength="50" id="inputlastname" name="lastname"
+                                required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputUsername" class="form-label">Username *</label>
+                            <input type="text" class="form-control" maxlength="50" id="inputUsername" name="username" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputRole" class="form-label">Role *</label>
+                            <input type="text" class="form-control" maxlength="50" id="inputRole" name="role" required>
+                        </div>
+                        <div class="col-md-6">
+                            <button style="width: 100%;" type="submit" name="resetPassword" method="post" class="btn btn-danger" id="resetButton">Reset
+                                Password</button>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" name="submitDetails" method="post" class="btn btn-primary">Save
+                                changes</button>
+                        </div>
+                    </form>
+                    <!-- Form Body End -->
                 </div>
             </div>
         </div>
-        <?php } ?>
+    </div>
 
-
-    </body>
+</body>
 
 </html>
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
 </script>
@@ -154,4 +207,26 @@
 </script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+</script>
+
+<script>
+// from: https://getbootstrap.com/docs/4.0/components/modal/#events
+$('#exampleModalCenter').on('show.bs.modal', function(event) {
+
+    var button = $(event.relatedTarget) // button that triggered the modal
+    var id = button.data('identity') // Extract info from data-* attributes
+    var firstname = button.data('firstname')
+    var lastname = button.data('lastname')
+    var username = button.data('username')
+    var role = button.data('role')
+
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this)
+    modal.find('.modal-header #modallabel').text("Editing: " + firstname + " " + lastname)
+    $('#inputID').val(id);
+    $('#inputfirstname').val(firstname);
+    $('#inputlastname').val(lastname);
+    $('#inputUsername').val(username);
+    $('#inputRole').val(role);
+})
 </script>
