@@ -28,31 +28,49 @@ date_default_timezone_set('Europe/London');
     </a>
 </nav>
 
+
+<form method="post" action="submitTable.php" enctype='multipart/form-data'>
+      <input type='file' name='file' />
+      <input type='submit' value='Upload' name='test'>
+    </form>
+
+
+
+
+
+
+
+
 <div class="container">
     <div class="row">
         <h1><u>Sync Video Streams</u></h1>
     </div>
+
+<form method="post" action="submitTable.php" enctype='multipart/form-data'>
     <div class="row" id="imageRow">
 
 
         <div class="col-sm">
-            <input class="form-control" type="file" accept="video/*" capture="camera" id="fileUpload1">
+            <input class="form-control" type="file" accept="video/*" capture="camera" id="fileUpload1" name = "videoUpload[]" multiple="multiple">
             <video width="100%" id="player1" controls></video>
         </div>
         <div class="col-sm">
-            <input class="form-control" type="file" accept="video/*" capture="camera" id="fileUpload2">
+            <input class="form-control" type="file" accept="video/*" capture="camera" id="fileUpload2"  name = "videoUpload[]" multiple="multiple">
             <video width="100%" id="player2" controls></video>
         </div>
+
+
+
         <div class="col-sm">
-            <input class="form-control" type="file" accept="video/*" capture="camera" id="fileUpload3">
+            <input class="form-control" type="file" accept="video/*" capture="camera" id="fileUpload3"  name = "videoUpload[]" multiple="multiple">
             <video width="100%" id="player3" controls></video>
         </div>
 
+
         <div>
-            <button class="fas fa-play btn btn-primary" onclick="playAll()" id="playButton"></button>
-            <button class="fas fa-flag btn btn-primary" onclick="flag()" id="flagButton"></button>
+            <button type = "button" class="fas fa-play btn btn-primary" onclick="playAll()" id="playButton"></button>
+            <button type = "button" class="fas fa-flag btn btn-primary" onclick="flag()" id="flagButton"></button>
         </div>
-        <form action="submitTable.php" id = "tableForm" method ="post">
         <table  class="table">
           <thead>
             <tr>
@@ -84,7 +102,7 @@ date_default_timezone_set('Europe/London');
 
         </table>
         <input type="text" id="totalRows" name="totalRows">
-        <button type="submit" class="btn btn-primary" name="submitTable" method="post" id="submitForm">Update</button>
+        <button type="submit" class="btn btn-primary" name="test" method="post" id="submitForm">Update</button>
 
 </form>
 
