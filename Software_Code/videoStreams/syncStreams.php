@@ -28,72 +28,73 @@ date_default_timezone_set('Europe/London');
     </a>
 </nav>
 
-<div class="container">
     <div class="row">
         <h1><u>Sync Video Streams</u></h1>
     </div>
     <div class="row" id="imageRow">
 
-
-        <div class="col-sm">
-            <input class="form-control" type="file" accept="video/*" capture="camera" id="fileUpload1">
-            <video width="100%" id="player1" controls></video>
-        </div>
-        <div class="col-sm">
-            <input class="form-control" type="file" accept="video/*" capture="camera" id="fileUpload2">
-            <video width="100%" id="player2" controls></video>
-        </div>
-        <div class="col-sm">
-            <input class="form-control" type="file" accept="video/*" capture="camera" id="fileUpload3">
-            <video width="100%" id="player3" controls></video>
+        <div class = "row" id=videoRow>
+            <div class="col-sm">
+                <input class="form-control" type="file" accept="video/*" capture="camera" id="fileUpload1">
+                <video width="100%" id="player1" controls></video>
+            </div>
+            <div class="col-sm">
+                <input class="form-control" type="file" accept="video/*" capture="camera" id="fileUpload2">
+                <video width="100%" id="player2" controls></video>
+            </div>
+            <div class="col-sm">
+                <input class="form-control" type="file" accept="video/*" capture="camera" id="fileUpload3">
+                <video width="100%" id="player3" controls></video>
+            </div>
         </div>
 
         <div>
+            <button class="fas fa-plus btn btn-primary" onclick="addVideo()" id="addVideo"></button>
             <button class="fas fa-play btn btn-primary" onclick="playAll()" id="playButton"></button>
             <button class="fas fa-flag btn btn-primary" onclick="flag()" id="flagButton"></button>
         </div>
-        <form action="submitTable.php" id = "tableForm" method ="post">
-        <table  class="table">
-          <thead>
-            <tr>
-              <th width = "10%" scope="col">#</th>
-              <th width = "10%" scope="col">1st Video</th>
-              <th width = "10%"scope="col">2nd Video</th>
-              <th width = "10%"scope="col">3rd Video</th>
-              <th width = "50%"scope="col">Comment</th>
-              <th width = "10%"scope="col">Delete</th>
-            </tr>
-          </thead>
-          <tbody id ="timeStamps">
-            <!-- <tr>
-              <th scope="row">1</th>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-              <td>5</td>
-<tr>
-<th scope="row">'+ row +'</th>
-<td>'+timestampArray[0]+'</td>
-<td>'+timestampArray[1]+'</td>
-<td>'+timestampArray[2]+'</td>
-<td>rrr</td>
-</tr>
-            </tr> -->
-          </tbody>
+        <form action="submitTable.php" id="tableForm" method="post">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th width="10%" scope="col">#</th>
+                    <th width="10%" scope="col">1st Video</th>
+                    <th width="10%" scope="col">2nd Video</th>
+                    <th width="10%" scope="col">3rd Video</th>
+                    <th width="50%" scope="col">Comment</th>
+                    <th width="10%" scope="col">Delete</th>
+                </tr>
+                </thead>
+                <tbody id="timeStamps">
+                <!-- <tr>
+                  <th scope="row">1</th>
+                  <td>1</td>
+                  <td>2</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>5</td>
+    <tr>
+    <th scope="row">'+ row +'</th>
+    <td>'+timestampArray[0]+'</td>
+    <td>'+timestampArray[1]+'</td>
+    <td>'+timestampArray[2]+'</td>
+    <td>rrr</td>
+    </tr>
+                </tr> -->
+                </tbody>
 
-        </table>
-        <input type="text" id="totalRows" name="totalRows">
-        <button type="submit" class="btn btn-primary" name="submitTable" method="post" id="submitForm">Update</button>
+            </table>
+            <input type="text" id="totalRows" name="totalRows">
+            <button type="submit" class="btn btn-primary" name="submitTable" method="post" id="submitForm">Update
+            </button>
 
-</form>
+        </form>
 
     </div>
     <div class="row justify-content-end" id="imageRow">
         <img src="../images/logo.png" class="fix">
     </div>
 
-</div>
 </body>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://kit.fontawesome.com/8741ca18b0.js" crossorigin="anonymous"></script>
