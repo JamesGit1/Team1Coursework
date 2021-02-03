@@ -9,12 +9,6 @@
         exit;
     }
 
-    $query = "SELECT * FROM account WHERE Role = 'researcher'";
-    $stmt = $pdo->prepare($query);
-    $stmt->execute();
-    $result = $stmt->fetchAll();
-    unset($stmt);
-
     if (isset($_POST['submitDetails'])) {
         $userID = $_POST['inputID']; 
         //var_dump($_POST);
@@ -56,6 +50,62 @@
         echo "<strong>[".$_POST['inputID']."]"."</strong> ".$_POST['firstname']." ".$_POST['lastname']." - User account password changed to `<strong>password</strong>`";
         echo "</div>";
     }
+
+    if (isset($_POST['deleteAccount'])) {
+        $userID = $_POST['inputID']; 
+
+        $query = "SELECT * FROM account WHERE `ID` = $userID;";
+        $stmt = $pdo->prepare($query);
+        $stmt->execute();
+        $details = $stmt->fetch();
+        unset($stmt);
+
+        $query = "DELETE FROM account WHERE `ID` = $userID;";
+        $stmt = $pdo->prepare($query);
+        $stmt->execute();
+        unset($stmt);
+
+        echo "<div class='alert alert-warning' role='alert' style='margin-bottom: 0px;padding-bottom: 5px;padding-top: 5px;'>";
+        echo "<strong>[".$_POST['inputID']."]"."</strong> ".$_POST['firstname']." ".$_POST['lastname']." - User account DELETED";
+        echo "<form method='post' style='display: inline;'><button type='submit' style='padding-top: 2px;' name='undoDelete' method='post' class='btn btn-link'>Undo</button></form>";
+        echo "</div>";
+       
+        $_SESSION["Restore"] = array(
+            "ID" => $details["ID"],
+            "firstname" => $details["firstname"],
+            "lastname" => $details["lastname"],
+            "Username" => $details["Username"],
+            "Password" => $details["Password"],
+            "Role" => $details["Role"],
+        );
+    }
+    if (isset($_POST['undoDelete'])) {
+        $query = "INSERT INTO account (`firstname`,`Username`,`Password`,`Role`, `lastname`) VALUES (:name,:username,:password,:role,:lastname)";
+
+		$stmt = $pdo->prepare($query);
+
+		$stmt->bindParam(":name", $name, PDO::PARAM_STR);
+		$stmt->bindParam(":lastname", $lastname, PDO::PARAM_STR);
+		$stmt->bindParam(":username", $username, PDO::PARAM_STR);
+        $stmt->bindParam(":password", $hashedpassword, PDO::PARAM_STR);
+        $stmt->bindParam(":role", $role, PDO::PARAM_STR);
+        
+
+		$name = $_SESSION["Restore"]["firstname"];
+		$username = $_SESSION["Restore"]["Username"];
+		$hashedpassword = $_SESSION["Restore"]["Password"];
+        $lastname = $_SESSION["Restore"]["lastname"];
+        $role = $_SESSION["Restore"]["Role"];
+        
+		$stmt->execute();
+        unset($stmt);
+    }
+
+    $query = "SELECT * FROM account WHERE Role = 'researcher'";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+    unset($stmt);
 
 ?>
 
@@ -150,11 +200,12 @@
                 <div class="modal-body">
                     <!-- Form Body -->
                     <form class="row g-3" style="padding-top: 0px;" method="post">
-                    <div class="col-md-2" style="padding-top: 7px;width: 36px;">
-                    <label for="inputID" class="form-label">ID</label>
-                    </div>
+                        <div class="col-md-2" style="padding-top: 7px;width: 36px;">
+                            <label for="inputID" class="form-label">ID</label>
+                        </div>
                         <div class="col-md-10">
-                            <input style="width:45px" readonly type="text" class="form-control" maxlength="50" id="inputID" name="inputID">
+                            <input style="width:45px" readonly type="text" class="form-control" maxlength="50"
+                                id="inputID" name="inputID">
                         </div>
                         <div class="col-md-6">
                             <label for="inputfirstname" class="form-label">First Name *</label>
@@ -168,18 +219,26 @@
                         </div>
                         <div class="col-md-6">
                             <label for="inputUsername" class="form-label">Username *</label>
-                            <input type="text" class="form-control" maxlength="50" id="inputUsername" name="username" required>
+                            <input type="text" class="form-control" maxlength="50" id="inputUsername" name="username"
+                                required>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" style="margin-bottom: 30px;">
                             <label for="inputRole" class="form-label">Role *</label>
-                            <input type="text" class="form-control" maxlength="50" id="inputRole" name="role" required>
+                            <select class="form-control" aria-label="select" id="inputRole" name="role">
+                                <option value="researcher" selected>Researcher</option>
+                                <option value="labmanager">Lab Manager</option>
+                            </select>
                         </div>
                         <div class="col-md-6">
-                            <button style="width: 100%;" type="submit" name="resetPassword" method="post" class="btn btn-danger" id="resetButton">Reset
-                                Password</button>
+                            <button style="width: 100%;" type="submit" name="resetPassword" method="post"
+                                class="btn btn-danger" id="resetButton"><strong>Reset
+                                    Password</strong></button>
+                        </div>
+                        <div class="col-md-6">
+                            <button style="width: 100%;" type="submit" name="deleteAccount" method="post"
+                                class="btn btn-danger" id="deleteButton"><strong>Delete Account</strong></button>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="submit" name="submitDetails" method="post" class="btn btn-primary">Save
                                 changes</button>
                         </div>
