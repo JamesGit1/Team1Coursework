@@ -80,17 +80,18 @@
         );
     }
     if (isset($_POST['undoDelete'])) {
-        $query = "INSERT INTO account (`firstname`,`Username`,`Password`,`Role`, `lastname`) VALUES (:name,:username,:password,:role,:lastname)";
+        $query = "INSERT INTO account (`ID`,`firstname`,`Username`,`Password`,`Role`, `lastname`) VALUES (:id,:name,:username,:password,:role,:lastname)";
 
-		$stmt = $pdo->prepare($query);
-
-		$stmt->bindParam(":name", $name, PDO::PARAM_STR);
+        $stmt = $pdo->prepare($query);
+        
+        $stmt->bindParam(":id", $id, PDO::PARAM_STR);   
+		$stmt->bindParam(":name", $name, PDO::PARAM_STR);   
 		$stmt->bindParam(":lastname", $lastname, PDO::PARAM_STR);
 		$stmt->bindParam(":username", $username, PDO::PARAM_STR);
         $stmt->bindParam(":password", $hashedpassword, PDO::PARAM_STR);
         $stmt->bindParam(":role", $role, PDO::PARAM_STR);
         
-
+		$id = $_SESSION["Restore"]["ID"];
 		$name = $_SESSION["Restore"]["firstname"];
 		$username = $_SESSION["Restore"]["Username"];
 		$hashedpassword = $_SESSION["Restore"]["Password"];
