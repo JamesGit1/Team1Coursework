@@ -34,6 +34,9 @@ require('accountSystem/loginStatus.php');
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="accountSystem/accountDetails.php">Account Details</a></li>
+            <?php if ($_SESSION["role"] == "labmanager") {
+                echo '<li><a class="dropdown-item" href="accountSystem/manageUsers.php">Manage Researchers</a></li>';
+            } ?>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="accountSystem/logOut.php">Log Out</a></li>
           </ul>
