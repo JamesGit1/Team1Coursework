@@ -49,9 +49,9 @@ date_default_timezone_set('Europe/London');
         </div>
 
         <div>
-            <button class="fas fa-plus btn btn-primary" onclick="addVideo()" id="addVideo"></button>
-            <button class="fas fa-play btn btn-primary" onclick="playAll()" id="playButton"></button>
-            <button class="fas fa-flag btn btn-primary" onclick="flag()" id="flagButton"></button>
+            <button class="fas fa-plus btn btn-primary" type = "button" onclick="addVideo()" id="addVideo"></button>
+            <button class="fas fa-play btn btn-primary" type = "button" onclick="playAll()" id="playButton"></button>
+            <button class="fas fa-flag btn btn-primary" type = "button" onclick="flag()" id="flagButton"></button>
         </div>
         <form action="submitTable.php" id="tableForm" method="post">
             <table class="table">

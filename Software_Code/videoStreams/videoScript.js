@@ -8,7 +8,8 @@ var play = false;
 // this might change
 var noOfVids = 3;
 var totalRows = [];
-var newColumnNumber = 4;
+var currentColumn = 4;
+var previousColumn = 4;
 
 // The number of rows that we have to start is 1
 var noOfRows = 1;
@@ -138,7 +139,9 @@ function addVideoEventListener(fileUpload, player) {
 
 
 function addColumn(){
-    var column = document.getElementById("column4");
-    column.insertAdjacentHTML("afterend", '<th scope="col" id="column' + newColumnNumber + '">Video ' + newColumnNumber + ' </th>');
-    newColumnNumber ++;
+    previousColumn = currentColumn;
+    currentColumn ++;
+    var lastestColumn = document.getElementById("column"+ previousColumn);
+    lastestColumn.insertAdjacentHTML("afterend", '<th scope="col" id="column' + currentColumn + '">Video ' + (currentColumn-1) + ' </th>');
+
 }
