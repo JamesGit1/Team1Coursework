@@ -14,40 +14,10 @@ var noOfRows = 1;
 // The current row that we want to add videos to
 var currentRow = "videoRow";
 
-
-// we need to find
-fileUpload1.addEventListener('change', function (e) {
-    var file = e.target.files[0];
-
-    if (checkFileSize(e, file)) {
-        alert("File is too big!");
-    } else {
-        // where does player1 come from?
-        player1.src = URL.createObjectURL(file);
-    }
-});
-
-// we need to find
-fileUpload2.addEventListener('change', function (e) {
-    var file = e.target.files[0];
-
-    if (checkFileSize(e, file)) {
-        alert("File is too big!");
-    } else {
-        player2.src = URL.createObjectURL(file);
-    }
-});
-
-// we need to find
-fileUpload3.addEventListener('change', function (e) {
-    var file = e.target.files[0];
-
-    if (checkFileSize(e, file)) {
-        alert("File is too big!");
-    } else {
-        player3.src = URL.createObjectURL(file);
-    }
-});
+// add the event listeners for the file upload and players
+addVideoEventListener(fileUpload1, player1);
+addVideoEventListener(fileUpload2, player2);
+addVideoEventListener(fileUpload3, player3);
 
 function playAll() {
     if (play == false) {
@@ -143,15 +113,20 @@ function addVideo() {
     }
     noOfVids++;
 
+    // add the event listener to the new file upload and player
     var newPlayer = document.getElementById('player' + noOfVids);
-    newPlayer.addEventListener('change', function (e) {
+    var fileUpload = document.getElementById('fileUpload' + noOfVids);
+    addVideoEventListener(fileUpload, newPlayer);
+}
+
+function addVideoEventListener(fileUpload, player) {
+    fileUpload.addEventListener('change', function (e) {
         var file = e.target.files[0];
 
         if (checkFileSize(e, file)) {
             alert("File is too big!");
         } else {
-            newPlayer.src = URL.createObjectURL(file);
+            player.src = URL.createObjectURL(file);
         }
-        alert("reached the end of the smaller function");
     });
 }
