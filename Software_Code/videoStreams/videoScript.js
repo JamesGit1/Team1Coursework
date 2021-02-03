@@ -8,6 +8,7 @@ var play = false;
 // this might change
 var noOfVids = 3;
 var totalRows = [];
+var newColumnNumber = 4;
 
 // The number of rows that we have to start is 1
 var noOfRows = 1;
@@ -117,6 +118,8 @@ function addVideo() {
     var newPlayer = document.getElementById('player' + noOfVids);
     var fileUpload = document.getElementById('fileUpload' + noOfVids);
     addVideoEventListener(fileUpload, newPlayer);
+
+    addColumn();
 }
 
 function addVideoEventListener(fileUpload, player) {
@@ -129,4 +132,12 @@ function addVideoEventListener(fileUpload, player) {
             player.src = URL.createObjectURL(file);
         }
     });
+
+}
+
+
+function addColumn(){
+    var column = document.getElementById("column4");
+    column.insertAdjacentHTML("afterend", '<th scope="col" id="column' + newColumnNumber + '">Video ' + newColumnNumber + ' </th>');
+    newColumnNumber ++;
 }

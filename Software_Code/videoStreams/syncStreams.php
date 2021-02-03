@@ -57,12 +57,12 @@ date_default_timezone_set('Europe/London');
             <table class="table">
                 <thead>
                 <tr>
-                    <th width="10%" scope="col">#</th>
-                    <th width="10%" scope="col">1st Video</th>
-                    <th width="10%" scope="col">2nd Video</th>
-                    <th width="10%" scope="col">3rd Video</th>
-                    <th width="50%" scope="col">Comment</th>
-                    <th width="10%" scope="col">Delete</th>
+                    <th scope="col">#</th>
+                    <th scope="col">Video 1</th>
+                    <th scope="col">Video 2</th>
+                    <th id = "column4" scope="col">Video 3</th>
+                    <th scope="col">Comment</th>
+                    <th scope="col">Delete</th>
                 </tr>
                 </thead>
                 <tbody id="timeStamps">
