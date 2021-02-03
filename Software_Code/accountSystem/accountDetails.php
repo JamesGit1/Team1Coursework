@@ -11,6 +11,7 @@
         unset($stmt);
 
         $oldpassword = $_POST['oldpassword'];
+        $oldpassword = hash('sha256', $oldpassword);
 
         if($oldpassword==$passcheck["Password"]){
             $query = "UPDATE account SET `firstname` = :firstName, `Password` = :password, `lastname` = :lastName WHERE `ID` = $id;";
@@ -27,6 +28,7 @@
             }
             else{
                 $password = $newpassword;
+                $password = hash('sha256', $password);
             }
             $stmt->execute();
             unset($stmt);
