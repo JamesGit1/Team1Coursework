@@ -58,6 +58,7 @@ function flag() {
 // this needs to be changed for infinite videos
 var addRow = function (timestampArray) {
 
+    // TODO this needs to be made dynamically / be added to when the plus button in pressed
     var myRow = $('<tr id = "row' + row + '"> <th scope="row">' + row + '</th><td>' + timestampArray[0] + '</td><td>' + timestampArray[1] + '</td> <td>' + timestampArray[2] + '</td><td> <input type="text" style ="width:100%" id="comment' + row + '"  name="comment' + row + '"></td><td><a href="#" id="' + row + '" onclick="deleteRow(this.id)" class="btn btn-primary btn-danger fas fa-trash"></a><td><input type="text" value="' + timestampArray[0] + ',' + timestampArray[1] + ',' + timestampArray[2] + '" id="timestamp' + row + '" name="timestamp' + row + '"</td> </tr>')
     myRow.appendTo('#timeStamps');
 
