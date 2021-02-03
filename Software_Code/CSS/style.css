@@ -276,7 +276,7 @@ textarea:focus, input#formName:focus {
   padding-top: 0.2em;
 }
 
-select {
+.select select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
