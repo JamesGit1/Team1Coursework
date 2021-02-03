@@ -60,14 +60,48 @@ function flag() {
 var addRow = function (timestampArray) {
 
     // TODO this needs to be made dynamically / be added to when the plus button in pressed
-    var myRow = $('<tr id = "row' + row + '"> <th scope="row">' + row + '</th><td>' + timestampArray[0] + '</td><td>' + timestampArray[1] + '</td> <td>' + timestampArray[2] + '</td><td> <input type="text" style ="width:100%" id="comment' + row + '"  name="comment' + row + '"></td><td><a href="#" id="' + row + '" onclick="deleteRow(this.id)" class="btn btn-primary btn-danger fas fa-trash"></a><td><input type="text" value="' + timestampArray[0] + ',' + timestampArray[1] + ',' + timestampArray[2] + '" id="timestamp' + row + '" name="timestamp' + row + '"</td> </tr>')
-    myRow.appendTo('#timeStamps');
+    // var myRow = $('<tr id = "row' + row + '"> <th scope="row">' + row + '</th>' +
+    //     '<td>' + timestampArray[0] + '</td><td>' + timestampArray[1] + '</td> <td>' + timestampArray[2] + '</td>' +
+    //     '<td> <input type="text" style ="width:100%" id="comment' + row + '"  name="comment' + row + '"></td><td><a href="#" id="' + row + '" onclick="deleteRow(this.id)" class="btn btn-primary btn-danger fas fa-trash"></a>' +
+    //     '<td><input type="text" value="' + timestampArray[0] + ',' + timestampArray[1] + ',' + timestampArray[2] + '" id="timestamp' + row + '" name="timestamp' + row + '"</td>' +
+    //     ' </tr>')
+
+    // timeStampLine is a string of timestamps that considers HTML formatting - we will append to it
+    var timeStampLine = '<tr id = "row' + row + '"> <th scope="row">' + row + '</th>';
+
+    // Go through array of timestamps and append to main variable
+    for(var i = 0; i<timestampArray.length; i++)
+    {
+        timeStampLine += '<td>' + timestampArray[i] + '</td>';
+    }
+
+    // Append HTML formatting for hidden textbox
+    timeStampLine += '<td> <input type="text" style ="width:100%" id="comment' + row + '"  name="comment' + row + '"></td><td><a href="#" id="' + row + '" onclick="deleteRow(this.id)" class="btn btn-primary btn-danger fas fa-trash"></a>' + '<td><input type="text" value="';
+
+    //Append each timestamp to the variable so that they can be displayed in the hidden textbox
+    for(var j = 0; j<timestampArray.length; j++)
+    {
+        timeStampLine +=  timestampArray[j];
+
+        if(j<timestampArray.length-1)
+        {
+            timeStampLine += ','
+        }
+    }
+
+    // Finish off ID of the row
+    timeStampLine +=  '" id="timestamp' + row + '" name="timestamp' + row + '"</td>' +' </tr>';
+
+    // Turn timeStampLine into a jQuery variable
+    timeStampLine = $(timeStampLine);
+
+    // Append timeStampLine to the timeStamps div in 'syncStreams.php'
+    timeStampLine.appendTo('#timeStamps');
 
     totalRows.push(row);
     totalRowsID.value = "";
     totalRowsID.value += totalRows.toString();
 
-    alert(totalRows);
     row++;
 }
 
@@ -143,5 +177,4 @@ function addColumn(){
     currentColumn ++;
     var lastestColumn = document.getElementById("column"+ previousColumn);
     lastestColumn.insertAdjacentHTML("afterend", '<th scope="col" id="column' + currentColumn + '">Video ' + (currentColumn-1) + ' </th>');
-
 }
