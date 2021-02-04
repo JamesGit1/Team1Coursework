@@ -4,6 +4,23 @@ session_start();
 require_once('../conn.php');
 require('../accountSystem/loginStatus.php');
 //Sessions Variables to get ID's
+
+// Submits the entire questionnaire
+if (isset($_POST['submitTranscript']))
+{
+    $query = "UPDATE `transcript` SET `Transcript` = :transcript WHERE `ID` = :transcriptID;";
+    $stmt = $pdo->prepare($query);
+
+    $stmt->bindParam(":transcriptID", $id);
+    $stmt->bindParam(":transcript", $transcript);
+
+    $transcript = $_POST['transcriptText'];
+    $id = $_SESSION["transcriptID"];
+    $stmt->execute();
+    unset($stmt);
+
+    //header("Location: .php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -47,9 +64,9 @@ require('../accountSystem/loginStatus.php');
         </div>
         <div class="row" >
             <form method="post" class="newForm" id="submitTranscript">
-                <textarea placeholder="Enter transcript here" class="card-title question-title"
+                <textarea name="transcriptText" placeholder="Enter transcript here" class="card-title question-title"
                     id="transcriptForm" oninput="auto_grow(this)"></textarea>
-                    <button type="submit" class="btn btn-primary" name="submitTranscript" method="post"
+                <button type="submit" class="btn btn-primary" name="submitTranscript" method="post"
                     id="submitTranscript">Submit Transcript</button>
             </form>
         </div>
