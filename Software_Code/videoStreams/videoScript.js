@@ -14,7 +14,7 @@ var previousColumn = 4;
 // The number of rows that we have to start is 1
 var noOfRows = 1;
 // The current row that we want to add videos to
-var currentRow = "videoRow";
+var currentRow = "videoRow1";
 
 // add the event listeners for the file upload and players
 addVideoEventListener(fileUpload1, player1);
@@ -138,8 +138,10 @@ function addVideo() {
     // if the number of videos is divisible by 3, that means that the end row is full and a new one should
     // be made
     if (!(noOfVids % 3)) {
+
         noOfRows++;
-        previousRow = currentRow;
+        var previousRow = currentRow;
+        // changing the videoRow that we are adding the videos to.
         currentRow = "videoRow" + noOfRows;
 
         document.getElementById(previousRow).insertAdjacentHTML("afterend", '<div class="row" id="' + currentRow + '"> ' + videoHTML +

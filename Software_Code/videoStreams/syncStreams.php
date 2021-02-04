@@ -30,7 +30,7 @@ date_default_timezone_set('Europe/London');
     </div>
     <div class="row" id="imageRow">
 
-        <div class = "row" id=videoRow>
+        <div class = "row" id=videoRow1>
             <div class="col-sm">
                 <input class="form-control" type="file" accept="video/*" capture="camera" id="fileUpload1">
                 <video width="100%" id="player1" controls></video>
@@ -111,7 +111,6 @@ date_default_timezone_set('Europe/London');
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
 </script>
-
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://kit.fontawesome.com/8741ca18b0.js" crossorigin="anonymous"></script>
 <script src="videoScript.js"></script>
