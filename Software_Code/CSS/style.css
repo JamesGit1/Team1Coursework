@@ -37,6 +37,11 @@ img {
     width: 10em;
     margin-bottom: 1em;
 }
+
+#videoRow{
+  width: 50%;
+  padding-top: 0px;
+}
 #imageRow{
 	padding-top: 1em; 
   width: 100%;
@@ -100,10 +105,10 @@ input#formName {
 }
 
 textarea#formDescription {
-    width: 100%;
-    font-style: italic;
-    margin-bottom: 2em;
-    resize: none;
+  width: 100%;
+  font-style: italic;
+  /*margin-bottom: 2em;*/
+  resize: none;
  	overflow: hidden;
 }
 
@@ -294,4 +299,11 @@ textarea:focus, input#formName:focus {
   border: 1px solid #cccccc;
   -ms-word-break: normal;
   word-break: normal;
+}
+
+#transcriptForm{
+  width: 100%;
+  resize: none;
+  overflow: hidden;
+  border: 0.2em solid rgb(86 116 228);
 }

@@ -120,7 +120,7 @@ function deleteRow(rowID) {
 
 function checkFileSize(e, file) {
     //131072000
-    if (file.size > 8027578) {
+    if (file.size > 131072000) {
         e.value = "";
         return true;
     }
