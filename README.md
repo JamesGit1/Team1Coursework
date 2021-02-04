@@ -27,7 +27,7 @@
 - General notes: includes our user stories, user personas, definition of done, definition of ready, etc.: 
 https://docs.google.com/document/d/1GIzwbMIxGo_43YNpUKrhUI1D3c20H5vkwmQIdvG9aTc/edit?usp=sharing
 
-- Ground Rules: contains our ground rules for the rest of the coursework: 
+- Ground Rules / Working Agreement: contains our ground rules for the rest of the coursework: 
 https://docs.google.com/document/d/1K0xLSf1Xhw6GyveNL03kO8drHvIZrGjOIyDPnGqCnCk/edit?usp=sharing
 
 - Connection / Database information: 
