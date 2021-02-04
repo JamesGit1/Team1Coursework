@@ -56,3 +56,14 @@ Following this we discussed impediments and the impediment log. An issue arose w
 After that we talked about pair programming and the video, the sprint review and the report.
 
 ---
+
+## Day 5 - Scrum Meeting summary
+The Scrum Master for this meeting was Joshua Bradley
+
+### Members Present:
+Josh, Jesse, Luke, James R, James S, Alan, Harry
+
+### Summary of Conversation:
+
+
+---
