@@ -52,11 +52,39 @@ if (isset($_POST['addResearcher']))
 	<title>Assign Researchers</title>
 </head>
 <body>
+	<nav class="navbar navbar-expand navbar-dark">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="../dashboard.php" id="logo">
+				<img src="../images/University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
+				style="margin-right: 20px;">Home
+			</a>
+			<form class="d-flex">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item dropdown">  
+					<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" style="margin-right: 3em;">
+					Hello, <?php if(isset($name)){echo $name;}else{echo "user";}?>
+					</a>
+						<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+							<li><a class="dropdown-item" href="accountDetails.php">Account Details</a></li>
+							<?php if ($_SESSION["role"] == "labmanager") {
+							echo '<li><a class="dropdown-item active" href="manageUsers.php">Manage Researchers</a></li>';
+							} ?>
+							<li><hr class="dropdown-divider"></li>
+							<li><a class="dropdown-item" href="logOut.php">Log Out</a></li>
+						</ul>
+					</li>
+				</ul>
+			</form>
+		</div>
+	</nav>
 	<div class="container">
+		<div class="row">
+			<h1><u>Assign Researchers</u></h1>
+		</div>
 		<?php foreach($questionnaires_li as $questionnaire)
 		{ 
 		?>
-			<div class="row">
+			<div class="row" id="assignRow">
 				<div class="card">
 					<div class="card-body">
 						<div class="row" id="imageRow">
@@ -87,17 +115,19 @@ if (isset($_POST['addResearcher']))
 							<div class="col-md-4">
 								<h4>Add a Researcher</h4>
 								<form method="POST">
-									<select name="selectResearcher">
-										<option value="" disabled selected>Choose a researcher...</option>
-									<?php foreach($researchers_li as $researcher) 
-									{
-									?>
-										<option value="<?php echo $researcher['ID'] ?>"><?php echo $researcher['Username'] ?></option>
-									<?php 
-									} 
-									?>
-									</select>
-									<button class="btn btn-success" name="addResearcher" value="<?php echo $questionnaire['ID'] ?>">Add</button>
+									<div class="select">
+										<select name="selectResearcher">
+											<option value="" disabled selected>Choose a researcher...</option>
+										<?php foreach($researchers_li as $researcher) 
+										{
+										?>
+											<option value="<?php echo $researcher['ID'] ?>"><?php echo $researcher['Username'] ?></option>
+										<?php 
+										} 
+										?>
+										</select>
+									</div>	
+									<button class="btn btn-primary" name="addResearcher" value="<?php echo $questionnaire['ID'] ?>">Add</button>
 								</form>
 							</div>
 						</div>
@@ -107,6 +137,9 @@ if (isset($_POST['addResearcher']))
 		<?php 
 		} 
 		?>	
+		<div class="row justify-content-end" id="imageRow">
+            <img src="../images/logo.png" class="fix" id="fade">
+        </div>
 	</div>
 </body>
 </html>

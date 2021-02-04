@@ -23,10 +23,11 @@ if (isset($_POST['signIn']))
     $id = $row['ID'];
     $username = $row['Username'];
     $password = $row['Password'];
+    $hashedpassword = hash('sha256', $_POST['inpassword']);
     $role = $row['Role'];
     $name = $row['firstname'];
 
-    if ($password == $_POST['inpassword']) {
+    if ($password == $hashedpassword) {
       $_SESSION['loggedIn'] = true;
       $_SESSION['UserID'] = $id;
       $_SESSION['username'] = $username;

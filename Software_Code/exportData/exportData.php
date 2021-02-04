@@ -6,7 +6,8 @@ require_once('../conn.php');
 	$query = "SELECT q.id,q.`name` as `Title`,COUNT(DISTINCT(`participant ID`)) AS `responses` FROM answer a 
 INNER JOIN question qn ON a.`question ID` = qn.id 
 INNER JOIN questionnaire q ON qn.`questionnaire ID` = q.ID
-WHERE q.`creator ID` = :userID
+INNER JOIN questionnaireresearchermap qrm ON qrm.questionnaireID = q.id
+WHERE qrm.`researcherID` = :userID
 GROUP BY q.id";
 	$stmt = $pdo->prepare($query);
     $stmt->bindParam(":userID", $userID, PDO::PARAM_STR);
@@ -29,14 +30,34 @@ GROUP BY q.id";
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico"/>
 </head>
 
-<nav class="navbar navbar-dark">
-    <a class="navbar-brand" href="../index.html">
-        <img src="../images/University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
-             style="margin-right: 20px;">Home
-    </a>
-</nav>
-
 <body>
+    <nav class="navbar navbar-expand navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../dashboard.php" id="logo">
+                <img src="../images/University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
+                    style="margin-right: 20px;">Home
+            </a>
+            <form class="d-flex">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                            style="margin-right: 3em;">
+                            Hello, <?php if(isset($name)){echo $name;}else{echo "user";}?>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="../accountSystem/accountDetails.php">Account Details</a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="../accountSystem/logOut.php">Log Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </nav>
+
     <div class="container">
         <div class="row">
             <h1><u>Available Questionnaires</u></h1>
