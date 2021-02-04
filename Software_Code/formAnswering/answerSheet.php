@@ -119,13 +119,47 @@ unset($stmt);
                 $_SESSION['questionnaireID'] = $id;
                 ?>
 
-                <a data-modal-target="#modal" type="submit" name="submitQuestion"
-                   class="btn btn-primary fas fa-check"
-                   style="float: right;"></a>
+                <a data-modal-target="#modal" class="btn btn-primary fas fa-check" style="float: right;"></a>
 
 
             </div>
-        </form>
+
+            <div class="modal.activate" id="modal">
+                <div id="header">
+                    <div id="title">Ethics Form</div>
+                    <button data-close-button type="button" class="btn-close btn-close-white"
+                            aria-label="Close"></button>
+                </div>
+
+                <div id="body">
+                    <p>By clicking continue you are agreeing with the University of Dundee's ethics form </p>
+
+
+                    <div id="user_enter">
+                        <div class="form-outline">
+                            <label class="form-label" for="form1">Please enter code</label>
+                            <input type="text" id="ethics_txt" class="form-control"/>
+                        </div>
+
+                    </div>
+
+                    <div id="user-click">
+                        <div id="checkbox">
+                            <input type="checkbox" id="ethics">
+                            <label for="ethics">I agree with the ethics form</label>
+
+                        </div>
+                        <button type="submit" name="submitQuestion" id="continue" class="btn btn-primary" disabled>
+                            Continue!
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="overlay"></div>
+    </div>
+    </form>
 
 </div>
 <div class="row justify-content-end" id="imageRow">
@@ -133,40 +167,6 @@ unset($stmt);
     <img src="../images/logo.png" class="fix">
 </div>
 </div>
-
-
-<div class="modal.activate" id="modal">
-    <div id="header">
-        <div id="title">Ethics Form</div>
-        <button data-close-button type="button" class="btn-close btn-close-white" aria-label="Close"></button>
-    </div>
-
-    <div id="body">
-        <p>By clicking continue you are agreeing with the University of Dundee's ethics form </p>
-
-
-        <div id="user_enter">
-            <div class="form-outline">
-                <label class="form-label" for="form1">Please enter code</label>
-                <input type="text" id="ethics_txt" class="form-control"/>
-            </div>
-
-        </div>
-
-        <div id="user-click">
-            <div id="checkbox">
-                <input type="checkbox" id="ethics">
-                <label for="ethics">I agree with the ethics form</label>
-
-            </div>
-            <button type="button" id="continue" class="btn btn-primary" disabled>Continue!</button>
-        </div>
-    </div>
-</div>
-<div id="overlay"></div>
-</div>
-
-<script type="text/javascript"></script>
 
 <script type="text/javascript">
 
