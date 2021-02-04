@@ -30,19 +30,22 @@ date_default_timezone_set('Europe/London');
 </div>
 <div class="row" id="imageRow">
 
-    <form action="submitTable.php" id="tableForm" method="post">
+    <form action="submitTable.php" id="tableForm" method="post" enctype='multipart/form-data'>
 
         <div class="row" id=videoRow1>
             <div class="col-sm">
-                <input class="form-control" type="file" accept="video/*" capture="camera" id="fileUpload1" name = "videoUpload[]" multiple="multiple">
+                <input class="form-control" type="file" accept="video/*" capture="camera" id="fileUpload1"
+                       name="videoUpload[]" multiple="multiple">
                 <video width="100%" id="player1" controls></video>
             </div>
             <div class="col-sm">
-                <input class="form-control" type="file" accept="video/*" capture="camera" id="fileUpload2" name = "videoUpload[]" multiple="multiple">
+                <input class="form-control" type="file" accept="video/*" capture="camera" id="fileUpload2"
+                       name="videoUpload[]" multiple="multiple">
                 <video width="100%" id="player2" controls></video>
             </div>
             <div class="col-sm">
-                <input class="form-control" type="file" accept="video/*" capture="camera" id="fileUpload3" name = "videoUpload[]" multiple="multiple">
+                <input class="form-control" type="file" accept="video/*" capture="camera" id="fileUpload3"
+                       name="videoUpload[]" multiple="multiple">
                 <video width="100%" id="player3" controls></video>
             </div>
         </div>
@@ -65,21 +68,6 @@ date_default_timezone_set('Europe/London');
             </tr>
             </thead>
             <tbody id="timeStamps">
-            <!-- <tr>
-              <th scope="row">1</th>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-              <td>5</td>
-<tr>
-<th scope="row">'+ row +'</th>
-<td>'+timestampArray[0]+'</td>
-<td>'+timestampArray[1]+'</td>
-<td>'+timestampArray[2]+'</td>
-<td>rrr</td>
-</tr>
-            </tr> -->
             </tbody>
 
         </table>
