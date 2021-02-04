@@ -146,7 +146,7 @@ if(!isset($_SESSION["loggedIn"])|| $_SESSION["loggedIn"] !==true)
                             <p class="card-text">Upload a video and use our tools to help manage themes and notes on you transcipts</p>
                         </div>
                         <div class="row" id="imageRow">
-                            <a href="videoStreams/newTranscript.php" class="btn btn-primary">Create!</a>
+                            <a href="transcript/newTranscript.php" class="btn btn-primary">Create!</a>
                         </div>
                     </div>
                 </div>
