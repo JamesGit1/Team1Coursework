@@ -125,7 +125,7 @@ if(!isset($_SESSION["loggedIn"])|| $_SESSION["loggedIn"] !==true)
                 <div class="card text-center" id="height">
                     <div class="card-body">
                         <div class="row" id="imageRow">
-                            <h3 class="card-title">Manage Questionnaire Permissions</h3>
+                            <h4 class="card-title">Questionnaire Permissions</h4>
                         </div>
                         <div class="row" id="imageRow">
                             <p class="card-text">Assign other researchers to your questionnaires, so they can view the data collected</p>
