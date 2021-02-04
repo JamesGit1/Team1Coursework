@@ -321,3 +321,7 @@ textarea:focus, input#formName:focus {
   overflow: hidden;
   border: 0.2em solid rgb(86 116 228);
 }
+.transcriptTextarea{
+  width: 100%;
+  resize: none;
+}
