@@ -75,41 +75,13 @@ if (isset($_POST['searchQuestionnaire']))
         crossorigin="anonymous"></script>
     <title>Dundata</title>
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico"/>
+</head>
+
+<body>
 
     <div id="nav-placeholder">
 
     </div>
-</head>
-
-<!-- Cheeky navbar -->
-<nav class="navbar navbar-expand navbar-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="../dashboard.php" id="logo">
-                <img src="../images/University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
-                    style="margin-right: 20px;">Home
-            </a>
-            <form class="d-flex">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                            style="margin-right: 3em;">
-                            Hello, <?php if(isset($name)){echo $name;}else{echo "user";}?>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="../accountSystem/accountDetails.php">Account Details</a>
-                            </li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="../accountSystem/logOut.php">Log Out</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </form>
-        </div>
-    </nav>
-
-<body>
     <div class="container">
         <div class="row">
             <h1><u>View Questionnaires</u></h1>
@@ -172,21 +144,20 @@ if (isset($_POST['searchQuestionnaire']))
 
 </html>
 
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+<script>
+    $(function () {
+        $("#nav-placeholder").load("../navBar.php");
+    });
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
-</script>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
 </script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
     integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
 </script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-</script>
-
-<script>
-    $(function () {
-        $("#nav-placeholder").load("../navBar.php");
-    });
 </script>
