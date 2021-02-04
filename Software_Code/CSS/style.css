@@ -326,3 +326,25 @@ textarea:focus, input#formName:focus {
   width: 100%;
   resize: none;
 }
+
+#transcriptRow{
+  border: 0.2em solid rgb(86 116 228);
+  padding-top: 0;
+  margin-top: 1em;
+}
+#transRow{
+  padding-top: 1em; 
+  width: 100%;
+  padding-bottom: 1em;
+}
+#transRow h4{
+  padding-bottom: 0.5em;
+}
+#transRow button{
+  width: 35%;
+  margin: 0 auto;
+  margin-top: 0.4em
+}
+#transRow textarea{
+  resize: none;
+}
