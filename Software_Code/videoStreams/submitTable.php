@@ -35,3 +35,28 @@ if (isset($_POST['submitTable'])) {
     }
 
 }
+if (isset($_POST['test'])) {
+        // Get's file name, Videoupload is array as a name.
+        $total = count($_FILES['videoUpload']['name']);
+        var_dump($_FILES);
+       for( $i=0 ; $i < $total ; $i++ ) {
+
+  //Get the temp file path
+  $tmpFilePath = $_FILES['videoUpload']['tmp_name'][$i];
+
+// Make sure file path varabile is set
+  if ($tmpFilePath != ""){
+    //Setup file path everytime
+    $newFilePath = "C:/home/site/wwwroot/videos" . $_FILES['videoUpload']['name'][$i];
+
+    //Upload the file into the temp dir
+    if(move_uploaded_file($tmpFilePath, $newFilePath)) {
+
+      //Do something her e?
+
+    }
+  }
+}
+
+
+}

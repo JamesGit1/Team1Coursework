@@ -1,7 +1,14 @@
 <?php
 session_start();
-
-require('accountSystem/loginStatus.php');
+if(isset($_SESSION['name'])){
+    $name = $_SESSION['name'];
+}
+if(!isset($_SESSION["loggedIn"])|| $_SESSION["loggedIn"] !==true)
+{
+    
+    header("location: accountSystem/logIn.php");
+    exit;
+}
 
 ?>
 
@@ -34,6 +41,9 @@ require('accountSystem/loginStatus.php');
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="accountSystem/accountDetails.php">Account Details</a></li>
+            <?php if ($_SESSION["role"] == "labmanager") {
+                echo '<li><a class="dropdown-item" href="accountSystem/manageUsers.php">Manage Researchers</a></li>';
+            } ?>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="accountSystem/logOut.php">Log Out</a></li>
           </ul>
@@ -108,6 +118,21 @@ require('accountSystem/loginStatus.php');
                         <!--href="new_Questionnaire.php"-->
                         <div class="row" id="imageRow">
                             <a href="videoStreams/syncStreams.php" class="btn btn-primary">Analyse!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="col-md-4" align="center">
+                <div class="card text-center" id="height">
+                    <div class="card-body">
+                        <div class="row" id="imageRow">
+                            <h3 class="card-title">Manage Questionnaire Permissions</h3>
+                        </div>
+                        <div class="row" id="imageRow">
+                            <p class="card-text">Assign other researchers to your questionnaires, so they can view the data collected</p>
+                        </div>
+                        <div class="row" id="imageRow">
+                            <a href="accountSystem/researcherAssign.php" class="btn btn-primary">Manage!</a>
                         </div>
                     </div>
                 </div>

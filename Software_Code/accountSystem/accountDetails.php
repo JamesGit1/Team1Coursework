@@ -11,6 +11,7 @@
         unset($stmt);
 
         $oldpassword = $_POST['oldpassword'];
+        $oldpassword = hash('sha256', $oldpassword);
 
         if($oldpassword==$passcheck["Password"]){
             $query = "UPDATE account SET `firstname` = :firstName, `Password` = :password, `lastname` = :lastName WHERE `ID` = $id;";
@@ -27,14 +28,18 @@
             }
             else{
                 $password = $newpassword;
+                $password = hash('sha256', $password);
             }
             $stmt->execute();
             unset($stmt);
-
+            echo "<div class='alert alert-warning' role='alert' style='margin-bottom: 0px;padding-bottom: 5px;padding-top: 5px;'>";
             echo "Details Updated!";
+            echo "</div>";
         }
         else{
+            echo "<div class='alert alert-danger' role='alert' style='margin-bottom: 0px;padding-bottom: 5px;padding-top: 5px;'>";
             echo "Details failed to update, Password incorrect?";
+            echo "</div>";
         }
         unset($passcheck);
     }
@@ -107,7 +112,7 @@
                 <tbody>
                     <tr>
                         <th scope="row">Role</th>
-                        <td><?php echo $result['Role']?></td>
+                        <td><?php echo ucfirst($result['Role'])?></td>
                     </tr>
                     <tr>
                         <th scope="row">Name</th>
@@ -119,7 +124,7 @@
                     </tr>
                     <tr>
                         <th scope="row">Password</th>
-                        <td colspan="2"><?php for($i=0;$i<strlen($result['Password']);$i++){echo "*";} ?></td>
+                        <td colspan="2"><em>hidden</em></td>
                     </tr>
                 </tbody>
             </table>
