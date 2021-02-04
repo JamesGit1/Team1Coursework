@@ -125,13 +125,28 @@ if(!isset($_SESSION["loggedIn"])|| $_SESSION["loggedIn"] !==true)
                 <div class="card text-center" id="height">
                     <div class="card-body">
                         <div class="row" id="imageRow">
-                            <h3 class="card-title">Manage Questionnaire Permissions</h3>
+                            <h4 class="card-title">Questionnaire Permissions</h4>
                         </div>
                         <div class="row" id="imageRow">
                             <p class="card-text">Assign other researchers to your questionnaires, so they can view the data collected</p>
                         </div>
                         <div class="row" id="imageRow">
                             <a href="accountSystem/researcherAssign.php" class="btn btn-primary">Manage!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" align="center">
+                <div class="card text-center" id="height">
+                    <div class="card-body">
+                        <div class="row" id="imageRow">
+                            <h3 class="card-title">Construct Transcript</h3>
+                        </div>
+                        <div class="row" id="imageRow">
+                            <p class="card-text">Upload a video and use our tools to help manage themes and notes on you transcipts</p>
+                        </div>
+                        <div class="row" id="imageRow">
+                            <a href="videoStreams/newTranscript.php" class="btn btn-primary">Create!</a>
                         </div>
                     </div>
                 </div>
