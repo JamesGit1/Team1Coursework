@@ -32,7 +32,7 @@ if (isset($_POST['submitTranscript']))
     $stmt->execute();
     unset($stmt);
 
-    //header("Location: .php");
+    header("Location: quoteEditer.php");
 }
 ?>
 
