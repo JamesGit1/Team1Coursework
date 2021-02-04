@@ -49,8 +49,8 @@ if (isset($_POST['test'])) {
 // Make sure file path varabile is set
   if ($tmpFilePath != ""){
     //Setup file path everytime
-    $newFilePath = "C:/home/site/wwwroot/videos/" . $_FILES['videoUpload']['name'][$i];
-  
+    $newFilePath = "../../../videos/" . $_FILES['videoUpload']['name'][$i];
+
     echo(($_FILES['videoUpload']['error'][$i]));
     //Upload the file into the temp dir
     if(move_uploaded_file($tmpFilePath, $newFilePath)) {
