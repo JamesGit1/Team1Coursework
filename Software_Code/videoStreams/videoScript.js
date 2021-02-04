@@ -131,7 +131,7 @@ function checkFileSize(e, file) {
 function addVideo() {
 
     var videoHTML = '<div class="col-sm">' +
-        '                  <input class="form-control" type="file" accept="video/*" capture="camera" id="fileUpload' + (noOfVids + 1) + '">' +
+        '                  <input class="form-control" type="file" accept="video/*" capture="camera" id="fileUpload' + (noOfVids + 1) + '" name = "videoUpload[]" multiple="multiple">' +
         '                   <video width="100%" id="player' + (noOfVids + 1) + '" controls></video>' +
         '               </div>';
 
