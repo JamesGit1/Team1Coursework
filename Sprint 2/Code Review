@@ -8,5 +8,7 @@
 - Export.php
 - exportData.php
 
-Every user case story has been commented (with checkboxes) our Definition of Done (as suggested by Mike from Sprint 1). 
+Every user case story has been commented (with checkboxes) our Definition of Done (DoD) (as suggested by Mike from Sprint 1). 
 This includes a checkbox about code reviewing and so each user story, and so you can see if code reviewing has been performed for each user story.
+
+Refectoring of code was a big step after our TDD/unit test cases, and was necessary to fulfill our DoD
