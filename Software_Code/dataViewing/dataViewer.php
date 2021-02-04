@@ -75,6 +75,10 @@ if (isset($_POST['searchQuestionnaire']))
         crossorigin="anonymous"></script>
     <title>Dundata</title>
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico"/>
+
+    <div id="nav-placeholder">
+
+    </div>
 </head>
 
 <!-- Cheeky navbar -->
@@ -179,4 +183,10 @@ if (isset($_POST['searchQuestionnaire']))
 </script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+</script>
+
+<script>
+    $(function () {
+        $("#nav-placeholder").load("../navBar.php");
+    });
 </script>
