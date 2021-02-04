@@ -106,9 +106,11 @@ if(isset($_POST['submitQuote']))
                 <div class="col-8">
                     <h4>Comment</h4>
                     <textarea name="comment" rows="3" cols="50" placeholder="Comment goes here"></textarea>
-                </div>
-                <div class="col-4">
 
+                </div>
+                <div class="col-md-6">
+                    <h4>comment</h4>
+                    <textarea  class="transcriptTextarea" name="comment" rows="3" cols="50" placeholder="Comment goes here"></textarea>
                 </div>
                 <div class="col">
                     <select name="themeSelect[]" class="selectpicker" multiple="multiple" data-live-search="true">
@@ -129,6 +131,7 @@ if(isset($_POST['submitQuote']))
                 <h4>Selected text</h4>
                 <textarea name="highlightedText" readonly id="sel" rows="3" cols="50"></textarea>
                 <button type="submit" name="submitQuote">Submit</button>
+
             </form>
 
         </div>

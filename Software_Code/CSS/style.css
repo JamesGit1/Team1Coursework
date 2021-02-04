@@ -42,6 +42,7 @@ img {
   width: 50%;
   padding-top: 0px;
 }
+
 #imageRow{
 	padding-top: 1em; 
   width: 100%;
@@ -320,4 +321,8 @@ textarea:focus, input#formName:focus {
   resize: none;
   overflow: hidden;
   border: 0.2em solid rgb(86 116 228);
+}
+.transcriptTextarea{
+  width: 100%;
+  resize: none;
 }
