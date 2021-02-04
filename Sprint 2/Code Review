@@ -1,15 +1,12 @@
-## Files we have reviewed:
+## Some of the files we have reviewed:
 
 - Refactored and Reviewed Code
-
 - Index.html
-
 - Conn.php
-
 - dataViewer.php
-
 - addQuestion.js
-
 - Export.php
-
 - exportData.php
+
+Every user case story has been commented (with checkboxes) our Definition of Done (as suggested by Mike from Sprint 1). 
+This includes a checkbox about code reviewing and so each user story, and so you can see if code reviewing has been performed for each user story.
