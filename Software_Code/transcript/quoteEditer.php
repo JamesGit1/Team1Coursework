@@ -54,21 +54,21 @@ if(isset($_POST['submitDetails'])){
         <br><br><br><br><br><br><br><br>
         <div class="row card-footer" id="stickyFooter">
 
-            <form class="row" action="post">
-                <div class="col-8">
-                    <textarea name="comment" rows="3" cols="50" placeholder="Comment goes here"></textarea>
+            <form class="row"  id="imageRow" action="post">
+                <div class="col-md-5">
+                    <h4>Highlighted text</h4>
+                    <textarea class="transcriptTextarea" name="highlightedText" readonly id="sel" rows="3" cols="50"></textarea>
                 </div>
-                <div class="col-4">
-
+                <div class="col-md-6">
+                    <h4>comment</h4>
+                    <textarea  class="transcriptTextarea" name="comment" rows="3" cols="50" placeholder="Comment goes here"></textarea>
                 </div>
-                <div class="col">
+                <div class="col-md-1">
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal">
                         Add New
                     </button>
                 </div>
 
-
-                <textarea name="highlightedText" hidden readonly id="sel" rows="3" cols="50"></textarea>
             </form>
 
         </div>
