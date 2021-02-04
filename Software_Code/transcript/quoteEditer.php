@@ -9,11 +9,13 @@ $stmt->bindParam(":transcriptID", $transcriptID, PDO::PARAM_STR);
 $transcriptID = $_SESSION["transcriptID"];
 $stmt->execute();
 $result = $stmt->fetch();
+unset($stmt);
 
 $query = "SELECT * FROM theme";
 $stmt = $pdo->prepare($query);
 $stmt->execute();
 $themes = $stmt->fetchAll();
+unset($stmt);
 
 $title = $result['Name'];
 $description = $result['Desc'];
@@ -67,6 +69,26 @@ if(isset($_POST['submitQuote']))
     }
 }
 
+$query = "SELECT * FROM themequotemap tqm INNER JOIN quote q ON q.ID = tqm.quoteID INNER JOIN theme t ON t.ID = tqm.themeID WHERE q.TranscriptID = $transcriptID";
+$stmt = $pdo->prepare($query);
+$stmt->execute();
+$Quotesarray = $stmt->fetchAll();
+//var_dump($Quotesarray);
+
+if(!empty($Quotesarray)){
+    foreach($Quotesarray as $row){
+        $stringToHighlight = $row['Text'];
+        $pos = strpos($transcript, $stringToHighlight);
+        $end = $pos + strlen($stringToHighlight) + 7;
+        if ($pos !== false) {
+            var_dump($pos);
+            $transcript = substr_replace($transcript, "<span>", $pos, 0);
+            $transcript = substr_replace($transcript, "</span>", $end, 0);
+        }
+    }
+}
+unset($stmt);
+
 ?>
 
 <!DOCTYPE html>
@@ -103,14 +125,10 @@ if(isset($_POST['submitQuote']))
         <br><br><br><br><br><br><br><br>
         <div class="row card-footer" id="stickyFooter">
             <form class="row" method="POST">
-                <div class="col-8">
+                <div class="col-6">
                     <h4>Comment</h4>
                     <textarea name="comment" rows="3" cols="50" placeholder="Comment goes here"></textarea>
 
-                </div>
-                <div class="col-md-6">
-                    <h4>comment</h4>
-                    <textarea  class="transcriptTextarea" name="comment" rows="3" cols="50" placeholder="Comment goes here"></textarea>
                 </div>
                 <div class="col">
                     <select name="themeSelect[]" class="selectpicker" multiple="multiple" data-live-search="true">
