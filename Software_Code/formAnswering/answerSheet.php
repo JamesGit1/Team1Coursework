@@ -37,10 +37,24 @@ unset($stmt);
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../CSS/style.css">
     <title>Dundata</title>
+
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="../CSS/ethicsStyle.css">
+=======
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
+
 </head>
 
 <body>
+
+<div class="container" id="myDiv">
+    <div class="row">
+        <form name="quiz" method="POST" action="submitAnswers.php"> 
+            <div id="questionPanel">
+                <h1><?php echo $title; ?></h1>
+                <h3><?php echo $description; ?></h3>
+                <?php
+=======
     <div class="container" id="myDiv">
         <div class="row">
             <form name="quiz" method="POST" action="submitAnswers.php">
@@ -48,6 +62,7 @@ unset($stmt);
                     <h1><?php echo $title; ?></h1>
                     <h3><?php echo $description; ?></h3>
                     <?php
+
                 $questionArray = array();
                 foreach ($questions as $row) {
                 if ($row['Type'] == 'text') {
@@ -102,18 +117,65 @@ unset($stmt);
                         $_SESSION['questionArray'] = $questionArray;
                         $_SESSION['questionnaireID'] = $id;
                         ?>
-                    <button type="submit" name="submitQuestion" class="btn btn-primary fas fa-check"
-                        style="float: right;"></button>
+
+                        <a data-modal-target="#modal" type="submit"  name="submitQuestion" class="btn btn-primary fas fa-check"
+                                style="float: right;"></a>
+                              
+                    
+            </div>
+        </form>
+    </div>
+    <div class="row justify-content-end" id="imageRow">
+
+                    <a data-modal-target="#modal" type="submit"  name="submitQuestion" class="btn btn-primary fas fa-check"
+                                style="float: right;"></a>
 
                 </div>
             </form>
         </div>
         <div class="row justify-content-end" id="imageRow">
+
             <img src="../images/logo.png" class="fix">
         </div>
     </div>
 
+
+
+<div class="modal.activate" id="modal">
+        <div id="header">
+            <div id="title">Ethics Form</div>
+            <button data-close-button type="button" class="btn-close btn-close-white" aria-label="Close"></button>
+        </div>
+
+        <div id="body">
+            <p>By clicking continue you are agreeing with the University of Dundee's ethics form </p>
+
+
+            <div id="user_enter">
+                <div class="form-outline">
+                    <label class="form-label" for="form1">Please enter code</label>
+                    <input type="text" id="ethics_txt" class="form-control" />
+                </div>
+
+            </div>
+
+            <div id="user-click">
+                <div id="checkbox">
+                    <input type="checkbox" id="ethics">
+                    <label for="ethics">I agree with the ethics form</label>
+
+                </div>
+                <button type="button" id="continue" class="btn btn-primary" disabled>Continue!</button>
+            </div>
+        </div>
+    </div>
+    <div id="overlay"></div>
+    </div>
+
+<script type="text/javascript">
+=======
     <script type="text/javascript">
+
     function auto_grow(element) {
         element.style.height = "5px";
         element.style.height = (element.scrollHeight) + "px";
@@ -123,6 +185,7 @@ unset($stmt);
 
 </html>
 
+<script src="../createForm/NewmodalJS.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
