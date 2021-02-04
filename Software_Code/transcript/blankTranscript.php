@@ -5,7 +5,20 @@ require_once('../conn.php');
 require('../accountSystem/loginStatus.php');
 //Sessions Variables to get ID's
 
-// Submits the entire questionnaire
+
+$query = "SELECT * FROM `transcript` WHERE transcript.id = :transcriptID";
+$stmt = $pdo->prepare($query);
+$stmt->bindParam(":transcriptID", $transcriptID, PDO::PARAM_STR);
+$transcriptID = $_SESSION["transcriptID"];
+$stmt->execute();
+$result = $stmt->fetch();
+
+$title = $result['Name'];
+$description = $result['Desc'];
+
+
+unset($stmt);
+
 if (isset($_POST['submitTranscript']))
 {
     $query = "UPDATE `transcript` SET `Transcript` = :transcript WHERE `ID` = :transcriptID;";
@@ -46,12 +59,10 @@ if (isset($_POST['submitTranscript']))
     <div class="container" id="myDiv">
         <div class="row">
             <form method="post" class="newForm" id="submitQuestionnaire">
-                <input type="text" id="formName" style="margin-bottom: 0px;"
-                    class="card-title question-title" name="formName" value="New Transcript Project" />
-                <textarea name="formDesc" class="card-title question-title" id="formDescription"
-                    oninput="auto_grow(this)">Description for new transcript project</textarea>
-                <button type="submit" class="btn btn-primary" name="updateForm" method="post"
-                    id="submitForm">Update</button>
+                <input type="text" readonly id="formName" style="margin-bottom: 0px;"
+                    class="card-title question-title" name="formName" value="<?php echo $title; ?>" />
+                <textarea readonly name="formDesc" class="card-title question-title" id="formDescription"
+                    oninput="auto_grow(this)"><?php echo $description ?></textarea>
             </form>      
         </div>
 
@@ -64,7 +75,7 @@ if (isset($_POST['submitTranscript']))
         </div>
         <div class="row" >
             <form method="post" class="newForm" id="submitTranscript">
-                <textarea name="transcriptText" placeholder="Enter transcript here" class="card-title question-title"
+                <textarea required name="transcriptText" placeholder="Enter transcript here" class="card-title question-title"
                     id="transcriptForm" oninput="auto_grow(this)"></textarea>
                 <button type="submit" class="btn btn-primary" name="submitTranscript" method="post"
                     id="submitTranscript">Submit Transcript</button>

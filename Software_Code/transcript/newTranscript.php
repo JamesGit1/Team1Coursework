@@ -21,6 +21,8 @@ if(isset($_POST['submit']))
         $result = $stmt->fetchColumn();
 
         $_SESSION['transcriptID'] = $result;    }
+
+        header("Location: blankTranscript.php");
 }
 ?>
 
