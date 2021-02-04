@@ -94,46 +94,47 @@ if(isset($_POST['submitQuote']))
                 name="formName" value="<?php echo $title; ?>" />
             <h4><?php echo $description;?></h4>
         </div>
-        <div class="row">
-            <textarea readonly id="note"><?php echo $transcript;?></textarea>
+        <div class="row" id="transcriptRow">
+            <div class="col-md-6">
+                <div class="row" id="transRow">
+                    <h4>Transcript</h4>
+                    <textarea readonly class="transcriptTextarea" id="note"><?php echo $transcript;?></textarea>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <form method="POST">
+                    <div class="row" id="transRow">
+                        <h4>Comment</h4>
+                        <textarea name="comment" rows="3" cols="50" placeholder="Comment goes here"></textarea>
+                    </div>
+                    <div class="row" id="transRow">
+                        <select name="themeSelect[]" class="selectpicker" multiple="multiple" data-live-search="true">
+                            <option disabled value="" selected>Select a theme</option>
+                            <?php 
+                            foreach ($themes as $theme) 
+                            {
+                            ?>
+                                <option value="<?php echo $theme['ID']; ?>"><?php echo $theme['Name']; ?></option>
+                            <?php 
+                            } 
+                            ?>
+                        </select>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal">
+                            Add New Theme
+                        </button>
+                    </div>
+                    <div class="row" id="transRow">
+                        <h4>Selected text</h4>
+                        <textarea name="highlightedText" readonly id="sel" rows="3" cols="50"></textarea>
+                        <button class="btn btn-primary" type="submit" name="submitQuote">Add Quote</button>
+                    </div>
+                </form>
+
+            </div>
+            
         </div>
-        <div class="row justify-content-end" id="imageRow">
+        <div class="row justify-content-end" id="transRow">
             <img src="../images/logo.png" class="fix">
-        </div>
-        <br><br><br><br><br><br><br><br>
-        <div class="row card-footer" id="stickyFooter">
-            <form class="row" method="POST">
-                <div class="col-8">
-                    <h4>Comment</h4>
-                    <textarea name="comment" rows="3" cols="50" placeholder="Comment goes here"></textarea>
-
-                </div>
-                <div class="col-md-6">
-                    <h4>comment</h4>
-                    <textarea  class="transcriptTextarea" name="comment" rows="3" cols="50" placeholder="Comment goes here"></textarea>
-                </div>
-                <div class="col">
-                    <select name="themeSelect[]" class="selectpicker" multiple="multiple" data-live-search="true">
-                        <option disabled value="" selected>Select a theme</option>
-                        <?php 
-                        foreach ($themes as $theme) 
-                        {
-                        ?>
-                            <option value="<?php echo $theme['ID']; ?>"><?php echo $theme['Name']; ?></option>
-                        <?php 
-                        } 
-                        ?>
-                    </select>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal">
-                        Add New
-                    </button>
-                </div>
-                <h4>Selected text</h4>
-                <textarea name="highlightedText" readonly id="sel" rows="3" cols="50"></textarea>
-                <button type="submit" name="submitQuote">Submit</button>
-
-            </form>
-
         </div>
     </div>
 
@@ -186,6 +187,7 @@ $(function() {
     $("#nav-placeholder").load("../navBar.php");
 });
 autosize(document.getElementById("note"));
+
 </script>
 
 <script src="selectionText.js"></script>
