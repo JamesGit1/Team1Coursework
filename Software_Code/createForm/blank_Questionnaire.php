@@ -221,35 +221,14 @@ if (isset($_POST['updateForm']))
     <link rel="stylesheet" type="text/css" href="../CSS/style.css">
     <title>Dundata</title>
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
+
+    <div id="nav-placeholder">
+
+    </div>
 </head>
 
 <!--Navigation bar -->
-<nav class="navbar navbar-expand navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="../dashboard.php" id="logo">
-            <img src="../images/University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
-                style="margin-right: 20px;">Home
-        </a>
-        <form class="d-flex">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                        style="margin-right: 3em;">
-                        Hello, <?php if(isset($name)){echo $name;}else{echo "user";}?>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="../accountSystem/accountDetails.php">Account Details</a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="../accountSystem/logOut.php">Log Out</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </form>
-    </div>
-</nav>
+
 
 <body>
     <div class="container" id="myDiv">
@@ -393,3 +372,9 @@ if (isset($_POST['updateForm']))
 </script>
 <script src="https://kit.fontawesome.com/8741ca18b0.js" crossorigin="anonymous"></script>
 <script src="addQuestions.js"></script>
+
+<script>
+    $(function () {
+        $("#nav-placeholder").load("../navBar.php");
+    });
+</script>
