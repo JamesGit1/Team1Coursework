@@ -10,12 +10,61 @@ $transcriptID = $_SESSION["transcriptID"];
 $stmt->execute();
 $result = $stmt->fetch();
 
+$query = "SELECT * FROM theme";
+$stmt = $pdo->prepare($query);
+$stmt->execute();
+$themes = $stmt->fetchAll();
+
 $title = $result['Name'];
 $description = $result['Desc'];
 $transcript = $result['Transcript'];
 
-if(isset($_POST['submitDetails'])){
+if(isset($_POST['submitTheme']))
+{
+    $query = "INSERT INTO theme (`Name`,`Description`,`Colour`) VALUES (:name,:description,:colour);";
     
+    $stmt = $pdo->prepare($query);
+
+    $stmt->bindParam(":name", $name, PDO::PARAM_STR);
+    $stmt->bindParam(":description", $description, PDO::PARAM_STR);
+    $stmt->bindParam(":colour", $colour, PDO::PARAM_STR);
+
+    $name = $_POST['themeName'];
+    $description = $_POST['themeDescription'];
+    $colour = $_POST['themeColourpicker'];
+    
+    $stmt->execute();
+    header("Refresh:0");
+}
+
+if(isset($_POST['submitQuote']))
+{
+    $query = "CALL `createQuoteReturnID` (:text,:transcriptID,:comment)";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(":text", $text, PDO::PARAM_STR);
+    $stmt->bindParam(":transcriptID", $transcriptID, PDO::PARAM_STR);
+    $stmt->bindParam(":comment", $comment, PDO::PARAM_STR);
+
+    $text = $_POST['highlightedText'];
+    $comment = $_POST['comment'];
+
+    $stmt->execute();
+    $quoteID = $stmt->fetchColumn();
+    unset($stmt);
+
+    $themesList = $_POST['themeSelect'];
+
+    foreach($themesList as $theme)
+    {
+        $query = "INSERT INTO `themequotemap` (`quoteID`,`themeID`) VALUES (:quoteID,:themeID)";
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(":quoteID", $quoteID, PDO::PARAM_STR);
+        $stmt->bindParam(":themeID", $themeID, PDO::PARAM_STR);
+
+        $themeID = $theme;
+        $stmt->execute();
+        unset($stmt);
+    }
 }
 
 ?>
@@ -53,21 +102,35 @@ if(isset($_POST['submitDetails'])){
         </div>
         <br><br><br><br><br><br><br><br>
         <div class="row card-footer" id="stickyFooter">
+            <form class="row" method="POST">
+                <div class="col-8">
+                    <h4>Comment</h4>
+                    <textarea name="comment" rows="3" cols="50" placeholder="Comment goes here"></textarea>
 
-            <form class="row"  id="imageRow" action="post">
-                <div class="col-md-5">
-                    <h4>Highlighted text</h4>
-                    <textarea class="transcriptTextarea" name="highlightedText" readonly id="sel" rows="3" cols="50"></textarea>
                 </div>
                 <div class="col-md-6">
                     <h4>comment</h4>
                     <textarea  class="transcriptTextarea" name="comment" rows="3" cols="50" placeholder="Comment goes here"></textarea>
                 </div>
-                <div class="col-md-1">
+                <div class="col">
+                    <select name="themeSelect[]" class="selectpicker" multiple="multiple" data-live-search="true">
+                        <option disabled value="" selected>Select a theme</option>
+                        <?php 
+                        foreach ($themes as $theme) 
+                        {
+                        ?>
+                            <option value="<?php echo $theme['ID']; ?>"><?php echo $theme['Name']; ?></option>
+                        <?php 
+                        } 
+                        ?>
+                    </select>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal">
                         Add New
                     </button>
                 </div>
+                <h4>Selected text</h4>
+                <textarea name="highlightedText" readonly id="sel" rows="3" cols="50"></textarea>
+                <button type="submit" name="submitQuote">Submit</button>
 
             </form>
 
@@ -87,24 +150,21 @@ if(isset($_POST['submitDetails'])){
                     <form class="row g-3" style="padding-top: 0px;" method="post">
                         <div class="col-md-6">
                             <label for="inputfirstname" class="form-label">Theme Name *</label>
-                            <input type="text" class="form-control" maxlength="100" id="inputfirstname" name="firstname"
+                            <input type="text" class="form-control" maxlength="100" id="inputfirstname" name="themeName"
                                 required>
                         </div>
                         <div class="col-md-12">
                             <label for="inputfirstname" class="form-label">Description</label>
-                            <input type="text" class="form-control" maxlength="256" id="inputfirstname" name="firstname"
-                                required>
+                            <input type="text" class="form-control" maxlength="256" id="inputfirstname" name="themeDescription">
                         </div>
                         <div class="col-md-12">
-                            <label for="colourpicker">Select the colour of this theme!</label>
-                            <input type="color" id="colourpicker" name="colourpicker" value="#ffff00"><br><br>
+                            <label for="colourpicker">Select the colour of this theme:</label>
+                            <input type="color" id="colourpicker" name="themeColourpicker" value="#ffff00"><br><br>
                         </div>
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" name="submitDetails" method="post" class="btn btn-primary">Save
-                                changes
-                            </button>
+                            <button type="submit" name="submitTheme" method="post" class="btn btn-primary">Add Theme</button>
                         </div>
                     </form>
                     <!-- Form Body End -->
