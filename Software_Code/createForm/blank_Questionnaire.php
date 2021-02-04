@@ -78,7 +78,6 @@ if (isset($_POST['submitRadioQuestions']))
     	$stmt = $pdo->prepare($query);
     	$stmt->bindParam(":radioQuestionID", $radioQuestionID);
     	$stmt->bindParam(":option", $option);
-        var_dump($id);
     	$option = $_POST[$id];
     	$stmt->execute();
     	unset($stmt);
