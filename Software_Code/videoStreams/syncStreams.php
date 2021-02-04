@@ -34,15 +34,15 @@ date_default_timezone_set('Europe/London');
 
         <div class="row" id=videoRow1>
             <div class="col-sm">
-                <input class="form-control" type="file" accept="video/*" capture="camera" id="fileUpload1" name = "videoUpload[]" multiple="multiple">>
+                <input class="form-control" type="file" accept="video/*" capture="camera" id="fileUpload1" name = "videoUpload[]" multiple="multiple">
                 <video width="100%" id="player1" controls></video>
             </div>
             <div class="col-sm">
-                <input class="form-control" type="file" accept="video/*" capture="camera" id="fileUpload2" name = "videoUpload[]" multiple="multiple">>
+                <input class="form-control" type="file" accept="video/*" capture="camera" id="fileUpload2" name = "videoUpload[]" multiple="multiple">
                 <video width="100%" id="player2" controls></video>
             </div>
             <div class="col-sm">
-                <input class="form-control" type="file" accept="video/*" capture="camera" id="fileUpload3" name = "videoUpload[]" multiple="multiple">>
+                <input class="form-control" type="file" accept="video/*" capture="camera" id="fileUpload3" name = "videoUpload[]" multiple="multiple">
                 <video width="100%" id="player3" controls></video>
             </div>
         </div>
