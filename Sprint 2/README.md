@@ -42,3 +42,17 @@ After that we quickly discussed agile methods and the marking criteria, I showed
 product and sprint backlog. 
 
 ---
+
+## Day 4 - Scrum Meeting summary
+The Scrum Master for this meeting was Joshua Bradley
+
+### Members Present:
+Josh, Jesse, Luke, James R, James S, Alan, Harry
+
+### Summary of Conversation:
+We started by going through what we had each achieved the previous day and discussed our future plans for the day in a stand-up setting. We had achieved being able to display 
+unlimited videos, change account details and setting up videos with the databse. We planned to continue these, and beign work on our sprint 2 review.
+Following this we discussed impediments and the impediment log. An issue arose when uploading videos when many had been added, this will be solved today.
+After that we talked about pair programming and the video, the sprint review and the report.
+
+---
