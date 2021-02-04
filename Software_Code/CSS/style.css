@@ -39,6 +39,7 @@ img {
 }
 #imageRow{
 	padding-top: 1em; 
+  width: 100%;
 }
 .navbar{
 	background: #4365E2;
@@ -59,14 +60,21 @@ img {
 .card{
 	border: 0.2em solid rgb(86 116 228);
 	margin-bottom: 1em;
-    margin-top: 1em;
-    width: 100%;
-    margin-left: 0px;
-    margin-right: 0px;
+  margin-top: 1em;
+  width: 100%;
+  margin-left: 0px;
+  margin-right: 0px;
 }
+
 
 #height{
 	height: 90%;
+}
+
+#imageRow a{
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .btn-primary {
@@ -111,8 +119,12 @@ textarea#formDescription {
     border: 3px solid #5674e4;
 }
 
-
-
+@media (max-width: 1000px){
+  .col-md-4 {
+      flex: 0 0 auto;
+      width: 100%;
+  }
+}
 textarea:focus, input#formName:focus {
     outline: none;
 }
@@ -130,6 +142,9 @@ textarea:focus, input#formName:focus {
 		padding-bottom: 0.2em;
 		font-size: 3em;
 	}
+  .container{
+    margin-top: 0;
+  }
 }
 
 @media screen and (max-width: 375px) {
@@ -214,9 +229,9 @@ textarea:focus, input#formName:focus {
   margin: 0 auto;
   padding-top: 20px;
   background: white;
-  border: 0.4em solid rgb(86 116 228);
+  /*border: 0.4em solid rgb(86 116 228);*/
   border-radius: .33rem;
-  box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+  box-shadow: 0px 60px 60px rgb(0 0 0 / 50%);
 }
 .form-signin .form-control {
   position: relative;
@@ -240,4 +255,43 @@ textarea:focus, input#formName:focus {
   background: url("../images/background.png");
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+#homepageIcon .card-body{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+#homepageIcon #imageRow {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+#homepageIcon a{
+  margin-top:auto;
+}
+
+#assignRow{
+  padding-top: 0.2em;
+}
+
+.select select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* Add some styling */
+  
+  width: 100%;
+  max-width: 320px;
+  height: 50px;
+  margin: 5px 0px;
+  padding: 0px 24px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #333;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  -ms-word-break: normal;
+  word-break: normal;
 }

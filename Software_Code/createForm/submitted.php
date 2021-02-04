@@ -16,16 +16,13 @@ $link = $_SESSION["questionnaireLink"];
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../CSS/style.css">
     <title>Dundata</title>
-    <link rel="icon" type="image/x-icon" href="../images/favicon.ico"/>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
+    <div id="nav-placeholder">
+
+    </div>
 </head>
 
 <body>
-    <nav class="navbar navbar-dark">
-        <a class="navbar-brand" href="../dashboard.php">
-            <img src="../images/University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
-                 style="margin-right: 20px;">Home
-        </a>
-    </nav>
 
     <div class="container">
         <div class="row">
@@ -61,3 +58,9 @@ $link = $_SESSION["questionnaireLink"];
 </body>
 
 </html>
+<script src="jquery-3.5.1.min.js"></script>
+<script>
+    $(function () {
+        $("#nav-placeholder").load("../navBar.php");
+    });
+</script>

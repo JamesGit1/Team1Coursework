@@ -1,10 +1,13 @@
 <?php
 session_start();
-
-require('accountSystem/loginStatus.php');
-
 if(isset($_SESSION['name'])){
-    $username = $_SESSION['name'];
+    $name = $_SESSION['name'];
+}
+if(!isset($_SESSION["loggedIn"])|| $_SESSION["loggedIn"] !==true)
+{
+    
+    header("location: accountSystem/logIn.php");
+    exit;
 }
 
 ?>
@@ -22,31 +25,32 @@ if(isset($_SESSION['name'])){
     <title>Dundata Dashboard</title>
 
     <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+    <nav class="navbar navbar-expand navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="dashboard.php" id="logo">
+                <img src="images/University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
+                     style="margin-right: 20px;">Home
+            </a>
+            <form class="d-flex">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" style="margin-right: 3em;">
+                            Hello, <?php if(isset($name)){echo $name;}else{echo "user";}?>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="accountSystem/accountDetails.php">Account Details</a></li>
+                            <?php if ($_SESSION["role"] == "labmanager") {
+                                echo '<li><a class="dropdown-item" href="accountSystem/manageUsers.php">Manage Researchers</a></li>';
+                            } ?>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="accountSystem/logOut.php">Log Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </nav>
 </head>
-
-<nav class="navbar navbar-expand navbar-dark">
-  <div class="container-fluid">
-  <a class="navbar-brand" href="index.html" id="logo">
-        <img src="images/University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
-            style="margin-right: 20px;">Home
-    </a>
-      <form class="d-flex">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-end">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" style="margin-right: 3em;">
-            Hello, <?php if(isset($username)){echo $username;}else{echo "user";}?>
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">View Account</a></li>
-            <li><a class="dropdown-item" href="#">Something</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="accountSystem/logOut.php">Log Out</a></li>
-          </ul>
-        </li>
-      </ul>
-      </form>
-  </div>
-</nav>
 
 <body>
     <div class="container">
@@ -54,41 +58,90 @@ if(isset($_SESSION['name'])){
             <h1><u id="fade">Welcome to Dundata</u></h1>
         </div>
         <div class="row" id="homepageIcon">
-            <div class="col-md-4" align="center">
+            <div class="col-md-4 col-sm-6" align="center">
                 <div class="card text-center" id="height">
                     <div class="card-body">
-                        <h3 class="card-title">Create a questionnaire</h3>
-                        <p class="card-text">Use our create questionnaire tool to help you streamline your questionnaire
+                        <div class="row" id="imageRow">
+                            <h3 class="card-title">Create a questionnaire</h3>
+                        </div>
+                        <div class="row" id="imageRow">
+                            <p class="card-text">Use our create questionnaire tool to help you streamline your questionnaire
                             process</p>
+                        </div>
                         <!--href="new_Questionnaire.php"-->
-                        <a data-modal-target="#modal" class="btn btn-primary">Create!</a>
+                        <div class="row" id="imageRow">
+                            <a data-modal-target="#modal" class="btn btn-primary">Create!</a>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-4" align="center">
                 <div class="card text-center" id="height">
                     <div class="card-body">
-                        <h3 class="card-title">View a questionnaire</h3>
-                        <p class="card-text">View all your questionnaire responses on the website</p>
-                        <a href="dataViewing/dataViewer.php" class="btn btn-primary">View!</a>
+                        <div class="row" id="imageRow">
+                            <h3 class="card-title">View a questionnaire</h3>
+                        </div>
+                        <div class="row" id="imageRow">
+                            <p class="card-text">View all your questionnaire responses on the website</p>
+                        </div>
+                        <div class="row" id="imageRow">
+                            <a href="dataViewing/dataViewer.php" class="btn btn-primary">View!</a>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-4" align="center">
                 <div class="card text-center" id="height">
                     <div class="card-body">
-                        <h3 class="card-title">Export a questionnaire</h3>
-                        <p class="card-text">Export your questionnaire responses as CSV files to download</p>
-                        <a href="exportData/exportData.php" class="btn btn-primary">Export!</a>
+                        <div class="row" id="imageRow">
+                            <h3 class="card-title">Export a questionnaire</h3>
+                        </div>
+                        <div class="row" id="imageRow">
+                            <p class="card-text">Export your questionnaire responses as CSV files to download</p>
+                        </div>
+                        <div class="row" id="imageRow">
+                            <a href="exportData/exportData.php" class="btn btn-primary">Export!</a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-end" id="imageRow">
-                <img src="images/logo.png" class="fix" id="fade">
+            <div class="col-md-4" align="center">
+                <div class="card text-center" id="height">
+                    <div class="card-body">
+                        <div class="row" id="imageRow">
+                            <h3 class="card-title">Analyse a video</h3>
+                        </div>
+                        <div class="row" id="imageRow">
+                            <p class="card-text">Use our analysis tool to help you tag and comment on synchronized videos</p>
+                        </div>
+                        <!--href="new_Questionnaire.php"-->
+                        <div class="row" id="imageRow">
+                            <a href="videoStreams/syncStreams.php" class="btn btn-primary">Analyse!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="col-md-4" align="center">
+                <div class="card text-center" id="height">
+                    <div class="card-body">
+                        <div class="row" id="imageRow">
+                            <h3 class="card-title">Manage Questionnaire Permissions</h3>
+                        </div>
+                        <div class="row" id="imageRow">
+                            <p class="card-text">Assign other researchers to your questionnaires, so they can view the data collected</p>
+                        </div>
+                        <div class="row" id="imageRow">
+                            <a href="accountSystem/researcherAssign.php" class="btn btn-primary">Manage!</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
+        <div class="row justify-content-end" id="imageRow">
+            <img src="images/logo.png" class="fix" id="fade">
+        </div>
+    </div>
 
     <div class="modal.activate" id="modal">
         <div id="header">

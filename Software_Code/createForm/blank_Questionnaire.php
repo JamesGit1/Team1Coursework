@@ -118,6 +118,7 @@ if (isset($_POST['submitQuestions']))
     $contents = $_POST['questionText'];
     $stmt->execute();
     unset($stmt);
+
     header("Refresh:0");
 }
 
@@ -160,6 +161,34 @@ if (isset($_POST['submitForm']))
     $formName = $_POST['formName'];
     $formDescription = $_POST['formDesc'];
     $stmt->execute();
+    unset($stmt);
+
+    $query = "INSERT INTO `questionnaireresearchermap` (`researcherID`,`questionnaireID`) VALUES (:creatorID,:questionnaireID)";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(":questionnaireID", $id);
+    $stmt->bindParam(":creatorID", $researcherID);
+    $researcherID = $_SESSION['UserID'];
+    $stmt->execute();
+    unset($stmt);
+
+    $query = "SELECT `ID` FROM `account` WHERE `Role` = 'labmanager'";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+    $labmanagers = $stmt->fetchAll();
+    unset($stmt);
+
+    foreach ($labmanagers as $labman) {
+        $query = "INSERT INTO `questionnaireresearchermap` (`researcherID`,`questionnaireID`) VALUES (:creatorID,:questionnaireID)";
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(":questionnaireID", $id);
+        $stmt->bindParam(":creatorID", $labman['ID']);
+        $researcherID = $_SESSION['UserID'];
+        $stmt->execute();
+        unset($stmt);
+    }
+
+
+
     $_SESSION["questionnaireLink"] = "answerSheet.php?id=".$questionnaireID;
     header("Location: submitted.php");
 }
@@ -192,30 +221,30 @@ if (isset($_POST['updateForm']))
     <link rel="stylesheet" type="text/css" href="../CSS/style.css">
     <title>Dundata</title>
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
+
+    <div id="nav-placeholder">
+
+    </div>
 </head>
 
 <!--Navigation bar -->
-<nav class="navbar navbar-dark">
-    <a class="navbar-brand" href="../index.html">
-        <img src="../images/University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
-            style="margin-right: 20px;">Home
-    </a>
-</nav>
+
 
 <body>
     <div class="container" id="myDiv">
         <div class="row">
             <form method="post" class="newForm" id="submitQuestionnaire">
-                    <input type="text" id="formName" style="margin-bottom: 0px;" value="<?php echo $title ?>"
-                        class="card-title question-title" name="formName" />
-                    <div class="edittip">
-                        <em style="opacity: 0.5;">click to edit title or description!</em>
-                    </div>
+                <input type="text" id="formName" style="margin-bottom: 0px;" value="<?php echo $title ?>"
+                    class="card-title question-title" name="formName" />
+                <div class="edittip">
+                    <em style="opacity: 0.5;">click to edit title or description!</em>
+                </div>
                 <textarea name="formDesc" class="card-title question-title" id="formDescription"
                     oninput="auto_grow(this)"><?php echo $description ?></textarea>
-              
-                    <p><em>Remember to press 'Update' when you change the title/description <strong>BEFORE</strong> adding a question to avoid losing your changes!</em></p>
-                    <button type="submit" class="btn btn-primary" name="updateForm" method="post"
+
+                <p><em>Remember to press 'Update' when you change the title/description <strong>BEFORE</strong> adding a
+                        question to avoid losing your changes!</em></p>
+                <button type="submit" class="btn btn-primary" name="updateForm" method="post"
                     id="submitForm">Update</button>
 
             </form>
@@ -327,6 +356,7 @@ if (isset($_POST['updateForm']))
     }
     </script>
 </body>
+
 </html>
 
 
@@ -342,3 +372,9 @@ if (isset($_POST['updateForm']))
 </script>
 <script src="https://kit.fontawesome.com/8741ca18b0.js" crossorigin="anonymous"></script>
 <script src="addQuestions.js"></script>
+
+<script>
+    $(function () {
+        $("#nav-placeholder").load("../navBar.php");
+    });
+</script>

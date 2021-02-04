@@ -6,7 +6,8 @@ require_once('../conn.php');
 	$query = "SELECT q.id,q.`name` as `Title`,COUNT(DISTINCT(`participant ID`)) AS `responses` FROM answer a 
 INNER JOIN question qn ON a.`question ID` = qn.id 
 INNER JOIN questionnaire q ON qn.`questionnaire ID` = q.ID
-WHERE q.`creator ID` = :userID
+INNER JOIN questionnaireresearchermap qrm ON qrm.questionnaireID = q.id
+WHERE qrm.`researcherID` = :userID
 GROUP BY q.id";
 	$stmt = $pdo->prepare($query);
     $stmt->bindParam(":userID", $userID, PDO::PARAM_STR);
@@ -27,16 +28,13 @@ GROUP BY q.id";
     <link rel="stylesheet" type="text/css" href="../CSS/style.css">
 	<title>Export Data</title>
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico"/>
+    <div id="nav-placeholder">
+
+    </div>
 </head>
 
-<nav class="navbar navbar-dark">
-    <a class="navbar-brand" href="../index.html">
-        <img src="../images/University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
-             style="margin-right: 20px;">Home
-    </a>
-</nav>
-
 <body>
+
     <div class="container">
         <div class="row">
             <h1><u>Available Questionnaires</u></h1>
@@ -68,9 +66,13 @@ GROUP BY q.id";
         </div>
     </div>
 
-
-
-
 </body>
 
 </html>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+<script>
+    $(function () {
+        $("#nav-placeholder").load("../navBar.php");
+    });
+</script>

@@ -70,17 +70,10 @@ if (isset($_POST['submitQuestion'])) {
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../CSS/style.css">
     <title>Dundata</title>
-    <link rel="icon" type="image/x-icon" href="../images/favicon.ico"/>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
 </head>
 
 <body>
-    <nav class="navbar navbar-dark">
-        <a class="navbar-brand">
-            <img src="../images/University_of_Dundee_shield_white.png" width="27" height="37" alt="Uni Logo"
-                 style="margin-right: 20px;">
-        </a>
-    </nav>
-
     <div class="container">
         <div class="row">
             <h1><u>Answers Submitted!</u></h1>
