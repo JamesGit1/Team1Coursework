@@ -227,9 +227,6 @@ if (isset($_POST['updateForm']))
     </div>
 </head>
 
-<!--Navigation bar -->
-
-
 <body>
     <div class="container" id="myDiv">
         <div class="row">
@@ -359,6 +356,13 @@ if (isset($_POST['updateForm']))
 
 </html>
 
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+<script>
+    $(function () {
+        $("#nav-placeholder").load("../navBar.php");
+    });
+</script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
@@ -373,8 +377,3 @@ if (isset($_POST['updateForm']))
 <script src="https://kit.fontawesome.com/8741ca18b0.js" crossorigin="anonymous"></script>
 <script src="addQuestions.js"></script>
 
-<script>
-    $(function () {
-        $("#nav-placeholder").load("../navBar.php");
-    });
-</script>
