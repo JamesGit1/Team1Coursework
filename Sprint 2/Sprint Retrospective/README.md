@@ -2,7 +2,7 @@
 
 ## What have we successfully improved since the last retrospecive:
 
--[] Try be on topic in meetings
+- [ ] Try be on topic in meetings
 
 -[] Finding/making (relevant) tasks instead of delegating. Be more flexible and cross functional - dont give specific hardset roles
 
