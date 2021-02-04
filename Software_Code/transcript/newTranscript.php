@@ -54,7 +54,7 @@ if(isset($_POST['submit']))
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Title</label>
                     <input type="text" name="name" class="form-control" id="exampleFormControlInput1"
-                        placeholder="e.g. Quiz" required>
+                        placeholder="e.g. Firday Meetup" required>
                 </div>
                 <div class="form-group">
                     <label for="txtarea">Description</label>
