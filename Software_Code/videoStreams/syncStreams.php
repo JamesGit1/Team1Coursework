@@ -30,7 +30,7 @@ date_default_timezone_set('Europe/London');
 </div>
 <div class="row" id="imageRow">
 
-    <form action="submitTable.php" id="tableForm" method="post">
+    <form action="submitTable.php" id="tableForm" method="post" enctype='multipart/form-data'>
 
         <div class="row" id=videoRow1>
             <div class="col-sm">
@@ -68,21 +68,6 @@ date_default_timezone_set('Europe/London');
             </tr>
             </thead>
             <tbody id="timeStamps">
-            <!-- <tr>
-              <th scope="row">1</th>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-              <td>5</td>
-<tr>
-<th scope="row">'+ row +'</th>
-<td>'+timestampArray[0]+'</td>
-<td>'+timestampArray[1]+'</td>
-<td>'+timestampArray[2]+'</td>
-<td>rrr</td>
-</tr>
-            </tr> -->
             </tbody>
 
         </table>

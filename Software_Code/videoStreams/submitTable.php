@@ -48,8 +48,7 @@ if (isset($_POST['test'])) {
 // Make sure file path variable is set
         if ($tmpFilePath != "") {
             //Setup file path everytime
-            // TODO this will not work on the live version
-            $newFilePath = "../../../../videos/" . $_FILES['videoUpload']['name'][$i];
+            $newFilePath = "../../../videos/" . $_FILES['videoUpload']['name'][$i];
 
             echo(($_FILES['videoUpload']['error'][$i]));
             //Upload the file into the temp dir
