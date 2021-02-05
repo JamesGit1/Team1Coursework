@@ -123,7 +123,7 @@ unset($stmt);
 
 
             </div>
-
+          <!--Ethics form modal -->
             <div class="modal.activate" id="modal">
                 <div id="header">
                     <div id="title">Ethics Form</div>
