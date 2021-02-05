@@ -73,7 +73,6 @@ $query = "SELECT * FROM themequotemap tqm INNER JOIN quote q ON q.ID = tqm.quote
 $stmt = $pdo->prepare($query);
 $stmt->execute();
 $Quotesarray = $stmt->fetchAll();
-//var_dump($Quotesarray);
 
 if(!empty($Quotesarray)){
     foreach($Quotesarray as $row){
@@ -91,7 +90,6 @@ if(!empty($Quotesarray)){
         }
 
     }
-    var_dump($transcript);
 }
 unset($stmt);
 
@@ -136,10 +134,10 @@ unset($stmt);
                         <textarea name="comment" rows="3" cols="50" placeholder="Comment goes here"></textarea>
                     </div>
                     <div class="row" id="transRow">
-                        <select name="themeSelect[]" class="selectpicker" multiple="multiple" data-live-search="true">
-                            <option disabled value="" selected>Select a theme</option>
+                    <h4>Select a theme</h4>
+                        <select required name="themeSelect[]" class="selectpicker" multiple="multiple" data-live-search="true">
                             <?php
-                            foreach ($themes as $theme)
+                            foreach ($themes as $theme) 
                             {
                             ?>
                             <option value="<?php echo $theme['ID']; ?>"><?php echo $theme['Name']; ?></option>
@@ -165,7 +163,7 @@ unset($stmt);
             </div>
 
         </div>
-        <div class="row justify-content-end" id="transRow">
+        <div class="row justify-content-end" id="transRow" style="padding-top: 30px;">
             <img src="../images/logo.png" class="fix">
         </div>
     </div>
