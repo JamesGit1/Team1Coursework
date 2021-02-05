@@ -12,6 +12,7 @@ if (isset($_POST['submitDetails'])) {
     $passcheck = $stmt->fetch();
     unset($stmt);
 
+
     $oldpassword = $_POST['oldpassword'];
     $oldpassword = hash('sha256', $oldpassword);
 
@@ -27,7 +28,7 @@ if (isset($_POST['submitDetails'])) {
 
         $newpassword = $_POST['newpassword'];
         if (empty($newpassword)) {
-            $password = hash($_POST['oldpassword']);
+            $password = $passcheck["Password"];
         } else {
             $password = $newpassword;
             $password = hash('sha256', $password);
