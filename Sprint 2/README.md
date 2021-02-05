@@ -64,6 +64,8 @@ The Scrum Master for this meeting was Joshua Bradley
 Josh, Jesse, Luke, James R, James S, Alan, Harry
 
 ### Summary of Conversation:
-
+We discussed our achievements of the previous day, which involved a lot of transcripts and code reviews. 
+Then we talked about our plans for the day, mentioning our sprint review practise at 12pm, the report and pair programming video.
+We also planned what we would present in the sprint review and what backlog items would be ideal for sprint 3
 
 ---

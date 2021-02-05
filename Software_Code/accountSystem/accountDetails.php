@@ -2,6 +2,8 @@
 require_once('../conn.php');
 session_start();
 require('loginStatus.php');
+
+// Checks what the user is when submit is pressed
 if (isset($_POST['submitDetails'])) {
     $id = $_SESSION['UserID'];
     $query = "SELECT * FROM account WHERE `ID` = $id";
@@ -13,6 +15,7 @@ if (isset($_POST['submitDetails'])) {
     $oldpassword = $_POST['oldpassword'];
     $oldpassword = hash('sha256', $oldpassword);
 
+// Compare old password typed in
     if ($oldpassword == $passcheck["Password"]) {
         $query = "UPDATE account SET `firstname` = :firstName, `Password` = :password, `lastname` = :lastName WHERE `ID` = $id;";
         $stmt = $pdo->prepare($query);
@@ -41,7 +44,7 @@ if (isset($_POST['submitDetails'])) {
     }
     unset($passcheck);
 }
-
+// Session variable to check
 if (isset($_SESSION['name'])) {
     $name = $_SESSION['name'];
     $id = $_SESSION['UserID'];
@@ -72,12 +75,13 @@ unset($stmt);
     <div id="nav-placeholder">
 
     </div>
-
+      <!-- Container that hold details -->
     <div class="container">
         <div class="row">
             <h1><u>Account Details</u></h1>
         </div>
         <div class="row" style="padding-top: 20px;">
+                <!-- Table holds all details -->
             <table class="table">
                 <thead>
                     <tr>
@@ -173,7 +177,9 @@ unset($stmt);
     </div>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
+
     <script>
+    // Place the nav bar
     $(function() {
         $("#nav-placeholder").load("../navBar.php");
     });
