@@ -3,7 +3,9 @@
 
 
 ### Link to live site: https://dundata.azurewebsites.net/
-
+### The login for the lab manager
+- Username: labman
+- Password: pass
 
 ### Group Members:
 - Joshua Bradley (180004997): SCRUM Master
