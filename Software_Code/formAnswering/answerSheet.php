@@ -58,7 +58,9 @@ unset($stmt);
                 <?php
 
                 $questionArray = array();
+                // for each question, display it as a card that can be written in
                 foreach ($questions as $row) {
+                    // if the question requires a text answer, display it like this
                     if ($row['Type'] == 'text') {
                         ?>
                         <div class="card">
@@ -67,8 +69,6 @@ unset($stmt);
                                     if ($row['required'] == 1) {
                                         echo "*";
                                     } ?></h4>
-                                <!-- do we need ID here or question number? -->
-
 
                                 <textarea <?php if ($row['required'] == 1) {
                                     echo " required ";
@@ -81,6 +81,7 @@ unset($stmt);
                             </div>
                         </div>
                         <?php
+                        // if the question requires a radio button answer, display it like this
                     } else if ($row['Type'] == 'radio') {
                         ?>
                         <div class="card">
@@ -98,6 +99,7 @@ unset($stmt);
                                 $stmt->execute();
                                 $options = $stmt->fetchAll();
                                 unset($stmt);
+                                // read in the options as radio buttons
                                 foreach ($options as $option) {
                                     ?>
                                     <input <?php if ($row['required'] == 1) {
@@ -123,7 +125,9 @@ unset($stmt);
 
 
             </div>
-          <!--Ethics form modal -->
+            <!--Ethics form modal from:
+             https://youtube.com/watch?v=MBaw_6cPmAw&feature=share
+             -->
             <div class="modal.activate" id="modal">
                 <div id="header">
                     <div id="title">Ethics Form</div>
@@ -132,7 +136,10 @@ unset($stmt);
                 </div>
 
                 <div id="body">
-                    <p>By clicking continue you are agreeing with the University of Dundee's ethics form </p>
+                    <p>By clicking continue you are agreeing with the University of Dundee's ethics agreement and that
+                        the data
+                        within the University
+                    </p>
 
 
                     <div id="user_enter">
@@ -192,6 +199,7 @@ unset($stmt);
 </script>
 <script src="https://kit.fontawesome.com/8741ca18b0.js" crossorigin="anonymous"></script>
 <script>
+    // code for displaying the nav bar
     $(function () {
         $("#nav-placeholder").load("../navBar.php");
     });

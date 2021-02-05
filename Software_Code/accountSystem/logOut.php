@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(!empty($_SESSION)){
+if (!empty($_SESSION)) {
     // Unset all of the session variables.
     $_SESSION = array();
 
