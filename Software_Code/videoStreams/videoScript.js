@@ -69,7 +69,7 @@ var addRow = function (timestampArray) {
     }
 
     // Append HTML formatting for hidden textbox
-    timeStampLine += '<td> <input type="text" style ="width:100%" id="comment' + row + '"  name="comment' + row + '"></td><td><a href="#" id="' + row + '" onclick="deleteRow(this.id)" class="btn btn-primary btn-danger fas fa-trash"></a>' + '<td><input type="text" value="';
+      timeStampLine += '<td> <input type="text" style ="width:100%" id="comment' + row + '"  name="comment' + row + '"></td><td><a href="#" id="' + row + '" onclick="deleteRow(this.id)" class="btn btn-primary btn-danger fas fa-trash"></a>' + '<td><input type="hidden" value="';
 
     //Append each timestamp to the variable so that they can be displayed in the hidden textbox
     for (var j = 0; j < timestampArray.length; j++) {

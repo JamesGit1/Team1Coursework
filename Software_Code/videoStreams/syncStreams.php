@@ -74,7 +74,7 @@ date_default_timezone_set('Europe/London');
             </tbody>
 
         </table>
-        <input type="text" id="totalRows" name="totalRows">
+        <input type="hidden" id="totalRows" name="totalRows">
         <button type="submit" class="btn btn-primary" name="test" method="post" id="submitForm">Update
         </button>
 
