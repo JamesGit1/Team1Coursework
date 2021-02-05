@@ -2,6 +2,7 @@
 require_once('../conn.php');
 session_start();
 
+// create a new question
 $stmt = $pdo->prepare("INSERT INTO question (`Contents`,`Type`,`questionnaire ID`, `question number`, `required`) 
                         VALUES  (:contents, :type, :questionnaireID, :questionNumber, :required)");
 
@@ -17,6 +18,7 @@ $questionNumber = (int)"1";
 $type = "text";
 $contents = $_POST['myText'];
 
+// if the question is required to be entered
 if(isset($_POST['required'])){
     $required = 0;
 }
