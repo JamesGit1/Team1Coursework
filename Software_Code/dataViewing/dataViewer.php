@@ -6,7 +6,7 @@ session_start();
 require('../accountSystem/loginStatus.php');
 require_once('../conn.php'); // initilise conneciton to the database
 
-
+// Gets questionnaire details depending on the questionnaire id
 $query = "SELECT qr.ID as `questionnaireID`,qr.`name` as `questionnaireTitle` FROM questionnaire qr
 INNER JOIN questionnaireresearchermap qrm ON qr.ID = qrm.`questionnaireID`
 WHERE qrm.researcherID = :userID;";
@@ -17,7 +17,8 @@ $stmt->execute();
 $ownedQuestionnaires = $stmt->fetchAll();
 unset($stmt);
 
-if (!(isset($_POST['searchQuestionnaire']))) 
+// When button is pressed start searching questionnaire
+if (!(isset($_POST['searchQuestionnaire'])))
 {
     $query = "SELECT q.`question number`,a.`participant ID`,q.`Type`,q.Contents,a.contents FROM questionnaire qr
     INNER JOIN question q ON q.`questionnaire ID` = qr.ID
@@ -33,8 +34,8 @@ if (!(isset($_POST['searchQuestionnaire'])))
 
     $searchName = "Showing all responses";
 }
-
-if (isset($_POST['searchQuestionnaire'])) 
+// When button is pressed start searching questionnaire
+if (isset($_POST['searchQuestionnaire']))
 {
     $query = "SELECT q.`question number`,a.`participant ID`,q.`Type`,q.Contents,a.contents FROM questionnaire qr
     INNER JOIN question q ON q.`questionnaire ID` = qr.ID
@@ -90,13 +91,13 @@ if (isset($_POST['searchQuestionnaire']))
             <div class="dropdown">
                 <form method="POST">
                     <select name="questionnaireID">
-                        <option value="" disabled selected>Choose a questionnaire...</option>                    
-                        <?php foreach ($ownedQuestionnaires as $questionnaire) 
+                        <option value="" disabled selected>Choose a questionnaire...</option>
+                        <?php foreach ($ownedQuestionnaires as $questionnaire)
                         {
                         ?>
                             <option value="<?php echo $questionnaire['questionnaireID'] ?>"><?php echo $questionnaire['questionnaireID'].": ".$questionnaire['questionnaireTitle'] ?></option>
-                        <?php 
-                        } 
+                        <?php
+                        }
                         ?>
                     </select>
                     <button class="btn btn-success" type="submit" name="searchQuestionnaire">Search</button>
@@ -119,14 +120,14 @@ if (isset($_POST['searchQuestionnaire']))
                        <?php // Fill table with the relevant data from sql request
                             foreach($searchResults as $row) {?>
                        <tr>
-                        <?php                                 
+                        <?php
                                 echo "<td>".$row['question number']."</td>";
                                 echo "<td>".$row['participant ID']."</td>";
                                 echo "<td>".$row['Type']."</td>";
                                 echo "<td>".$row['Contents']."</td>";
                                 echo "<td>".$row['contents']."</td></tr>";
                          ?>
-    
+
                         </tr>
                         <?php }
                         ?>
