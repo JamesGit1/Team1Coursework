@@ -26,12 +26,15 @@ date_default_timezone_set('Europe/London');
 </div>
 
 <div class="row">
+
     <h1><u>Sync Video Streams</u></h1>
 </div>
 <div class="row" id="imageRow">
 
+    <!--Form for submitting-->
     <form action="submitTable.php" id="tableForm" method="post" enctype='multipart/form-data'>
 
+        <!-- Video players and uploaders -->
         <div class="row" id=videoRow1>
             <div class="col-sm">
                 <input class="form-control" type="file" accept="video/*" capture="camera" id="fileUpload1"
@@ -49,7 +52,7 @@ date_default_timezone_set('Europe/London');
                 <video width="100%" id="player3" controls></video>
             </div>
         </div>
-
+        <!-- Button that all run onclick function -->
         <div>
             <button class="fas fa-plus btn btn-primary" type="button" onclick="addVideo()" id="addVideo"></button>
             <button class="fas fa-play btn btn-primary" type="button" onclick="playAll()" id="playButton"></button>

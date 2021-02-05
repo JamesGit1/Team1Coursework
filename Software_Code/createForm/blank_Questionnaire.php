@@ -31,8 +31,7 @@ $questions = $stmt->fetchAll();
 unset($stmt);
 
 //Submit radio questions
-if (isset($_POST['submitRadioQuestions']))
-{
+if (isset($_POST['submitRadioQuestions'])) {
     $arrayID = explode(",", $_POST['idNumbers']);
 
     $query = "SELECT `question number` FROM question q WHERE q.`questionnaire ID` = :questionnaireID ORDER BY `question number` DESC";
@@ -44,12 +43,9 @@ if (isset($_POST['submitRadioQuestions']))
 
     $questionNumber = $previousQuestionNumber + 1;
 
-    if(isset($_POST['required1']))
-    {
+    if (isset($_POST['required1'])) {
         $required = 1;
-    }
-    else
-    {
+    } else {
         $required = 0;
     }
 
@@ -72,23 +68,21 @@ if (isset($_POST['submitRadioQuestions']))
     $radioQuestionID = $stmt->fetchColumn();
     unset($stmt);
 
-    foreach ($arrayID as $id)
-    {
-    	$query = "INSERT INTO `options` (`question ID`,`option`) VALUES(:radioQuestionID,:option);";
-    	$stmt = $pdo->prepare($query);
-    	$stmt->bindParam(":radioQuestionID", $radioQuestionID);
-    	$stmt->bindParam(":option", $option);
-    	$option = $_POST[$id];
-    	$stmt->execute();
-    	unset($stmt);
+    foreach ($arrayID as $id) {
+        $query = "INSERT INTO `options` (`question ID`,`option`) VALUES(:radioQuestionID,:option);";
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(":radioQuestionID", $radioQuestionID);
+        $stmt->bindParam(":option", $option);
+        $option = $_POST[$id];
+        $stmt->execute();
+        unset($stmt);
     }
 
     header("Refresh:0");
 }
 
 // Submit the text or radio question into database
-if (isset($_POST['submitQuestions']))
-{
+if (isset($_POST['submitQuestions'])) {
     $query = "SELECT `question number` FROM question q WHERE q.`questionnaire ID` = :questionnaireID ORDER BY `question number` DESC";
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(":questionnaireID", $id);
@@ -98,12 +92,9 @@ if (isset($_POST['submitQuestions']))
 
     $questionNumber = $previousQuestionNumber + 1;
 
-    if(isset($_POST['required']))
-    {
+    if (isset($_POST['required'])) {
         $required = 1;
-    }
-    else
-    {
+    } else {
         $required = 0;
     }
 
@@ -150,8 +141,7 @@ if (isset($_POST['deleteRadio'])) {
     header("Refresh:0");
 }
 // Submits the entire questionnaire
-if (isset($_POST['submitForm']))
-{
+if (isset($_POST['submitForm'])) {
     $query = "UPDATE questionnaire SET `name` = :formName, `description` = :formDescription WHERE `ID` = :questionnaireID;";
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(":questionnaireID", $id);
@@ -187,13 +177,11 @@ if (isset($_POST['submitForm']))
     }
 
 
-
-    $_SESSION["questionnaireLink"] = "answerSheet.php?id=".$questionnaireID;
+    $_SESSION["questionnaireLink"] = "answerSheet.php?id=" . $questionnaireID;
     header("Location: submitted.php");
 }
 
-if (isset($_POST['updateForm'])) 
-{
+if (isset($_POST['updateForm'])) {
     $query = "UPDATE questionnaire SET `name` = :formName, `description` = :formDescription WHERE `ID` = :questionnaireID;";
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(":questionnaireID", $id);
@@ -216,10 +204,10 @@ if (isset($_POST['updateForm']))
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../CSS/style.css">
     <title>Dundata</title>
-    <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico"/>
 
     <div id="nav-placeholder">
 
@@ -227,114 +215,111 @@ if (isset($_POST['updateForm']))
 </head>
 
 <body>
-    <div class="container" id="myDiv">
-        <div class="row">
-            <form method="post" class="newForm" id="submitQuestionnaire">
-                <input type="text" id="formName" style="margin-bottom: 0px;" value="<?php echo $title ?>"
-                    class="card-title question-title" name="formName" />
-                <div class="edittip">
-                    <em style="opacity: 0.5;">click to edit title or description!</em>
-                </div>
-                <textarea name="formDesc" class="card-title question-title" id="formDescription"
-                    oninput="auto_grow(this)"><?php echo $description ?></textarea>
+<div class="container" id="myDiv">
+    <div class="row">
+        <form method="post" class="newForm" id="submitQuestionnaire">
+            <input type="text" id="formName" style="margin-bottom: 0px;" value="<?php echo $title ?>"
+                   class="card-title question-title" name="formName"/>
+            <div class="edittip">
+                <em style="opacity: 0.5;">click to edit title or description!</em>
+            </div>
+            <textarea name="formDesc" class="card-title question-title" id="formDescription"
+                      oninput="auto_grow(this)"><?php echo $description ?></textarea>
 
-                <p><em>Remember to press 'Update' when you change the title/description <strong>BEFORE</strong> adding a
-                        question to avoid losing your changes!</em></p>
-                <button type="submit" class="btn btn-primary" name="updateForm" method="post"
-                    id="submitForm">Update</button>
+            <p><em>Remember to press 'Update' when you change the title/description <strong>BEFORE</strong> adding a
+                    question to avoid losing your changes!</em></p>
+            <button type="submit" class="btn btn-primary" name="updateForm" method="post"
+                    id="submitForm">Update
+            </button>
 
-            </form>
-            <div id="questionPanel">
-                <?php
-            foreach ($questions as $row)
-            {
-            	if ($row['Type'] == 'text')
-            	{
-                ?>
-                <div class="card">
-                    <div class="card-body">
-                        <form name="textQuestion" method="POST">
-                            <p><?php echo $row['Contents'] ?></p>
-                            <p class="card-text"><em>Participant will answer here...</em></p>
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                <button name="delete" value="<?php echo $row['ID'] ?>"
-                                    class="btn btn-primary btn-danger fas fa-trash"></button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <?php
-            	}
-                else if ($row['Type'] == 'radio')
-                {
+        </form>
+        <div id="questionPanel">
+            <?php
+            foreach ($questions as $row) {
+                if ($row['Type'] == 'text') {
                     ?>
-                <div class="card">
-                    <div class="card-body">
-                        <form name="radioQuestion" method="POST">
-                            <p><strong><?php echo $row['Contents'] ?></strong></p>
-                            <ul>
-                                <?php
-                                        $query = "SELECT * FROM options o where o.`question ID` = :questionID";
-                                        $stmt = $pdo->prepare($query);
-                                        $stmt->bindParam(":questionID", $row['ID'], PDO::PARAM_STR);
-                                        $stmt->execute();
-                                        $options = $stmt->fetchAll();
-                                        unset($stmt);
-                                        foreach($options as $option)
-                                        {
-                                        ?>
-                                <li><?php echo $option['option']?></li>
-                                <?php
-                                        }
-                                    ?>
-                            </ul>
-                            <button name="deleteRadio" value="<?php echo $row['ID'] ?>"
-                                class="btn btn-primary btn-danger fas fa-trash"></button>
-                        </form>
+                    <div class="card">
+                        <div class="card-body">
+                            <form name="textQuestion" method="POST">
+                                <p><?php echo $row['Contents'] ?></p>
+                                <p class="card-text"><em>Participant will answer here...</em></p>
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <button name="delete" value="<?php echo $row['ID'] ?>"
+                                            class="btn btn-primary btn-danger fas fa-trash"></button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </div>
-                <?php
+                    <?php
+                } else if ($row['Type'] == 'radio') {
+                    ?>
+                    <div class="card">
+                        <div class="card-body">
+                            <form name="radioQuestion" method="POST">
+                                <p><strong><?php echo $row['Contents'] ?></strong></p>
+                                <ul>
+                                    <?php
+                                    $query = "SELECT * FROM options o where o.`question ID` = :questionID";
+                                    $stmt = $pdo->prepare($query);
+                                    $stmt->bindParam(":questionID", $row['ID'], PDO::PARAM_STR);
+                                    $stmt->execute();
+                                    $options = $stmt->fetchAll();
+                                    unset($stmt);
+                                    foreach ($options as $option) {
+                                        ?>
+                                        <li><?php echo $option['option'] ?></li>
+                                        <?php
+                                    }
+                                    ?>
+                                </ul>
+                                <button name="deleteRadio" value="<?php echo $row['ID'] ?>"
+                                        class="btn btn-primary btn-danger fas fa-trash"></button>
+                            </form>
+                        </div>
+                    </div>
+                    <?php
                 }
             }
             ?>
 
-                <form method="POST">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+            <form method="POST">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
                         id="newQuestion">
-                        Add New Question
-                    </button>
-                </form>
+                    Add New Question
+                </button>
+            </form>
 
-                <button form="submitQuestionnaire" type="submit" class="btn btn-success" name="submitForm" method="post"
-                    id="submitForm">Submit Questionnaire</button>
+            <button form="submitQuestionnaire" type="submit" class="btn btn-success" name="submitForm" method="post"
+                    id="submitForm">Submit Questionnaire
+            </button>
 
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Question Type</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Question Type</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
 
-                            </div>
-                            <div class="modal-body">
-                                <a href="#" id="btnText" data-bs-dismiss="modal" class="btn btn-primary">Text Based</a>
-                                <a href="#" id="btnRadio" data-bs-dismiss="modal" class="btn btn-primary">Radio
-                                    Button</a>
-                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <a href="#" id="btnText" data-bs-dismiss="modal" class="btn btn-primary">Text Based</a>
+                            <a href="#" id="btnRadio" data-bs-dismiss="modal" class="btn btn-primary">Radio
+                                Button</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row justify-content-end" id="imageRow">
-            <img src="../images/logo.png" class="fix">
-        </div>
-
     </div>
-    <div id="loader"></div>
-    <script>
+    <div class="row justify-content-end" id="imageRow">
+        <img src="../images/logo.png" class="fix">
+    </div>
+
+</div>
+<div id="loader"></div>
+<script>
     var myVar;
 
     function myFunction() {
@@ -350,7 +335,7 @@ if (isset($_POST['updateForm']))
         element.style.height = "5px";
         element.style.height = (element.scrollHeight) + "px";
     }
-    </script>
+</script>
 </body>
 
 </html>
@@ -365,13 +350,13 @@ if (isset($_POST['updateForm']))
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
 </script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
 </script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
 </script>
 <script src="https://kit.fontawesome.com/8741ca18b0.js" crossorigin="anonymous"></script>
 <script src="addQuestions.js"></script>
