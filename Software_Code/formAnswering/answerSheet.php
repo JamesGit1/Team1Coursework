@@ -136,8 +136,9 @@ unset($stmt);
                 </div>
 
                 <div id="body">
-                    <p>By clicking continue you are agreeing with the University of Dundee's ethics agreement and that the data
-                    within the University
+                    <p>By clicking continue you are agreeing with the University of Dundee's ethics agreement and that
+                        the data
+                        within the University
                     </p>
 
 
