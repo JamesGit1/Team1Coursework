@@ -41,10 +41,6 @@ unset($stmt);
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="../CSS/ethicsStyle.css">
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico"/>
-    <div id="nav-placeholder">
-
-    </div>
-
 </head>
 
 <body>
@@ -196,9 +192,3 @@ unset($stmt);
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
 </script>
 <script src="https://kit.fontawesome.com/8741ca18b0.js" crossorigin="anonymous"></script>
-<script>
-    // code for displaying the nav bar
-    $(function () {
-        $("#nav-placeholder").load("../navBar.php");
-    });
-</script>

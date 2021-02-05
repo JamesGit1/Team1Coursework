@@ -57,9 +57,6 @@ if (isset($_POST['submitQuestion'])) {
     <link rel="stylesheet" type="text/css" href="../CSS/style.css">
     <title>Dundata</title>
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico"/>
-    <div id="nav-placeholder">
-
-    </div>
 </head>
 
 <body>
@@ -80,9 +77,3 @@ if (isset($_POST['submitQuestion'])) {
 </body>
 
 </html>
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<script>
-    $(function () {
-        $("#nav-placeholder").load("../navBar.php");
-    });
-</script>
