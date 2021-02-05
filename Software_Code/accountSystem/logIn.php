@@ -3,13 +3,15 @@
 session_start();
 require('../conn.php');
 
+//If logged on redirect to dashboard
 if(isset($_SESSION['UserID'])){
     header("Location: ../dashboard.php");
 }
 
 $username_err = $password_err = "";
 
-if (isset($_POST['signIn'])) 
+// Logs in and checks user details to log in
+if (isset($_POST['signIn']))
 {
   $query = "SELECT * FROM account where username = :username";
   $stmt = $pdo->prepare($query);
@@ -17,7 +19,8 @@ if (isset($_POST['signIn']))
   $username = $_POST['username'];
   $stmt->execute();
 
-  if ($stmt->rowCount() == 1) 
+  // counts row of statement
+  if ($stmt->rowCount() == 1)
   {
     $row = $stmt->fetch();
     $id = $row['ID'];
@@ -27,6 +30,7 @@ if (isset($_POST['signIn']))
     $role = $row['Role'];
     $name = $row['firstname'];
 
+    // Set sessions variables
     if ($password == $hashedpassword) {
       $_SESSION['loggedIn'] = true;
       $_SESSION['UserID'] = $id;
