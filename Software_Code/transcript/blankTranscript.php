@@ -17,7 +17,7 @@
 
     unset($stmt);
 
-    //After submitting update the database
+    //Submit the input transcript into the database
     if (isset($_POST['submitTranscript']))
     {
         $query = "UPDATE `transcript` SET `Transcript` = :transcript WHERE `ID` = :transcriptID;";
