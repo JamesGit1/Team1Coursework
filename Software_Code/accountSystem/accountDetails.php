@@ -27,7 +27,7 @@ if (isset($_POST['submitDetails'])) {
 
         $newpassword = $_POST['newpassword'];
         if (empty($newpassword)) {
-            $password = $_POST['oldpassword'];
+            $password = hash($_POST['oldpassword']);
         } else {
             $password = $newpassword;
             $password = hash('sha256', $password);
