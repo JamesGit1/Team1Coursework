@@ -25,12 +25,14 @@ closeModalButtons.forEach(button => {
         closeModal(modal)
     })
 })
+
 //Opens the Modal
 function openModal(modal) {
     if (modal == null) return
     modal.classList.add('active')
     overlay.classList.add('active')
 }
+
 //Closes the Modal
 function closeModal(modal) {
     if (modal == null) return
