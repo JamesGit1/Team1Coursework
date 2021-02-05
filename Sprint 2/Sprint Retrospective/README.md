@@ -28,7 +28,7 @@
 
 -Still stay on topic more in the meetings
 
--We made some features that were not specifically asked for
+-We made some features that were not specifically asked for - make sure that the features that we are adding are specifically requested by the client
 
 -Work on prioritising the features over other things like making it look good
 
