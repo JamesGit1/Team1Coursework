@@ -18,3 +18,5 @@ We get along well - cohesive dynamic
 -Code versions - When someone refactors code they should test it works or tell everyone what they've changed
 
 -Make code reviews and refactoring more concrete
+
+-Breaking down features into smaller parts that we can work on in pairs or individually and then implement together at a later stage.
