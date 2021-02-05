@@ -1,39 +1,38 @@
 <?php
+    session_start();
+    require_once('../conn.php');
+    require('../accountSystem/loginStatus.php');
 
-session_start();
-require_once('../conn.php');
-require('../accountSystem/loginStatus.php');
-//Sessions Variables to get ID's
-
-
-$query = "SELECT * FROM `transcript` WHERE transcript.id = :transcriptID";
-$stmt = $pdo->prepare($query);
-$stmt->bindParam(":transcriptID", $transcriptID, PDO::PARAM_STR);
-$transcriptID = $_SESSION["transcriptID"];
-$stmt->execute();
-$result = $stmt->fetch();
-
-$title = $result['Name'];
-$description = $result['Desc'];
-
-
-unset($stmt);
-
-if (isset($_POST['submitTranscript']))
-{
-    $query = "UPDATE `transcript` SET `Transcript` = :transcript WHERE `ID` = :transcriptID;";
+    //Get details on title and description from the database using transcript ID from session variable created on new transcript
+    $query = "SELECT * FROM `transcript` WHERE transcript.id = :transcriptID";
     $stmt = $pdo->prepare($query);
-
-    $stmt->bindParam(":transcriptID", $id);
-    $stmt->bindParam(":transcript", $transcript);
-
-    $transcript = $_POST['transcriptText'];
-    $id = $_SESSION["transcriptID"];
+    $stmt->bindParam(":transcriptID", $transcriptID, PDO::PARAM_STR);
+    $transcriptID = $_SESSION["transcriptID"];
     $stmt->execute();
+    $result = $stmt->fetch();
+
+    // Set title and description retrieved from database
+    $title = $result['Name'];
+    $description = $result['Desc'];
+
     unset($stmt);
 
-    header("Location: quoteEditer.php");
-}
+    //After submitting update the database
+    if (isset($_POST['submitTranscript']))
+    {
+        $query = "UPDATE `transcript` SET `Transcript` = :transcript WHERE `ID` = :transcriptID;";
+        $stmt = $pdo->prepare($query);
+
+        $stmt->bindParam(":transcriptID", $id);
+        $stmt->bindParam(":transcript", $transcript);
+
+        $transcript = $_POST['transcriptText'];
+        $id = $_SESSION["transcriptID"];
+        $stmt->execute();
+        unset($stmt);
+
+        header("Location: quoteEditer.php");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -59,24 +58,25 @@ if (isset($_POST['submitTranscript']))
     <div class="container" id="myDiv">
         <div class="row">
             <form method="post" class="newForm" id="submitQuestionnaire">
-                <input type="text" readonly id="formName" style="margin-bottom: 0px;"
-                    class="card-title question-title" name="formName" value="<?php echo $title; ?>" />
+                <input type="text" readonly id="formName" style="margin-bottom: 0px;" class="card-title question-title"
+                    name="formName" value="<?php echo $title; ?>" />
                 <textarea readonly name="formDesc" class="card-title question-title" id="formDescription"
                     oninput="auto_grow(this)"><?php echo $description ?></textarea>
-            </form>      
+            </form>
         </div>
 
         <div class="row" id="videoRow">
-            <input class="form-control" type="file" accept="video/*" capture="camera" id="fileUpload1" name = "videoUpload[]" multiple="multiple" style="width: 96%;
+            <input class="form-control" type="file" accept="video/*" capture="camera" id="fileUpload1"
+                name="videoUpload[]" multiple="multiple" style="width: 96%;
     margin-left: auto;
     margin-right: auto;
     border-radius: 0;">
             <video width="100%" id="player1" controls></video>
         </div>
-        <div class="row" >
+        <div class="row">
             <form method="post" class="newForm" id="submitTranscript">
-                <textarea required name="transcriptText" placeholder="Enter transcript here" class="card-title question-title"
-                    id="transcriptForm" oninput="auto_grow(this)"></textarea>
+                <textarea required name="transcriptText" placeholder="Enter transcript here..."
+                    class="card-title question-title" id="transcriptForm" oninput="auto_grow(this)"></textarea>
                 <button type="submit" class="btn btn-primary" name="submitTranscript" method="post"
                     id="submitTranscript">Submit Transcript</button>
             </form>
@@ -107,7 +107,7 @@ if (isset($_POST['submitTranscript']))
 
     function auto_grow(element) {
         element.style.height = "50px";
-        element.style.height = (element.scrollHeight)+"px";
+        element.style.height = (element.scrollHeight) + "px";
     }
     </script>
 </body>
@@ -116,9 +116,9 @@ if (isset($_POST['submitTranscript']))
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
 <script>
-    $(function () {
-        $("#nav-placeholder").load("../navBar.php");
-    });
+$(function() {
+    $("#nav-placeholder").load("../navBar.php");
+});
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
@@ -129,6 +129,7 @@ if (isset($_POST['submitTranscript']))
 </script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    //8===D
 </script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

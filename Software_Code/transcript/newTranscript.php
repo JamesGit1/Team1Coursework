@@ -3,10 +3,11 @@ session_start();
 require_once('../conn.php');
 require('../accountSystem/loginStatus.php');
 
-//submit the title and description and creates the new questionnaire
-if(isset($_POST['submit']))
+//SUBMIT THE NEW TRANSCRIPT
+if(isset($_POST['submit'])) //POST from submission
 {
-    $sql = "CALL createTranscriptReturnID (:name,:description,:creatorID);";
+    //Call pre-definded MySQL procedure, creates a new transcript in the database and required dependancies as well as returing a helpful ID back
+    $sql = "CALL createTranscriptReturnID (:name,:description,:creatorID);"; 
     if ($stmt = $pdo->prepare($sql)) 
     {
         $stmt->bindParam(":name", $name, PDO::PARAM_STR);
@@ -22,7 +23,7 @@ if(isset($_POST['submit']))
 
         $_SESSION['transcriptID'] = $result;    }
 
-        header("Location: blankTranscript.php");
+        header("Location: blankTranscript.php"); //GOTO transcript creation
 }
 ?>
 
@@ -44,10 +45,9 @@ if(isset($_POST['submit']))
 </head>
 
 <body>
-
     <div class="container">
         <div class="row">
-            <h1><u>Create a new Transcript</u></h1>
+            <h1><u>Create a New Transcript</u></h1>
         </div>
         <div class="row" id="imageRow">
             <form method="POST">
@@ -62,17 +62,18 @@ if(isset($_POST['submit']))
                         placeholder="e.g. Description of the meeting and reason for the transcript" required
                         style="margin-bottom: 10px;"></textarea>
                 </div>
-                <button name="submit" value="Submit" type="submit" class="btn btn-primary">Make a new
+                <button name="submit" value="Submit" type="submit" class="btn btn-primary">Make a New
                     Transcript</button>
             </form>
         </div>
         <div class="row justify-content-end" id="imageRow">
-            <img src="../images/logo.png" class="fix">
+            <img src="../images/logo.png" class="fix" style="padding-top: 40px;">
         </div>
     </div>
 </body>
-
 </html>
+
+<!-- include relevant jquery then load navbar and rest of bootstrap dependancies-->
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
 <script>
