@@ -144,8 +144,6 @@ unset($stmt);
 
                     <div id="user_enter">
                         <div class="form-outline">
-                            <label class="form-label" for="form1">Please enter code</label>
-                            <input type="text" id="ethics_txt" class="form-control"/>
                         </div>
 
                     </div>
