@@ -21,78 +21,12 @@ $title = $result['Name'];
 $description = $result['Desc'];
 $transcript = $result['Transcript'];
 
-if(isset($_POST['submitTheme']))
-{
-    $query = "INSERT INTO theme (`Name`,`Description`,`Colour`) VALUES (:name,:description,:colour);";
-
-    $stmt = $pdo->prepare($query);
-
-    $stmt->bindParam(":name", $name, PDO::PARAM_STR);
-    $stmt->bindParam(":description", $description, PDO::PARAM_STR);
-    $stmt->bindParam(":colour", $colour, PDO::PARAM_STR);
-
-    $name = $_POST['themeName'];
-    $description = $_POST['themeDescription'];
-    $colour = $_POST['themeColourpicker'];
-
-    $stmt->execute();
-    header("Refresh:0");
-}
-
-if(isset($_POST['submitQuote']))
-{
-    $query = "CALL `createQuoteReturnID` (:text,:transcriptID,:comment)";
-    $stmt = $pdo->prepare($query);
-    $stmt->bindParam(":text", $text, PDO::PARAM_STR);
-    $stmt->bindParam(":transcriptID", $transcriptID, PDO::PARAM_STR);
-    $stmt->bindParam(":comment", $comment, PDO::PARAM_STR);
-
-    $text = $_POST['highlightedText'];
-    $comment = $_POST['comment'];
-
-    $stmt->execute();
-    $quoteID = $stmt->fetchColumn();
-    unset($stmt);
-
-    $themesList = $_POST['themeSelect'];
-
-    foreach($themesList as $theme)
-    {
-        $query = "INSERT INTO `themequotemap` (`quoteID`,`themeID`) VALUES (:quoteID,:themeID)";
-        $stmt = $pdo->prepare($query);
-        $stmt->bindParam(":quoteID", $quoteID, PDO::PARAM_STR);
-        $stmt->bindParam(":themeID", $themeID, PDO::PARAM_STR);
-
-        $themeID = $theme;
-        $stmt->execute();
-        unset($stmt);
-    }
-}
 
 $query = "SELECT * FROM themequotemap tqm INNER JOIN quote q ON q.ID = tqm.quoteID INNER JOIN theme t ON t.ID = tqm.themeID WHERE q.TranscriptID = $transcriptID";
+//var_dump($transcriptID);
 $stmt = $pdo->prepare($query);
 $stmt->execute();
 $Quotesarray = $stmt->fetchAll();
-//var_dump($Quotesarray);
-
-if(!empty($Quotesarray)){
-    foreach($Quotesarray as $row){
-        $stringToHighlight = $row['Text'];
-
-        $pos = strpos($transcript, $stringToHighlight);
-        $end = $pos + strlen($stringToHighlight) + 8;
-
-        if ($pos !== false) {
-            $transcript = substr_replace($transcript, "<strong>", $pos, 0);
-            $transcript = substr_replace($transcript, "</strong>", $end, 0);
-
-            //$manipulated = strstr($manipulated, "*/");
-            //$pos = false;
-        }
-
-    }
-    var_dump($transcript);
-}
 unset($stmt);
 
 ?>
@@ -126,42 +60,31 @@ unset($stmt);
             <div class="col-md-6">
                 <div class="row" id="transRow">
                     <h4>Transcript</h4>
-                    <p readonly class="transcriptTextarea" id="note" style="white-space: pre-line;"><?php echo $transcript;?></p>
+                    <p readonly class="transcriptTextarea" id="note" style="white-space: pre-line;">
+                        <?php echo $transcript;?></p>
                 </div>
             </div>
-            <div class="col-md-6">
-                <form method="POST">
-                    <div class="row" id="transRow">
-                        <h4>Comment</h4>
-                        <textarea name="comment" rows="3" cols="50" placeholder="Comment goes here"></textarea>
-                    </div>
-                    <div class="row" id="transRow">
-                        <select name="themeSelect[]" class="selectpicker" multiple="multiple" data-live-search="true">
-                            <option disabled value="" selected>Select a theme</option>
-                            <?php
-                            foreach ($themes as $theme)
-                            {
-                            ?>
-                            <option value="<?php echo $theme['ID']; ?>"><?php echo $theme['Name']; ?></option>
-                            <?php
-                            }
-                            ?>
-                        </select>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal">
-                            Add New Theme
-                        </button>
-                    </div>
-                    <div class="row" id="transRow">
-                        <h4>Selected text</h4>
-                        <textarea name="highlightedText" readonly id="sel" rows="3" cols="50"></textarea>
-                        <button class="btn btn-primary" type="submit" name="submitQuote">Add Quote</button>
-                    </div>
-                    <div class="row" id="transRow">
-                        <a style="width: 35%; margin: 0 auto;" class="btn btn-primary" href="submittedTranscript.php">Submit
-                            new Transcript</a>
-                    </div>
-                </form>
+            <div class="col-md-6" style="border-left: solid #5674e4 .2em;">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Quote</th>
+                            <th scope="col">Comment</th>
+                            <th scope="col">Theme Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php 
+                    foreach($Quotesarray as $row){
+                        echo "<td>".$row['Text']."</td>";
+                        echo "<td>".$row['Comment']."</td>";
+                        echo "<td style='color:".$row['Colour'].";'>".$row['Name']."</td></tr>";
+                        
+                    }
+                    ?>
 
+                    </tbody>
+                </table>
             </div>
 
         </div>
@@ -222,8 +145,6 @@ $(function() {
 });
 autosize(document.getElementById("note"));
 </script>
-
-<script src="selectionText.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
