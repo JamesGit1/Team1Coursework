@@ -11,6 +11,7 @@ if(isset($_SESSION['UserID'])){
 $username = "";
 $username_err = "";
 
+// when the user wants to make a new account, run a query that adds them to the database as a researcher
 if (isset($_POST['submitAccount'])) 
 {
 	$query = "SELECT ID FROM account WHERE account.`Username` = :username;";
@@ -18,6 +19,7 @@ if (isset($_POST['submitAccount']))
 	$stmt->bindParam(":username", $username, PDO::PARAM_STR);
 	$username = $_POST['username'];
 	$stmt->execute();
+	// if the username is already found in the database, tell the user that this account already exists in the database
 	if ($stmt->rowCount() == 1) 
 	{
 		$username_err = "This username is already taken";
@@ -27,7 +29,7 @@ if (isset($_POST['submitAccount']))
 		$username = $_POST['username'];
 	}
 
-	if (empty($username_err)) 
+	if (empty($username_err))   // insert the account into the database
 	{
 		$query = "INSERT INTO account (`firstname`,`Username`,`Password`,`Role`, `lastname`) VALUES (:name,:username,:password,'researcher',:lastname)";
 
@@ -36,15 +38,17 @@ if (isset($_POST['submitAccount']))
 		$stmt->bindParam(":name", $name, PDO::PARAM_STR);
 		$stmt->bindParam(":lastname", $lastname, PDO::PARAM_STR);
 		$stmt->bindParam(":username", $username, PDO::PARAM_STR);
-		$stmt->bindParam(":password", $hashedpassword, PDO::PARAM_STR);
+		$stmt->bindParam(":password", $hashedPassword, PDO::PARAM_STR);
 
 		$name = $_POST['name'];
 		$username = $_POST['username'];
-		$passentered = $_POST['password'];
-		$hashedpassword = hash('sha256',$passentered);
+		$passEntered = $_POST['password'];
+		$hashedPassword = hash('sha256',$passEntered);
 		$lastname = $_POST['lastname'];
 
 		$stmt->execute();
+		unset($stmt);
+
 		header("Location: logIn.php");
 	}
 }
@@ -64,6 +68,7 @@ if (isset($_POST['submitAccount']))
 
   <body class="text-center" id="background">
   	<div class="cont">
+        <!-- a form for signing up as a user -->
 	  <form class="form-signin" method="POST">
 	    <img class="mb-4" src="../images/University_Of_Dundee_shield.png" alt="" width="72" height="100">
 

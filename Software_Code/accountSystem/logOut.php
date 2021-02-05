@@ -8,6 +8,6 @@ if(!empty($_SESSION)){
     // Finally, destroy the session.
     session_destroy();
 }
-
+// Redirect to index
 header("location: ../../index.php");
 ?>
